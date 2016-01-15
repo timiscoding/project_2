@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @activity.title %>
+</p>
+
+<p>
+  <strong>Effort:</strong>
+  <%= @activity.effort %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @activity.group_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @activity.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_activity_path(@activity) %> |
+<%= link_to 'Back', activities_path %>
