@@ -1,1 +1,6 @@
 <h1>App page</h1>
+
+<script>
+  var app = app || {};
+  app.current_user = <%= @current_user.to_json.html_safe %>;
+</script>
