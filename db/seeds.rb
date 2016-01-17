@@ -13,13 +13,13 @@ g2 = Group.create :name => 'Grotty Slobs'
 
 User.destroy_all
 
-u1 = User.create :first_name => 'Bobbit', :last_name => 'Slobs', :email => 'bobbit@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
-u2 = User.create :first_name => 'Sally', :last_name => 'Squiggles', :email => 'squiggles@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
-u3 = User.create :first_name => 'Zippy', :last_name => 'Smith', :email => 'zippy@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
-u4 = User.create :first_name => 'Lambert', :last_name => 'Lumberjack', :email => 'lambert@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
-u5 = User.create :first_name => 'Poppin', :last_name => 'Bubbles', :email => 'bubbles@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
-u6 = User.create :first_name => 'Jelly', :last_name => 'Wobbles', :email => 'wobbles@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
-u7 = User.create :first_name => 'Jet', :last_name => 'Black', :email => 'jetblack@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
+u1 = User.create :first_name => 'Bobbit', :last_name => 'Slobs', :email => 'bobbit@email.com',  :password => 'chicken', :password_confirmation => 'chicken', :total_score => 100
+u2 = User.create :first_name => 'Sally', :last_name => 'Squiggles', :email => 'squiggles@email.com',  :password => 'chicken', :password_confirmation => 'chicken', :total_score => 22
+u3 = User.create :first_name => 'Zippy', :last_name => 'Smith', :email => 'zippy@email.com',  :password => 'chicken', :password_confirmation => 'chicken', :total_score => 4
+u4 = User.create :first_name => 'Lambert', :last_name => 'Lumberjack', :email => 'lambert@email.com',  :password => 'chicken', :password_confirmation => 'chicken', :total_score => 10
+u5 = User.create :first_name => 'Poppin', :last_name => 'Bubbles', :email => 'bubbles@email.com',  :password => 'chicken', :password_confirmation => 'chicken', :total_score => 55
+u6 = User.create :first_name => 'Jelly', :last_name => 'Wobbles', :email => 'wobbles@email.com',  :password => 'chicken', :password_confirmation => 'chicken', :total_score => 72
+u7 = User.create :first_name => 'Jet', :last_name => 'Black', :email => 'jetblack@email.com',  :password => 'chicken', :password_confirmation => 'chicken', :total_score => 1
 u8 = User.create :first_name => 'Dazzle', :last_name => 'Zebra', :email => 'dazzle@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
 
 u1.groups << g1
