@@ -1,3 +1,5 @@
+// groups that a user belongs to
+
 var app = app || {};
 
 app.Groups = Backbone.Collection.extend({

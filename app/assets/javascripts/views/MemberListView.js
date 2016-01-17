@@ -12,10 +12,16 @@ app.MemberListView = Backbone.View.extend({
       .done(function(){
         // HARD CODED get first group user belongs in
         console.log('mygroups - first ', mygroups.first().id);
-        var mygroup = new app.Group({id: mygroups.first().id});
+        var mygroup = new app.Group({ id: mygroups.first().id });
+        console.log( 'group ', mygroup );
         mygroup.members.fetch()
           .done(function() {
             console.log(mygroup.members.toJSON());
+            mygroup.members.each(function(member){
+              console.log('member', member.toJSON());
+              var memberView = new app.MemberView({ model: member });
+              $('#members').append( memberView.render().el );
+            });
           });
     });
     this.$el.append($('#members-template').html());
