@@ -1,14 +1,12 @@
-<h2>Hey there member</h2>
-<h1>Login with your details below</h1>
+<h1>Welcome</h1>
+<h5>Login with your details below</h5>
 
-<p>
-<%= form_tag '/login', :autocomplete => "off" do %>
-   <%= label_tag 'email' %>
+  <%= form_tag '/login', :autocomplete => "off" do %>
+  <%= label_tag 'email' %>
   <%= text_field_tag :email, nil, :autofocus => true, :required => true %>
   <%= label_tag 'Password' %>
   <%= password_field_tag :password, nil, :required => true %>
-  
+  <p></p>
   <button> Log in <i class="fa fa-sign-in"></i></button>
   
 <% end %>
-</p>

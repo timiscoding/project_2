@@ -12,5 +12,8 @@ app.AppView = Backbone.View.extend({
 
     var appViewTemplate = "anything";
     this.$el.append(appViewTemplate);
+
+ //   var activityView = new app.ActivityView;
+ //   activityView.render();
   }
 });
