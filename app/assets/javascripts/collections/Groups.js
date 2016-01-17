@@ -1,4 +1,8 @@
-// groups that a user belongs to
+// groups that a user belongs in
+//
+// Sample usage:
+// bobs_groups = new app.Groups({ user_id: current_user.id })
+// bobs_groups.fetch()
 
 var app = app || {};
 
