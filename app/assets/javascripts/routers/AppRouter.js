@@ -9,10 +9,12 @@ app.AppRouter = Backbone.Router.extend({
     var appView = new app.AppView({ });
     appView.render();
 
-    // to be put in own route later
+    // ** note: to be put in own route later **
+    // Fetch the activity list, when done...
     app.getActivityList.fetch().done(function () {
-      var activitiesList = new app.ActivityView({collection: app.getActivityList });
-      activitiesList.render();
+      // Initialize new ActivityPageView and pass in the new collection
+      var activityPageView = new app.ActivityPageView({collection: app.getActivityList });
+      activityPageView.render();
     });
 
   }

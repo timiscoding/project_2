@@ -6,7 +6,9 @@ _.templateSettings = {
 var app = app || {};
 
 $(document).ready(function(){
+  // Initialize the activity list
   app.getActivityList = new app.Activities()
+
   app.router = new app.AppRouter();
   Backbone.history.start();
 });
