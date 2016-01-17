@@ -9,6 +9,10 @@ app.TaskListView = Backbone.View.extend({
     app.router.navigate('tasks/' + this.model.get('id'), true);
   },
   render: function(){
+    //ask Jack!!!
+    // var taskTitle = activity.model.get('title');
+    // $('#tasks').append("<p>Task: " + taskTitle + "</p>");
+
     var taskId = this.model.get('id');
     $('#tasks').append("<p>Task ID: " + taskId + "</p>");
 
@@ -17,7 +21,6 @@ app.TaskListView = Backbone.View.extend({
 
     // this.$el.text( "DUE: " + this.model.get('due_date'));
     // this.$el.appendTo('#tasks');
-
 
   }
 });

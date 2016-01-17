@@ -6,8 +6,11 @@ app.AppView = Backbone.View.extend({
     //Set up the overall page structure
     var appViewHTML = $('#appView').html();
     this.$el.html( appViewHTML );
+
+    // debugger;
+    this.collection = this.collection.where({ activity_id: 2 });
     // Create individual views whitn the app for each of the blog posts.
-    this.collection.each(function(task){
+    _(this.collection).each(function(task){
 
       var taskListView = new app.TaskListView({model: task});
       taskListView.render();

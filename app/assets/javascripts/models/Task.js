@@ -6,5 +6,4 @@ app.Task = Backbone.Model.extend({
   initialize: function(){
     console.log("New task created.");
   }
-
 });
