@@ -21,8 +21,8 @@ app.AppView = Backbone.View.extend({
       // this.$el.append(userListViewTemplate);
 
 
-    var taskViewTemplate = "taskViewTemplate";
-    this.$el.append(taskViewTemplate);
+    // var taskViewTemplate = "taskViewTemplate";
+    // this.$el.append(taskViewTemplate);
 
 
 
