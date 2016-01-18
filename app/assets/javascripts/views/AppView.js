@@ -8,7 +8,7 @@ app.AppView = Backbone.View.extend({
     this.$el.html( appViewHTML );
 
     // debugger;
-    this.collection = this.collection.where({ activity_id: 2 });
+    this.collection = this.collection.where({ activity_id: 3 });
     // Create individual views whitn the app for each of the blog posts.
     _(this.collection).each(function(task){
 
@@ -24,11 +24,13 @@ app.AppView = Backbone.View.extend({
     // var memberListView = new app.MemberListView();
     // this.$el.append( memberListView.el );
 
-      // var appViewTemplate = "anything";
-      // this.$el.append(appViewTemplate);
     });
    // Creates a new view for the form
-   var taskInputView = new app.TaskInputView();
-   taskInputView.render(); // then 
+    var taskInputView = new app.TaskInputView();
+    taskInputView.render(); // then 
+
+    var appViewTemplate = "anything";
+    this.$el.append(appViewTemplate);
+
   }
 });

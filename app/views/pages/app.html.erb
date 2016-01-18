@@ -23,10 +23,45 @@
   <button>submit</button>
 </script>
 
+<hr>
+
+<!-- Saves the current users data into var ** app.current_user ** -->
 <script>
   var app = app || {};
   app.current_user = <%= @current_user.to_json.html_safe %>;
   app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+</script>
+
+
+<!-- TEMPLATES -->
+
+<script id="activityPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Add a task</h1>
+  <h5>Select an activity</h5>
+  <ul id="activitiesListContainer"></ul>
+  <div class="button">
+    <i class="fa fa-plus-circle"></i>
+    Add or edit activities
+  </div>
+</script>
+
+<script id="activityListItemTemplate" type="text/template">
+    <p>{{ title }} – <strong><small> Effort: {{ effort }} / Group ID: {{ group_id }}</small></strong></p>
+</script>
+
+<script id="activityEditPageViewTemplate" type="text/template">
+  <h1>Add or edit activities</h1>
+  <h5>Edit activities and give an effort rating</h5>
+  <ul id="activitiesEditable"></ul>
+  <div id="buttonDashed">
+    <i class="fa fa-plus-circle"></i>
+    Add another activity
+  </div>
+  <div id="button">
+    <i class="fa fa-check-circle"></i>
+    Save
+  </div>
 </script>
 
 <script type="text/template" id="members-template">
@@ -34,3 +69,4 @@
       Members go here
     </ul>
 </script>
+
