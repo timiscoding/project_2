@@ -64,9 +64,13 @@
   </div>
 </script>
 
-<script type="text/template" id="members-template">
-    <ul id="members">
-      Members go here
-    </ul>
+<script id="memberPageViewTemplate" type="text/template">
+  <hr>
+  <h1>List of users</h1>
+  <ul id="memberList">
+  </ul>
 </script>
 
+<script id="memberListItemTemplate" = type="text/template">
+  <p>{{ first_name }} - {{ total_score }}</p>
+</script>
