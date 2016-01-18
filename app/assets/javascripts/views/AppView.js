@@ -32,10 +32,7 @@ app.AppView = Backbone.View.extend({
     });
    // Creates a new view for the form
     var taskInputView = new app.TaskInputView();
-    taskInputView.render(); // then 
-
-    var appViewTemplate = "anything";
-    this.$el.append(appViewTemplate);
+    taskInputView.render();
 
   }
 });

@@ -3,33 +3,16 @@ var app = app || {};
 app.AppRouter = Backbone.Router.extend({
   routes: {
     '': 'app',
+    'tasklist': 'tasklist',
     'tasks/:id':　'viewTask',
-    'mydetails': 'myDetails'
+    'mydetails': 'myDetails',
+    'activities': 'activities'
   },
 
   app: function(){
 
-    // var appView = new app.AppView({});
-    // appView.render();
-    // if ( $('#main').length === 0 ) { return; }
-    // app.tasks = new app.Tasks();
-    // app.tasks.fetch().done(function () {
-    //   var appView = new app.AppView({collection: app.tasks});
-    //   appView.render();
-
-    // });
-
         // ** note: to be put in own route later **
     // Fetch the activity list, when done...
-
-    app.activities.fetch().done(function () {
-      // Initialize new ActivityPageView and pass in the new collection
-      var activityPageView = new app.ActivityPageView({collection: app.activities });
-      activityPageView.render();
-
-      var activityEditPageView = new app.ActivityEditPageView({collection: app.activities });
-      activityEditPageView.render();
-    });
 
     // get member list from server and show member list view
     app.memberList.fetch().done(function () {
@@ -52,6 +35,28 @@ app.AppRouter = Backbone.Router.extend({
       console.log("sunning")
       var EditUserDetailsPageView = new app.EditUserDetailsPageView({ });
       EditUserDetailsPageView.render();
+  },
+
+  activities: function () {
+    app.activities.fetch().done(function () {
+      // Initialize new ActivityPageView and pass in the new collection
+      var activityPageView = new app.ActivityPageView({collection: app.activities });
+      activityPageView.render();
+
+      var activityEditPageView = new app.ActivityEditPageView({collection: app.activities });
+      activityEditPageView.render();
+    });
+  },
+
+  taskList: function () {
+    // var appView = new app.AppView({});
+    // appView.render();
+
+    app.tasks = new app.Tasks();
+    app.tasks.fetch().done(function () {
+      var appView = new app.AppView({collection: app.tasks});
+       appView.render();
+    });
   }
 
 });
