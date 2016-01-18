@@ -20,6 +20,10 @@ app.AppView = Backbone.View.extend({
       // var userListViewTemplate = "user＿list_view_here";
       // this.$el.append(userListViewTemplate);
 
+
+    // var memberListView = new app.MemberListView();
+    // this.$el.append( memberListView.el );
+
       // var appViewTemplate = "anything";
       // this.$el.append(appViewTemplate);
     });

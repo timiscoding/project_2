@@ -7,6 +7,7 @@ app.AppRouter = Backbone.Router.extend({
   },
 
   app: function(){
+    
     // var appView = new app.AppView({});
     // appView.render();
     app.tasks = new app.Tasks();
@@ -20,6 +21,10 @@ app.AppRouter = Backbone.Router.extend({
     var task = app.tasks.get(id);
     var taskView = new app.TaskView({model: task});
     taskView.render(); 
+
+    if ( $('#main').length === 0 ) { return; }
+    var appView = new app.AppView({});
+    appView.render();
   }
 
 }); 

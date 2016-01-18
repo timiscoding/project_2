@@ -4,12 +4,19 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    if @current_user.present? # if we're a user show only their groups
+      @groups = @current_user.groups
+    else # if we're admin, show all groups
+      @groups = Group.all
+    end
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
+    # show the group members
+    group = Group.find params[:id]
+    @group_members = group.users
   end
 
   # GET /groups/new
