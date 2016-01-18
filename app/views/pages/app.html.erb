@@ -69,12 +69,6 @@
     <p>{{ title }} – <strong><small> Effort: {{ effort }} / Group ID: {{ group_id }}</small></strong></p>
 </script>
 
-<script type="text/template" id="members-template">
-    <ul id="members">
-      Members go here
-    </ul>
-</script>
-
 <script type="text/template" id="UserDetailsPageViewTemplate">
    <p>Users details should go here<p>
 <table>
@@ -110,4 +104,13 @@
   </form>
 </script>
 
+<script id="memberPageViewTemplate" type="text/template">
+  <hr>
+  <h1>List of users</h1>
+  <ul id="memberList">
+  </ul>
+</script>
 
+<script id="memberListItemTemplate" = type="text/template">
+  <p>{{ first_name }} - {{ total_score }}</p>
+</script>

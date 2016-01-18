@@ -15,8 +15,8 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     # show the group members
-    group = Group.find params[:id]
-    @group_members = group.users
+    @group = Group.find params[:id]
+    # @group_members = group.users
   end
 
   # GET /groups/new
