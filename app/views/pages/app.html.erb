@@ -3,6 +3,26 @@
 <div id="main">
 </div>
 
+<script id="appView" type="text/template">
+  <h1>All tasks</h1>
+  <ul id="tasks"></ul>
+</script>
+
+<script id="taskView" type="text/template">
+  <h1>{{ id }}</h1>
+  <h2>{{ due_date }}</h2>
+</script>
+
+
+<div id="taskForm">
+  Form goes here.
+</div>
+
+<script type="html/template" id="taskInputViewTemplate">
+  <textarea placeholder="Add new task"></textarea>
+  <button>submit</button>
+</script>
+
 <hr>
 
 <!-- Saves the current users data into var ** app.current_user ** -->

@@ -5,6 +5,10 @@ _.templateSettings = {
 
 var app = app || {};
 
+app.tasks = new app.Tasks();
+
+
+
 $(document).ready(function(){
   // Initialize the activity list
   app.getActivityList = new app.Activities()
