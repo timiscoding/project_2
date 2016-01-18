@@ -1,6 +1,6 @@
 var app = app || {};
 
-app.ActivityEditView = Backbone.View.extend({
+app.ActivityEditPageView = Backbone.View.extend({
   el: '#main',
 
   render: function () {
@@ -20,7 +20,7 @@ app.ActivityEditView = Backbone.View.extend({
     // for each item in the collection...
     _(currentUsersActivities).each(function (activity) {
       // initialize new ActivityListItemView and pass in item
-      var activityListItemView = new app.ActivityEditListItemView({ model: activity });
+      var activityEditListItemView = new app.ActivityEditListItemView({ model: activity });
       activityEditListItemView.render();
     });
   }
