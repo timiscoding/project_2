@@ -47,7 +47,7 @@
 </script>
 
 <script id="activityListItemTemplate" type="text/template">
-    <p>{{ title }} – <strong><small> Effort: {{ effort }} / Group ID: {{ group_id }}</small></strong></p>
+    <p>{{ title }} &nbsp; </p>
 </script>
 
 <script id="activityEditPageViewTemplate" type="text/template">
@@ -64,10 +64,9 @@
   </div>
 </script>
 
-<script type="text/template" id="members-template">
-    <ul id="members">
-      Members go here
-    </ul>
+<script id="activityEditListItemTemplate" type="text/template">
+    <form></form>
+    <p>{{ title }} – <strong><small> Effort: {{ effort }} / Group ID: {{ group_id }}</small></strong></p>
 </script>
 
 <!-- template to display cureent user profile = My details -->
@@ -118,6 +117,18 @@
   </form>
 </script>
 
+
 <div id="error"></div>
 
 
+<script id="memberPageViewTemplate" type="text/template">
+  <hr>
+  <h1>List of users</h1>
+  <ul id="memberList">
+  </ul>
+</script>
+
+
+<script id="memberListItemTemplate" = type="text/template">
+  <p>{{ first_name }} - {{ total_score }}</p>
+</script>

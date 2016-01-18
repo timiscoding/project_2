@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'members/index'
-
-  resources :groups do
-    resources :members
-  end
+  resources :groups
 
   resources :feedbacks
   resources :tasks
@@ -16,9 +12,7 @@ Rails.application.routes.draw do
 
   get '/users/edit' => 'users#edit'
 
-  resources :users, :except => [:edit] do
-    member { get :groups }
-  end
+  resources :users, :except => [:edit]
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
