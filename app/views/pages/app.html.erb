@@ -26,12 +26,15 @@
 <hr>
 
 <!-- Saves the current users data into var ** app.current_user ** -->
+<% if @current_user.present? %>
 <script>
   var app = app || {};
   app.current_user = <%= @current_user.to_json.html_safe %>;
-  app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+  <% if @current_user.groups.any? %>
+    app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+  <% end %>
 </script>
-
+<% end %>
 
 <!-- TEMPLATES -->
 
@@ -89,7 +92,7 @@
       <td><%= @current_user.last_name %></td>
       <td><%= @current_user.phone %></td>
       <td><%= @current_user.email %></td>
-    
+
 
     </tr>
   </tbody>
@@ -131,4 +134,17 @@
 
 <script id="memberListItemTemplate" = type="text/template">
   <p>{{ first_name }} - {{ total_score }}</p>
+</script>
+
+<script id="newGroupPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Create a new group</h1>
+  <label for="groupName">Give your group a name</label>
+  <input type="text" id="groupName" autofocus/>
+  <hr>
+  <label for="newMember" style="display: inline">Invite someone to join your group</label><span id="error" style="color: red"></span>
+  <input type="text" id="newMember" placeholder="someone@email.com"/>
+  <ul id="newMemberList"></ul>
+  <button id="addMember">Add member</button>
+  <p><button id="addGroup">Next</button></p>
 </script>

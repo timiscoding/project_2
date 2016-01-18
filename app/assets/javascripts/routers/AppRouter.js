@@ -3,7 +3,8 @@ var app = app || {};
 app.AppRouter = Backbone.Router.extend({
   routes: {
     '': 'app',
-    'tasks/:id':　'viewTask'
+    'tasks/:id':　'viewTask',
+    'newgroup': 'newGroup',
   },
 
   app: function(){
@@ -27,7 +28,7 @@ app.AppRouter = Backbone.Router.extend({
       activityPageView.render();
     });
 
-     
+
     var UserDetailsPageView = new app.UserDetailsPageView({ });
     UserDetailsPageView.render();
 
@@ -48,6 +49,13 @@ app.AppRouter = Backbone.Router.extend({
     var task = app.tasks.get(id);
     var taskView = new app.TaskView({model: task});
     taskView.render();
+  },
+
+  newGroup: function() {
+    console.log('new group');
+    var newGroupPageView = new app.NewGroupPageView();
+    newGroupPageView.render();
+    // app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
   }
 
 });
