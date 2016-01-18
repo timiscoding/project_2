@@ -10,13 +10,13 @@ app.AppRouter = Backbone.Router.extend({
     
     // var appView = new app.AppView({});
     // appView.render();
-    if ( $('#main').length === 0 ) { return; }
-    app.tasks = new app.Tasks();
-    app.tasks.fetch().done(function () {
-      var appView = new app.AppView({collection: app.tasks});
-      appView.render();
+    // if ( $('#main').length === 0 ) { return; }
+    // app.tasks = new app.Tasks();
+    // app.tasks.fetch().done(function () {
+    //   var appView = new app.AppView({collection: app.tasks});
+    //   appView.render();
 
-    });
+    // });
 
         // ** note: to be put in own route later **
     // Fetch the activity list, when done...
