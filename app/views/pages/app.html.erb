@@ -1,11 +1,56 @@
-<h1><i class="fa fa-bolt"></i> App page</h1>
+<nav class="menu">
+  <h3>Welcome <%= @current_user.first_name %></h3>
+  <a href="#tasklist">Task List&nbsp;</a>
+  <a href="#">Leaderboard&nbsp;</a>
+  <a href="#">Group Stats&nbsp;</a>
+  <a href="#activities">Activities&nbsp;</a>
+  <a href="#mydetails">My Details&nbsp;</a>
+  <% if @current_user.present? %>
+  <%= link_to 'Logout', logout_path, method: :delete %>
+  <% end %>
+</nav>
 
 <div id="main">
 </div>
 
-<script id="appView" type="text/template">
-  <h1>All tasks</h1>
-  <ul id="tasks"></ul>
+<script id="taskListViewTemplate" type="text/template">
+
+<table class="task-selector">
+  <tbody>
+    <tr>
+      <th class="all-tasks">All tasks</th>
+      <th class="my-tasks">My tasks</th>
+    </tr>
+  </tbody>
+</table>
+
+<ul id="tasks">
+</ul>
+</script>
+
+<script type="text/template" id="taskListView">
+    <div class="task-item">
+
+    <div class="avatar">
+      <img src="{{ image_url }}">
+    </div>
+
+    <div class="task-title">
+      <h2>
+        {{ title }}
+      </h2> 
+    </div>
+
+    <div class="date">
+      <p>
+        Due:
+      </p>
+      <p>
+        {{ date }}
+      </p>
+    </div>
+
+  </div>
 </script>
 
 <script id="taskView" type="text/template">
@@ -15,7 +60,7 @@
 
 
 <div id="taskForm">
-  Form goes here.
+
 </div>
 
 <script type="html/template" id="taskInputViewTemplate">
@@ -35,11 +80,17 @@
 
 <!-- TEMPLATES -->
 
+<script id="taskListPageViewTemplate" type="text/template">
+  <hr>
+  <div id="memberListViewContainer"></div>
+  <div id="taskListViewContainer"></div>
+</script>
+
 <script id="activityPageViewTemplate" type="text/template">
   <hr>
   <h1>Add a task</h1>
   <h5>Select an activity</h5>
-  <ul id="activitiesListContainer"></ul>
+  <div id="activitiesListContainer"></div>
   <div class="button">
     <i class="fa fa-plus-circle"></i>
     Add or edit activities
@@ -47,31 +98,35 @@
 </script>
 
 <script id="activityListItemTemplate" type="text/template">
-    <p>{{ title }} &nbsp; </p>
+    {{ title }} &nbsp;<span></span>
 </script>
 
 <script id="activityEditPageViewTemplate" type="text/template">
+  <hr>
   <h1>Add or edit activities</h1>
   <h5>Edit activities and give an effort rating</h5>
-  <ul id="activitiesEditable"></ul>
-  <div id="buttonDashed">
+  <div id="activitiesEditListContainer"></div>
+  <div class="button button-outline">
     <i class="fa fa-plus-circle"></i>
     Add another activity
   </div>
-  <div id="button">
+  <div class="button">
     <i class="fa fa-check-circle"></i>
     Save
   </div>
 </script>
 
 <script id="activityEditListItemTemplate" type="text/template">
-    <form></form>
-    <p>{{ title }} – <strong><small> Effort: {{ effort }} / Group ID: {{ group_id }}</small></strong></p>
+  <input type="text" name = "title" id="title" value="{{ title }}">
+  <button class="button button-outline">
+    <span></span>
+  </button>
 </script>
 
 <!-- template to display cureent user profile = My details -->
 <script type="text/template" id="UserDetailsPageViewTemplate">
-   <p>Users details should go here<p>
+<hr>
+<h1>My details</h1>
 <table>
   <thead>
     <tr>
@@ -99,7 +154,6 @@
 <!-- Template to edit current user details -->
 <script type="text/template" id="EditUserDetailsPageViewTemplate">
   <form action="">
-    <legend>Edit <%= @current_user.first_name %></legend>
     <label>First Name</label>
     <input type="text" name = "first_name" id="first_name" value="<%= @current_user.first_name %>">
     <label>Last Name</label>
@@ -130,7 +184,6 @@
 </script>
 
 <script id="memberPageViewTemplate" type="text/template">
-  <hr>
   <h1>List of users</h1>
   <ul id="memberList">
   </ul>

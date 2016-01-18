@@ -1,7 +1,8 @@
 var app = app || {};
 
 app.ActivityListItemView = Backbone.View.extend({
-  tagName: 'li',
+  tagName: 'button',
+  className: 'button button-outline',
   events: {
 
   },
@@ -17,16 +18,16 @@ app.ActivityListItemView = Backbone.View.extend({
     var effort = this.model.get('effort');
 
     
-    var pTag = this.$el.find("p");
+    var span = this.$el.find("span");
 
     var fullStars = function (num) {
       var $fullStars = $( "<i>" ).addClass("yellow fa fa-star effort" + num).data("effort", num);
-      pTag.append($fullStars);
+      span.append($fullStars);
     };
    
     var emptyStars = function (num) {
       var $emptyStars = $( "<i>" ).addClass("yellow fa fa-star-o effort" + num).data("effort", num);
-      pTag.append($emptyStars);
+      span.append($emptyStars);
     };
     
     // Loop through append full star x number in effort
@@ -38,7 +39,6 @@ app.ActivityListItemView = Backbone.View.extend({
     for (var i = 0; i < (4 - effort); i++) {
       emptyStars(i);
     };
-    
 
     
     // Loop through append full star x number in effort
