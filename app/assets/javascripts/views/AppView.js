@@ -9,6 +9,7 @@ app.AppView = Backbone.View.extend({
   render: function () {
     this.groupTasks();
   },
+
   groupTasks: function(){
     //Set up the overall page structure
     var appViewHTML = $('#appView').html();
@@ -16,11 +17,6 @@ app.AppView = Backbone.View.extend({
 
     var currentUsersGroupId = app.current_user.group.id
     //console.log(currentUsersGroupId); //3
-
-    // we passed in a collection via the appRouter, 
-    // now we want to filter OUT records who's group id dosn't match current users' id
-    // var currentUsersTasks = this.collection.where({ group_id: currentUsersGroupId })
-    // debugger;
     var currentUsersTasks = this.collection.select(function (model) {
 
       var activityID = model.get("activity_id");
@@ -36,10 +32,6 @@ app.AppView = Backbone.View.extend({
       }
     });
 
-    // });
-   // Creates a new view for the form
-    var taskInputView = new app.TaskInputView();
-    taskInputView.render(); // then 
   },
 
   myTasks: function () {
@@ -64,6 +56,9 @@ app.AppView = Backbone.View.extend({
 
     });
   }
+   // // Creates a new view for the form
+   //  var taskInputView = new app.TaskInputView();
+   //  taskInputView.render(); // then
 });
 
 

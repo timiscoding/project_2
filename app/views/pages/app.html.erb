@@ -1,4 +1,14 @@
-<h1><i class="fa fa-bolt"></i> App page</h1>
+<nav class="menu">
+  <h3>Welcome <%= @current_user.first_name %></h3>
+  <a href="#tasklist">Task List&nbsp;</a>
+  <a href="#">Leaderboard&nbsp;</a>
+  <a href="#">Group Stats&nbsp;</a>
+  <a href="#activities">Activities&nbsp;</a>
+  <a href="#mydetails">My Details&nbsp;</a>
+  <% if @current_user.present? %>
+  <%= link_to 'Logout', logout_path, method: :delete %>
+  <% end %>
+</nav>
 
 <div id="main">
 </div>
@@ -15,7 +25,6 @@
 </table>
 
 <ul id="tasks">
-
 </ul>
 </script>
 
@@ -51,7 +60,7 @@
 
 
 <div id="taskForm">
-  Form goes here.
+
 </div>
 
 <script type="html/template" id="taskInputViewTemplate">
@@ -75,7 +84,7 @@
   <hr>
   <h1>Add a task</h1>
   <h5>Select an activity</h5>
-  <ul id="activitiesListContainer"></ul>
+  <div id="activitiesListContainer"></div>
   <div class="button">
     <i class="fa fa-plus-circle"></i>
     Add or edit activities
@@ -83,26 +92,92 @@
 </script>
 
 <script id="activityListItemTemplate" type="text/template">
-    <p>{{ title }} – <strong><small> Effort: {{ effort }} / Group ID: {{ group_id }}</small></strong></p>
+    {{ title }} &nbsp;<span></span>
 </script>
 
 <script id="activityEditPageViewTemplate" type="text/template">
+  <hr>
   <h1>Add or edit activities</h1>
   <h5>Edit activities and give an effort rating</h5>
-  <ul id="activitiesEditable"></ul>
-  <div id="buttonDashed">
+  <div id="activitiesEditListContainer"></div>
+  <div class="button button-outline">
     <i class="fa fa-plus-circle"></i>
     Add another activity
   </div>
-  <div id="button">
+  <div class="button">
     <i class="fa fa-check-circle"></i>
     Save
   </div>
 </script>
 
-<script type="text/template" id="members-template">
-    <ul id="members">
-      Members go here
-    </ul>
+<script id="activityEditListItemTemplate" type="text/template">
+  <input type="text" name = "title" id="title" value="{{ title }}">
+  <button class="button button-outline">
+    <span></span>
+  </button>
 </script>
 
+<!-- template to display cureent user profile = My details -->
+<script type="text/template" id="UserDetailsPageViewTemplate">
+<hr>
+<h1>My details</h1>
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Password</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @current_user.first_name %></td>
+      <td><%= @current_user.last_name %></td>
+      <td><%= @current_user.phone %></td>
+      <td><%= @current_user.email %></td>
+    
+
+    </tr>
+  </tbody>
+</table>
+</script>
+
+<!-- Template to edit current user details -->
+<script type="text/template" id="EditUserDetailsPageViewTemplate">
+  <form action="">
+    <legend>Edit <%= @current_user.first_name %></legend>
+    <label>First Name</label>
+    <input type="text" name = "first_name" id="first_name" value="<%= @current_user.first_name %>">
+    <label>Last Name</label>
+    <input type="text" name = "last_name" id="last_name" value="<%= @current_user.last_name %>">
+    <label>Phone</label>
+    <input type="text" name = "phone" id="phone" value="<%= @current_user.phone %>">
+    <label>Email</label>
+    <input type="text" name = "email" id="email" value="<%= @current_user.email %>">
+    <label>Password</label>
+    <input type="text" name = "password" id="password">
+    <label>Password Confirmation</label>
+    <input type="text" name = "password_confirmation" id="password_confirmation">
+    <div id="error"></div>
+    <button type="submit" class="editButton">Submit</button>
+  </form>
+</script>
+
+
+<div id="error"></div>
+
+
+<script id="memberPageViewTemplate" type="text/template">
+  <hr>
+  <h1>List of users</h1>
+  <ul id="memberList">
+  </ul>
+</script>
+
+
+<script id="memberListItemTemplate" = type="text/template">
+  <p>{{ first_name }} - {{ total_score }}</p>
+</script>
