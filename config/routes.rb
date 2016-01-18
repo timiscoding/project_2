@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :groups
+  get 'members/index'
+
+  resources :groups do
+    resources :members
+  end
+
   resources :feedbacks
   resources :tasks
   resources :activities
@@ -10,9 +15,12 @@ Rails.application.routes.draw do
   get '/app' => 'pages#app'
 
   get '/users/edit' => 'users#edit'
-  resources :users, :except => [:edit]
+
+  resources :users, :except => [:edit] do
+    member { get :groups }
+  end
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
-  delete '/login' => 'session#destroy'
+  delete '/logout' => 'session#destroy'
 end

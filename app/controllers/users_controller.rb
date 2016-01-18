@@ -61,6 +61,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def groups
+    user = User.find params[:id]
+    @groups = user.groups
+  end
+
+  def group
+    @group = Group.find params[:id]
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

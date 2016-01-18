@@ -1,6 +1,7 @@
 <h1><i class="fa fa-bolt"></i> App page</h1>
 
-<div id="main"></div>
+<div id="main">
+</div>
 
 <hr>
 
@@ -8,7 +9,9 @@
 <script>
   var app = app || {};
   app.current_user = <%= @current_user.to_json.html_safe %>;
+  app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
 </script>
+
 
 <!-- TEMPLATES -->
 
@@ -40,3 +43,10 @@
     Save
   </div>
 </script>
+
+<script type="text/template" id="members-template">
+    <ul id="members">
+      Members go here
+    </ul>
+</script>
+

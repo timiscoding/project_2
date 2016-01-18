@@ -6,7 +6,8 @@ app.AppRouter = Backbone.Router.extend({
   },
 
   app: function () {
-    var appView = new app.AppView({ });
+    if ( $('#main').length === 0 ) { return; }
+    var appView = new app.AppView({});
     appView.render();
 
     // ** note: to be put in own route later **

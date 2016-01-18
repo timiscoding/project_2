@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :email
       t.string :phone
-      t.integer :total_score
+      t.integer :total_score, :default => 0
 
       t.timestamps null: false
     end
