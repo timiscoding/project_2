@@ -27,15 +27,14 @@ app.AppRouter = Backbone.Router.extend({
       app.tasks.fetch().done(function () {
         var appView = new app.AppView({collection: app.tasks});
       appView.render();
+    　});
 
     });
-
     // get member list from server and show member list view
     app.memberList.fetch().done(function () {
       console.log('memberlist', app.memberList);
       var memberPageView = new app.MemberPageView({ model: app.memberList });
       memberPageView.render();
-
     });
 
   },
@@ -68,6 +67,7 @@ app.AppRouter = Backbone.Router.extend({
   taskList: function () {
     // var appView = new app.AppView({});
     // appView.render();
+
     app.tasks = new app.Tasks();
     app.tasks.fetch().done(function () {
       var appView = new app.AppView({collection: app.tasks});
