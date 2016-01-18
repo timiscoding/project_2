@@ -17,6 +17,13 @@ app.AppRouter = Backbone.Router.extend({
       var activityPageView = new app.ActivityPageView({collection: app.getActivityList });
       activityPageView.render();
     });
+     
+      var UserDetailsPageView = new app.UserDetailsPageView({ });
+      UserDetailsPageView.render();
+
+      var EditUserDetailsPageView = new app.EditUserDetailsPageView({ });
+      EditUserDetailsPageView.render();
+
 
   }
 

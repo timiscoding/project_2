@@ -50,3 +50,39 @@
     </ul>
 </script>
 
+<script type="text/template" id="UserDetailsPageViewTemplate">
+   <p>Users details should go here<p>
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @current_user.first_name %></td>
+      <td><%= @current_user.last_name %></td>
+      <td><%= @current_user.phone %></td>
+    </tr>
+  </tbody>
+</table>
+
+</script>
+
+<script type="text/template" id="EditUserDetailsPageViewTemplate">
+  <form action="">
+    <legend>Edit <%= @current_user.first_name %></legend>
+    <label>First Name</label>
+    <input type="text" name = "first_name" id="first_name" value="<%= @current_user.first_name %>">
+    <label>Last Name</label>
+    <input type="text" name = "last_name" id="last_name" value="<%= @current_user.last_name %>">
+    <label>Phone</label>
+    <input type="text" name = "phone" id="phone" value="<%= @current_user.phone %>">
+    <button type="submit" class="editButton">Submit</button>
+  </form>
+</script>
+
+
