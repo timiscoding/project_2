@@ -1,7 +1,7 @@
 var app = app ||{};
 
 app.TaskListView = Backbone.View.extend({
-  tagName: 'li', //Create a new element for each instance of this view.
+  tagName: 'ul', //Create a new element for each instance of this view.
   events: {
     'click': 'showTask'
   },
@@ -10,17 +10,23 @@ app.TaskListView = Backbone.View.extend({
   },
   render: function(){
     //ask Jack!!!
-    // var taskTitle = activity.model.get('title');
-    // $('#tasks').append("<p>Task: " + taskTitle + "</p>");
+    // var activityTitle = this.model.get('title');
 
-    var taskId = this.model.get('id');
-    $('#tasks').append("<p>Task ID: " + taskId + "</p>");
+    var activityID = this.model.get("activity_id");
+    var activity = app.activities.get( this.model.get("activity_id") );
+    this.$el.append("<p>Title: " + activity.get("title") + "</p>");
+    //this.$el.appendTo('.task-title > h2');
+
+    this.$el.append("<p>Score: " + activity.get("effort") + "</p>");
+
+    // var taskId = this.model.get('id');
+    // this.$el.append("<p>Task ID: " + taskId + "</p>");
 
     var taskDueDate = this.model.get('due_date');
-    $('#tasks').append("<p>DUE: " + taskDueDate + "</p>");
+    this.$el.append("<p>DUE: " + taskDueDate + "</p>");
 
-    // this.$el.text( "DUE: " + this.model.get('due_date'));
-    // this.$el.appendTo('#tasks');
+    this.$el.appendTo('#tasks');
 
   }
 });
+

@@ -85,7 +85,63 @@ t1.update_attribute :activity, a1
 t2.update_attribute :activity, a2
 t3.update_attribute :activity, a3
 t4.update_attribute :activity, a4
-t5.update_attribute :activity, a1
-t6.update_attribute :activity, a2
-t7.update_attribute :activity, a3
-t8.update_attribute :activity, a4
+t5.update_attribute :activity, a5
+t6.update_attribute :activity, a6
+t7.update_attribute :activity, a7
+t8.update_attribute :activity, a8
+
+# Before fixed like below! All the tasks were associated to group 1.
+
+# TASK 2. activity = activity1 (group 1)
+
+# TASK 2. activity = activity2 (group 1)
+
+# TASK 3. activity = activity3 (group 1)
+
+# TASK 4. activity = activity4 (group 1)
+
+# TASK 5. activity = activity1 (group 1)
+
+# TASK 6. activity = activity2 (group 1)
+
+# TASK 7. activity = activity3 (group 1)
+
+# TASK 8. activity = activity2 (group 1)
+
+# These were not associated to any tasks before.
+
+# activity5 (group 2)
+# activity6 (group 2)
+# activity7 (group 2)
+# activity8 (group 2)
+
+# Correct one
+
+# TASK 1. activity = activity1 (group 1)
+
+# TASK 2. activity = activity2 (group 1)
+
+# TASK 3. activity = activity3 (group 1)
+
+# TASK 4. activity = activity4 (group 1)
+
+# TASK 5. activity = activity5 (group 2)
+
+# TASK 6. activity = activity6 (group 2)
+
+# TASK 7. activity = activity7 (group 2)
+
+# TASK 8. activity = activity8 (group 2)
+
+
+
+
+
+
+
+
+
+
+
+
+

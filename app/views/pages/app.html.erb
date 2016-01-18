@@ -4,8 +4,44 @@
 </div>
 
 <script id="appView" type="text/template">
-  <h1>All tasks</h1>
-  <ul id="tasks"></ul>
+
+<table class="task-selector">
+  <tbody>
+    <tr>
+      <th class="all-tasks">All tasks</th>
+      <th class="my-tasks">My tasks</th>
+    </tr>
+  </tbody>
+</table>
+
+<ul id="tasks">
+
+</ul>
+</script>
+
+<script type="text/template" id="taskListView">
+    <div class="task-item">
+
+    <div class="avatar">
+      <img src="{{ image_url }}">
+    </div>
+
+    <div class="task-title">
+      <h2>
+        {{ title }}
+      </h2> 
+    </div>
+
+    <div class="date">
+      <p>
+        Due:
+      </p>
+      <p>
+        {{ date }}
+      </p>
+    </div>
+
+  </div>
 </script>
 
 <script id="taskView" type="text/template">

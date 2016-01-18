@@ -12,18 +12,21 @@ app.AppRouter = Backbone.Router.extend({
     // appView.render();
     if ( $('#main').length === 0 ) { return; }
     app.tasks = new app.Tasks();
-    app.tasks.fetch().done(function () {
-      var appView = new app.AppView({collection: app.tasks});
+
+    // ** note: to be put in own route later **
+    // Fetch the activity list, when done...
+    app.activities.fetch({replace: true, reset: true}).done(function () {
+      console.log( app.activities );
+      // Initialize new ActivityPageView and pass in the new collection
+      var activityPageView = new app.ActivityPageView({ collection: app.activities });
+      activityPageView.render();
+
+      app.tasks.fetch().done(function () {
+        var appView = new app.AppView({collection: app.tasks});
       appView.render();
 
     });
 
-        // ** note: to be put in own route later **
-    // Fetch the activity list, when done...
-    app.getActivityList.fetch().done(function () {
-      // Initialize new ActivityPageView and pass in the new collection
-      var activityPageView = new app.ActivityPageView({collection: app.getActivityList });
-      activityPageView.render();
     });
 
   },
