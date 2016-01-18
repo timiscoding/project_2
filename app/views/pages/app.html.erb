@@ -69,12 +69,7 @@
     <p>{{ title }} – <strong><small> Effort: {{ effort }} / Group ID: {{ group_id }}</small></strong></p>
 </script>
 
-<script type="text/template" id="members-template">
-    <ul id="members">
-      Members go here
-    </ul>
-</script>
-
+<!-- template to display cureent user profile = My details -->
 <script type="text/template" id="UserDetailsPageViewTemplate">
    <p>Users details should go here<p>
 <table>
@@ -83,6 +78,8 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Phone</th>
+      <th>Email</th>
+      <th>Password</th>
     </tr>
   </thead>
 
@@ -91,12 +88,15 @@
       <td><%= @current_user.first_name %></td>
       <td><%= @current_user.last_name %></td>
       <td><%= @current_user.phone %></td>
+      <td><%= @current_user.email %></td>
+    
+
     </tr>
   </tbody>
 </table>
-
 </script>
 
+<!-- Template to edit current user details -->
 <script type="text/template" id="EditUserDetailsPageViewTemplate">
   <form action="">
     <legend>Edit <%= @current_user.first_name %></legend>
@@ -106,8 +106,29 @@
     <input type="text" name = "last_name" id="last_name" value="<%= @current_user.last_name %>">
     <label>Phone</label>
     <input type="text" name = "phone" id="phone" value="<%= @current_user.phone %>">
+    <label>Email</label>
+    <input type="text" name = "email" id="email" value="<%= @current_user.email %>">
+    <label>Password</label>
+    <input type="text" name = "password" id="password">
+    <label>Password Confirmation</label>
+    <input type="text" name = "password_confirmation" id="password_confirmation">
+    <div id="error"></div>
     <button type="submit" class="editButton">Submit</button>
   </form>
 </script>
 
 
+<div id="error"></div>
+
+
+<script id="memberPageViewTemplate" type="text/template">
+  <hr>
+  <h1>List of users</h1>
+  <ul id="memberList">
+  </ul>
+</script>
+
+
+<script id="memberListItemTemplate" = type="text/template">
+  <p>{{ first_name }} - {{ total_score }}</p>
+</script>
