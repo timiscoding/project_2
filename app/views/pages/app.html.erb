@@ -116,10 +116,18 @@
     <button type="submit" class="editButton">Submit</button>
   </form>
 </script>
-
-
 <div id="error"></div>
 
+<script id="LeaderboardPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Leaderboard</h1>
+  <ul id="leaderList">
+  </ul>
+</script>
+
+<script id="LeaderboardListItemViewTemplate" type="text/template">
+  <p>{{ first_name }} - {{ total_score }}</p>
+</script>
 
 <script id="memberPageViewTemplate" type="text/template">
   <hr>

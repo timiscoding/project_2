@@ -27,12 +27,15 @@ app.AppRouter = Backbone.Router.extend({
       activityPageView.render();
     });
 
-     
-    var UserDetailsPageView = new app.UserDetailsPageView({ });
+     //render user details and Edit user views
+    var UserDetailsPageView = new app.UserDetailsPageView({});
     UserDetailsPageView.render();
 
-    var EditUserDetailsPageView = new app.EditUserDetailsPageView({ });
+    var EditUserDetailsPageView = new app.EditUserDetailsPageView({});
     EditUserDetailsPageView.render();
+
+    var LeaderboardPageView = new app.LeaderboardPageView({});
+   // leaderboard page
 
 
     // get member list from server and show member list view
@@ -40,6 +43,7 @@ app.AppRouter = Backbone.Router.extend({
       console.log('memberlist', app.memberList);
       var memberPageView = new app.MemberPageView({ model: app.memberList });
       memberPageView.render();
+      LeaderboardPageView.render();
     });
 
   },
