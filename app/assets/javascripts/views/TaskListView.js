@@ -1,32 +1,66 @@
-var app = app ||{};
+var app = app || {};
 
 app.TaskListView = Backbone.View.extend({
-  tagName: 'ul', //Create a new element for each instance of this view.
+  el: '#taskListViewContainer',
   events: {
-    'click': 'showTask'
+    'click .all-tasks': 'groupTasks',
+    'click .my-tasks': 'myTasks'
   },
-  showTask: function(){
-    app.router.navigate('tasks/' + this.model.get('id'), true);
+  render: function () {
+    this.groupTasks();
   },
-  render: function(){
-    //ask Jack!!!
-    // var activityTitle = this.model.get('title');
 
-    var activityID = this.model.get("activity_id");
-    var activity = app.activities.get( this.model.get("activity_id") );
-    this.$el.append("<p>Title: " + activity.get("title") + "</p>");
-    //this.$el.appendTo('.task-title > h2');
+  groupTasks: function(){
+    //Set up the overall page structure
+    var appViewHTML = $('#taskListViewTemplate').html();
+    this.$el.html( appViewHTML );
 
-    this.$el.append("<p>Score: " + activity.get("effort") + "</p>");
+    var currentUsersGroupId = app.current_user.group.id
+    //console.log(currentUsersGroupId); //3
+    var currentUsersTasks = this.collection.select(function (model) {
 
-    // var taskId = this.model.get('id');
-    // this.$el.append("<p>Task ID: " + taskId + "</p>");
+      var activityID = model.get("activity_id");
+      //console.log( activityID );//9,10,11,12,13,14,15,16 all the  activities
+      var activity = app.activities.get( model.get("activity_id") );
 
-    var taskDueDate = this.model.get('due_date');
-    this.$el.append("<p>DUE: " + taskDueDate + "</p>");
+      if (activity.get("group_id") === app.current_user.group.id) {
+        var taskListView = new app.TaskListItemView({model: model});
+        taskListView.render();
+        return true;
+      } else {
+        return false;
+      }
+    });
 
-    this.$el.appendTo('#tasks');
+  },
 
+  myTasks: function () {
+    //Set up the overall page structure
+    var appViewHTML = $('#taskListViewTemplate').html();
+    this.$el.html( appViewHTML );
+
+    var currentUsersGroupId = app.current_user.group.id
+    var currentUsersTasks = this.collection.select(function (model) {
+
+      var activityID = model.get("activity_id");
+      //console.log( activityID );//9,10,11,12,13,14,15,16 all the  activities
+      var activity = app.activities.get( model.get("activity_id") );
+
+      if (activity.get("user_id") === app.current_user.id) {
+        var taskListView = new app.TaskListItemView({model: model});
+        taskListView.render();
+        return true;
+      } else {
+        return false;
+      }
+
+    });
   }
+   // // Creates a new view for the form
+   //  var taskInputView = new app.TaskInputView();
+   //  taskInputView.render(); // then
 });
+
+
+
 

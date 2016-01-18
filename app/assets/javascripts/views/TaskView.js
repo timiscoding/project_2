@@ -1,7 +1,7 @@
 var app = app || {};
 
 app.TaskView = Backbone.View.extend({
-  el: '#main',
+  el: '#taskListViewContainer',
   render: function(){
 
     var taskViewTemplater = _.template( $('#taskView').html());
