@@ -3,7 +3,7 @@ var app = app || {};
 app.AppRouter = Backbone.Router.extend({
   routes: {
     '': 'app',
-    'tasklist': 'tasklist',
+    'tasklist': 'taskList',
     'tasks/:id':　'viewTask',
     'mydetails': 'myDetails',
     'activities': 'activities'
@@ -13,22 +13,22 @@ app.AppRouter = Backbone.Router.extend({
     
     // var appView = new app.AppView({});
     // appView.render();
-    if ( $('#main').length === 0 ) { return; }
-    app.tasks = new app.Tasks();
+    // if ( $('#main').length === 0 ) { return; }
+    // app.tasks = new app.Tasks();
 
-    // ** note: to be put in own route later **
-    // Fetch the activity list, when done...
-    app.activities.fetch({replace: true, reset: true}).done(function () {
-      console.log( app.activities );
-      // Initialize new ActivityPageView and pass in the new collection
-      var activityPageView = new app.ActivityPageView({ collection: app.activities });
-      activityPageView.render();
+    // // ** note: to be put in own route later **
+    // // Fetch the activity list, when done...
+    // app.activities.fetch({replace: true, reset: true}).done(function () {
+    //   console.log( app.activities );
+    //   // Initialize new ActivityPageView and pass in the new collection
+    //   var activityPageView = new app.ActivityPageView({ collection: app.activities });
+    //   activityPageView.render();
 
-      app.tasks.fetch().done(function () {
-        var appView = new app.AppView({collection: app.tasks});
-      appView.render();
+    //   app.tasks.fetch().done(function () {
+    //     var appView = new app.AppView({collection: app.tasks});
+    //   appView.render();
 
-    });
+    // });
 
     // get member list from server and show member list view
     app.memberList.fetch().done(function () {
@@ -66,12 +66,15 @@ app.AppRouter = Backbone.Router.extend({
   },
 
   taskList: function () {
-    // var appView = new app.AppView({});
-    // appView.render();
-    app.tasks = new app.Tasks();
-    app.tasks.fetch().done(function () {
-      var appView = new app.AppView({collection: app.tasks});
-       appView.render();
+    // var taskListPageView = new app.TaskListPageView({});
+    // taskListPageView.render(); 
+    
+    app.activities.fetch({replace: true, reset: true}).done(function () {
+      app.tasks = new app.Tasks();
+      app.tasks.fetch().done(function () {
+        var appView = new app.AppView({collection: app.tasks});
+         appView.render();
+      });
     });
   }
 
