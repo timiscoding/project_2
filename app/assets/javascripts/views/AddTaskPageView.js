@@ -4,7 +4,7 @@ app.AddTaskPageView = Backbone.View.extend({
   el: '#main',
 
   events: {
-    'click #saveTask': 'editActivities'
+    'click #saveTask': 'saveTask'
   },
 
   initialize: function () {
@@ -13,14 +13,53 @@ app.AddTaskPageView = Backbone.View.extend({
     };
   },
 
+  saveTask: function () {
+    $dateSelect = $('#dateSelect').val();
+    if (!selectedUser || !$dateSelect) {return;}
+
+    // app.tasks.create({ 
+    //    tasks: {
+    //   user_id: selectedUser,
+    //   activity_id: this.model.get('id'),
+    //   due_date: $dateSelect,
+    //   score: this.model.get('effort')
+    // }});
+
+    $.ajax({
+      url: "/tasks",
+      method: "POST",
+      dataType: "JSON",
+      data: { task: {
+        user_id: selectedUser,
+        activity_id: this.model.get('id'),
+        due_date: $dateSelect,
+        score: this.model.get('effort'),
+        done: false
+      }},
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (data) {
+        console.log('somethign went wrong');
+      }
+    });
+
+//    app.tasks.create({ user_id: })
+  },
+
+    // t.integer  "user_id"
+    // t.integer  "activity_id"
+    // t.date     "due_date"
+    // t.boolean  "done"
+    // t.datetime "created_at",  null: false
+    // t.datetime "updated_at",  null: false
+    // t.integer  "score"
+
   render: function () {
     // Gets the activityPageViewTemplate from our app.html.erb to setup the view structure
     var addTaskPageViewTemplate = _.template($('#addTaskPageViewTemplate').html());
     // Sets #main HTML to activity view template's HTML
     this.$el.html(addTaskPageViewTemplate(this.model.toJSON()));
-
-    var span = this.$el.find("#memberListContainer");
-
 
     app.memberList.fetch().done(function () {
       _.each(app.memberList.toJSON().users, function (user) {
@@ -29,18 +68,7 @@ app.AddTaskPageView = Backbone.View.extend({
       });
     });
 
-    // ** note: change *append* to *html* later **
-    var activity = this.model.get("title");
-
-    console.log(activity);
-
-
-    // // we want to get the current users group id
-    // var currentUsersGroupId = app.current_user.group.id
-
-    // // we passed in a collection via the appRouter, 
-    // // now we want to filter out records who's group id dosn't match current users' id
-    // var currentUsersActivities = this.collection.where({ group_id: currentUsersGroupId })
+    selectedUser = false;
 
   }
 
