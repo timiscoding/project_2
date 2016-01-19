@@ -2,18 +2,18 @@ var app = app || {};
 
 app.MemberSelectItemView = Backbone.View.extend({
   tagName: 'button',
-  className: 'button button-outline',
+  className: 'button button-outline memberSelector',
 
   events: {
     'click': 'select'
   },
 
   select: function(){
-    // $(this).toggleClass('button');
+    $('.memberSelector').addClass('button button-outline');
     this.$el.toggleClass('button');
-    this.$el.toggleClass('button-outline')
-
-    console.log(this.model.id)
+    this.$el.toggleClass('button-outline');
+    this.$el.blur();
+    selectedUser = this.model.id
   },
 
   render: function () {
