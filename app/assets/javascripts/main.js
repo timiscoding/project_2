@@ -13,7 +13,9 @@ $(document).ready(function(){
   // Initialize the activity list
   app.activities = new app.Activities();
 
-  app.current_user.groups = new app.Groups();
+  app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
+  app.current_user.groups = new app.UserGroups(null, { user_id: app.current_user.id });
+  app.groups = new app.Groups();
 
   app.router = new app.AppRouter();
   Backbone.history.start();

@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  resources :groups
+  resources :groups do
+    member do
+      put '/add/:user_id' => 'groups#add'
+      patch '/add/:user_id' => 'groups#add'
+    end
+  end
 
   resources :feedbacks
   resources :tasks
   resources :activities
   resources :users do
     collection { get :search }
+    member { get :groups }
   end
 
   root :to => 'session#new'

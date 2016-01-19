@@ -78,6 +78,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def groups
+    if @current_user.present? # && @current_user.id == params[:id] # logged in users can only view their groups
+        @groups = @current_user.groups
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
