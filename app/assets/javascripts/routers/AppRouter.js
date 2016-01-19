@@ -43,6 +43,11 @@ app.AppRouter = Backbone.Router.extend({
       memberPageView.render();
     });
 
+    // get current_users groups
+    app.current_user.groups.fetch().done(function() {
+      console.log('current_users groups', app.current_user.groups);
+    });
+
   },
 
   viewTask: function(id){

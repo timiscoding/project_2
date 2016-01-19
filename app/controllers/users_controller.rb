@@ -70,10 +70,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.present?
         format.html { redirect_to @user }
-        format.json { render :json => { status: true } }
+        format.json { render :json => { exists: true, user_id: @user.id } }
       else
         format.html { render :text => "no result" }
-        format.json { render :json => { status: false } }
+        format.json { render :json => { exists: false } }
       end
     end
   end

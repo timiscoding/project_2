@@ -8,7 +8,7 @@ var app = app || {};
 app.Group = Backbone.Model.extend({
   initialize: function(models, args){
     if ( args && args.group_id ) {
-      this.urlRoot = '/groups/' + args.group_id;  // for fetching group and user json data
+      this.url = '/groups/' + args.group_id;  // for fetching specific group and user json data
     } else {
       this.urlRoot = '/groups'; // for normal group crud
     }

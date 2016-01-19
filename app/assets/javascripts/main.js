@@ -6,12 +6,14 @@ _.templateSettings = {
 var app = app || {};
 
 app.tasks = new app.Tasks();
-
+app.ENTER_KEY = 13;
 
 
 $(document).ready(function(){
   // Initialize the activity list
-  app.activities = new app.Activities()
+  app.activities = new app.Activities();
+
+  app.current_user.groups = new app.Groups();
 
   app.router = new app.AppRouter();
   Backbone.history.start();

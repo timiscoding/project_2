@@ -31,10 +31,19 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
+    @group = Group.new
+    puts "group name #{ group_params[:name] }"
+    @group.name = group_params[:name]
 
     respond_to do |format|
       if @group.save
+        # set new members belonging to group
+        group_params[:users].each do |user_id|
+          user = User.find user_id
+          puts "about to add to group #{ @group.id } user #{ user.id } #{ user.first_name }"
+          @group.users << user
+        end
+
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
@@ -76,6 +85,7 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name)
+      # params[:group][:users] ||=  [] # users is nil
+      params.require(:group).permit(:name, users: [])
     end
 end
