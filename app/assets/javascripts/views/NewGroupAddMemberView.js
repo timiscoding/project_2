@@ -8,7 +8,6 @@ app.NewGroupAddMemberView = Backbone.View.extend({
   },
 
   render: function() {
-    // console.log('addEmail,', this.attributes);
     this.$el
       .append( $('<span>').attr('id', this.attributes.user_id).append(this.attributes.email) )
       .append('<a href="#">Remove</a>');
@@ -17,7 +16,6 @@ app.NewGroupAddMemberView = Backbone.View.extend({
 
   clear: function(e) {
     e.preventDefault();
-    // console.log('removing member');
     this.remove();
   }
 });
