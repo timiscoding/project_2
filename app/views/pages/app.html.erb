@@ -106,7 +106,7 @@
   <h1>Add or edit activities</h1>
   <h5>Edit activities and give an effort rating</h5>
   <div id="activitiesEditListContainer"></div>
-  <div class="button button-outline">
+  <div class="button button-outline" id="addActivity">
     <i class="fa fa-plus-circle"></i>
     Add another activity
   </div>
@@ -201,31 +201,32 @@
   <div id="memberSelectContainer"></div>
   <label>Due date:</label>
   <input type="date" name="due">
-  <div class="button" id="saveTask">
+  <button class="button" id="saveTask">
     Save Task
     <i class="fa fa-check-circle"></i>
-  </div>
+  </button>
 </script>
 
 
-<script type="text/template" id="addTaskViewTemplate">
+<script id="AddActivityPageView" type="text/template">
+<hr>
+<h1>Add an activity</h1>
+<label>Name of the activity:</label> 
+<input type="text" name="nameActivity" id="nameActivity">  
 
-  <form action="">
-    <label>Task dealer</label>
-    <select name="cars">
-      <option value="volvo"></option>
-      <option value="saab"></option>
-      <option value="fiat"></option>
-      <option value="audi"></option>
-    </select>
-  
-    <label>Due Date</label>
-
-    <input type="date" name = "Due_Date" id="datepicker" >
-
-    <button type="submit" class="createTaskButton">Submit</button>
-  </form>
+<span>
+  <i class="yellow fa fa-star effort2"></i>
+  <i class="yellow fa fa-star effort2"></i>
+  <i class="yellow fa fa-star-o effort0"></i>
+  <i class="yellow fa fa-star-o effort0"></i>
+</span>
+<button class="button" id="saveActivity">
+  Save Activity
+</button>
 </script>
+
+
+
 
 
 
