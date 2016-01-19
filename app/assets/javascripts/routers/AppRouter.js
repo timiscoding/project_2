@@ -5,10 +5,16 @@ app.AppRouter = Backbone.Router.extend({
     '': '',
     'tasklist': 'taskList',
     'tasks/:id':　'viewTask',
+    'addtask/:id':　'addTask',
     'mydetails': 'myDetails',
     'activities': 'activities',
+<<<<<<< HEAD
     'leaderboard': 'leaderboard',
     'addtask': 'addtask'
+=======
+    'activities/edit': 'editActivities',
+    'leaderboard': 'leaderboard'
+>>>>>>> cb41b942b40d96366a386e03ab8e5fb83d85ce1a
   },
 
   taskList: function () {
@@ -37,6 +43,23 @@ app.AppRouter = Backbone.Router.extend({
     taskView.render(); 
   },
 
+  addTask: function(id){
+    //debugger;
+    var activity = app.activities.get( id );
+    if (! activity) {
+      activity = new app.Activity({id: id});
+      activity.fetch({
+        success: function () {
+          var addTaskPageView = new app.AddTaskPageView({ model: activity });
+          addTaskPageView.render();           
+        }
+      });
+      return;
+    }
+    var addTaskPageView = new app.AddTaskPageView({ model: activity });
+    addTaskPageView.render(); 
+  },
+
   myDetails: function () {
       var UserDetailsPageView = new app.UserDetailsPageView({ });
       UserDetailsPageView.render();
@@ -55,16 +78,20 @@ app.AppRouter = Backbone.Router.extend({
   activities: function () {
     app.activities.fetch().done(function () {
       // Initialize new ActivityPageView and pass in the new collection
-      var activityPageView = new app.ActivityPageView({collection: app.activities });
+      var activityPageView = new app.ActivityPageView({ collection: app.activities });
       activityPageView.render();
-
-      var activityEditPageView = new app.ActivityEditPageView({collection: app.activities });
-      activityEditPageView.render();
     });
   },
+
   addtask: function () {
     var addTaskView = new app.AddTaskView({});
     addTaskView.render();
+
+
+  editActivities: function () {
+    var activityEditPageView = new app.ActivityEditPageView({ collection: app.activities });
+    activityEditPageView.render();
+
   }
 
 });
