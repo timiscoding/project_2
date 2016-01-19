@@ -1,7 +1,8 @@
 var app = app || {};
 
 app.MemberListItemView = Backbone.View.extend({
-  tagName: 'li',
+  tagName: 'div',
+  className: 'avatar',
 
   render: function() {
     var templater = _.template( $('#memberListItemTemplate').html() );

@@ -89,9 +89,9 @@
 <script id="activityPageViewTemplate" type="text/template">
   <hr>
   <h1>Add a task</h1>
-  <h5>Select an activity</h5>
+  <h5>Select an activity to add a task</h5>
   <div id="activitiesListContainer"></div>
-  <div class="button">
+  <div class="button" id="editActivitiesButton">
     <i class="fa fa-plus-circle"></i>
     Add or edit activities
   </div>
@@ -176,12 +176,28 @@
 
 
 <script id="memberPageViewTemplate" type="text/template">
-  <h1>List of users</h1>
-  <ul id="memberList">
-  </ul>
+  <div id="memberList">
+  </div>
 </script>
 
 
 <script id="memberListItemTemplate" = type="text/template">
-  <p>{{ first_name }} - {{ total_score }}</p>
+  {{ first_name }} - {{ total_score }}
 </script>
+
+
+<script id="addTaskPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Add a task</h1>
+  <h5>{{title}}</h5>
+  <div id="memberSelectContainer"></div>
+  <label>Due date:</label>
+  <input type="date" name="due">
+  <div class="button" id="saveTask">
+    Save Task
+    <i class="fa fa-check-circle"></i>
+  </div>
+</script>
+
+
+

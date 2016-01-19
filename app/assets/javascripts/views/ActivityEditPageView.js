@@ -7,7 +7,7 @@ app.ActivityEditPageView = Backbone.View.extend({
     // Gets the activityPageViewTemplate from our app.html.erb to setup the view structure
     var activityEditPageViewTemplate = _.template($('#activityEditPageViewTemplate').html());
     // Sets #main HTML to activity view template's HTML
-    this.$el.append(activityEditPageViewTemplate);
+    this.$el.html(activityEditPageViewTemplate);
     // ** note: change *append* to *html* later **
 
     // we want to get the current users group id
