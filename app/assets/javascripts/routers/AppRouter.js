@@ -7,7 +7,8 @@ app.AppRouter = Backbone.Router.extend({
     'tasks/:id':　'viewTask',
     'mydetails': 'myDetails',
     'activities': 'activities',
-    'leaderboard': 'leaderboard'
+    'leaderboard': 'leaderboard',
+    'addtask': 'addtask'
   },
 
   taskList: function () {
@@ -60,6 +61,10 @@ app.AppRouter = Backbone.Router.extend({
       var activityEditPageView = new app.ActivityEditPageView({collection: app.activities });
       activityEditPageView.render();
     });
+  },
+  addtask: function () {
+    var addTaskView = new app.AddTaskView({});
+    addTaskView.render();
   }
 
 });

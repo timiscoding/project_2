@@ -11,7 +11,7 @@ app.EditUserDetailsPageView = Backbone.View.extend({
     
     var EditUserDetailsPageViewTemplate = _.template($('#EditUserDetailsPageViewTemplate').html());
     this.$el.append(EditUserDetailsPageViewTemplate);
-    // ** note: change *append* to *html* later **
+    
   },
 
   saveEdit: function (e) { //e= normal event when form is submitting

@@ -193,3 +193,22 @@
 <script id="memberListItemTemplate" = type="text/template">
   <p>{{ first_name }} - {{ total_score }}</p>
 </script>
+
+<script type="text/template" id="addTaskViewTemplate">
+
+  <form action="">
+    <label>Task dealer</label>
+    <select name="cars">
+      <option value="volvo"></option>
+      <option value="saab"></option>
+      <option value="fiat"></option>
+      <option value="audi"></option>
+    </select>
+  
+    <label>Due Date</label>
+
+    <input type="date" name = "Due_Date" id="datepicker" >
+
+    <button type="submit" class="createTaskButton">Submit</button>
+  </form>
+</script>

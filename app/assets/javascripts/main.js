@@ -3,6 +3,8 @@ _.templateSettings = {
  interpolate : /\{\{([\s\S]+?)\}\}/g   // {{ key }} - interpolates
 };
 
+
+
 var app = app || {};
 
 app.tasks = new app.Tasks();
@@ -10,6 +12,7 @@ app.tasks = new app.Tasks();
 
 
 $(document).ready(function(){
+
   // Initialize the activity list
   app.activities = new app.Activities()
 
