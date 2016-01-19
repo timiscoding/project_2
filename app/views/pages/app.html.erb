@@ -38,7 +38,7 @@
     <div class="task-title">
       <h2>
         {{ title }}
-      </h2> 
+      </h2>
     </div>
 
     <div class="date">
@@ -71,12 +71,15 @@
 <hr>
 
 <!-- Saves the current users data into var ** app.current_user ** -->
+<% if @current_user.present? %>
 <script>
   var app = app || {};
   app.current_user = <%= @current_user.to_json.html_safe %>;
-  app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+  <% if @current_user.groups.any? %>
+    app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+  <% end %>
 </script>
-
+<% end %>
 
 <!-- TEMPLATES -->
 
@@ -144,7 +147,7 @@
       <td><%= @current_user.last_name %></td>
       <td><%= @current_user.phone %></td>
       <td><%= @current_user.email %></td>
-    
+
 
     </tr>
   </tbody>
@@ -193,7 +196,6 @@
   {{ first_name }} - {{ total_score }}
 </script>
 
-
 <script id="addTaskPageViewTemplate" type="text/template">
   <hr>
   <h1>Add a task</h1>
@@ -207,5 +209,16 @@
   </div>
 </script>
 
-
-
+<script id="newGroupPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Create a new group</h1>
+  <label for="groupName">Give your group a name</label>
+  <input type="text" id="groupName" autofocus/>
+  <button id="addGroup">Create group</button>
+  <hr>
+  <h1>Join a group</h1>
+  <label for="joinGroupName">Choose a group to join</label>
+  <select id="joinGroupName">
+  </select>
+  <button id="joinGroup">Join group</button>
+</script>

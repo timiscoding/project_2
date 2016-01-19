@@ -9,18 +9,19 @@ app.AppRouter = Backbone.Router.extend({
     'mydetails': 'myDetails',
     'activities': 'activities',
     'activities/edit': 'editActivities',
-    'leaderboard': 'leaderboard'
+    'leaderboard': 'leaderboard',
+    'newgroup': 'newGroup'
   },
 
   taskList: function () {
     var taskListPageView = new app.TaskListPageView({});
-    taskListPageView.render(); 
+    taskListPageView.render();
 
      app.memberList.fetch().done(function () {
       console.log('memberlist', app.memberList);
       var memberPageView = new app.MemberPageView({ model: app.memberList });
       memberPageView.render();
-      
+
     });
 
     app.activities.fetch({replace: true, reset: true}).done(function () {
@@ -30,12 +31,18 @@ app.AppRouter = Backbone.Router.extend({
          taskListView.render();
       });
     });
+
+    // get current_users groups
+    app.current_user.groups.fetch().done(function() {
+      console.log('current_users groups', app.current_user.groups);
+    });
+
   },
 
   viewTask: function(id){
     var task = app.tasks.get(id);
     var taskView = new app.TaskView({model: task});
-    taskView.render(); 
+    taskView.render();
   },
 
   addTask: function(id){
@@ -46,13 +53,13 @@ app.AppRouter = Backbone.Router.extend({
       activity.fetch({
         success: function () {
           var addTaskPageView = new app.AddTaskPageView({ model: activity });
-          addTaskPageView.render();           
+          addTaskPageView.render();
         }
       });
       return;
     }
     var addTaskPageView = new app.AddTaskPageView({ model: activity });
-    addTaskPageView.render(); 
+    addTaskPageView.render();
   },
 
   myDetails: function () {
@@ -81,6 +88,13 @@ app.AppRouter = Backbone.Router.extend({
   editActivities: function () {
     var activityEditPageView = new app.ActivityEditPageView({ collection: app.activities });
     activityEditPageView.render();
+  },
+
+  newGroup: function() {
+    console.log('new group');
+    var newGroupPageView = new app.NewGroupPageView();
+    newGroupPageView.render();
+    // app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
   }
 
 });

@@ -24,11 +24,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @current_user = User.new(user_params)
 
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+      if @current_user.save
+        format.html do
+          session[:user_id] = @current_user.id
+          redirect_to app_path + '/#newgroup'
+        end
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -58,6 +61,26 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def search
+    query = params[:q]
+    @user = User.find_by :email => query
+    respond_to do |format|
+      if @user.present?
+        format.html { redirect_to @user }
+        format.json { render :json => { exists: true, user_id: @user.id } }
+      else
+        format.html { render :text => "no result" }
+        format.json { render :json => { exists: false } }
+      end
+    end
+  end
+
+  def groups
+    if @current_user.present? # && @current_user.id == params[:id] # logged in users can only view their groups
+        @groups = @current_user.groups
     end
   end
 
