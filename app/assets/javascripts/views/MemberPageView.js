@@ -1,10 +1,10 @@
 var app = app || {};
 
 app.MemberPageView = Backbone.View.extend({
-  el: '#main',
+  el: '#memberListViewContainer',
 
   render: function() {
-    this.$el.append( $('#memberPageViewTemplate').html() );
+    this.$el.html( $('#memberPageViewTemplate').html() );
 
     _( this.model.get('users') ).each( function(member) {
       var memberListItemView = new app.MemberListItemView({ model: member });
