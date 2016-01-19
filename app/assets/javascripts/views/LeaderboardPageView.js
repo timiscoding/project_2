@@ -7,7 +7,7 @@ app.LeaderboardPageView = Backbone.View.extend({
     
     var templater = _.template( $('#LeaderboardPageViewTemplate').html() );
     var LeaderboardPage = templater( this.model );
-    this.$el.append( LeaderboardPage );
+    this.$el.html( LeaderboardPage );
     // array of member
     var currentUserGroupId = app.memberList.toJSON().users;
     // array of member sorted by total_score

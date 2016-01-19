@@ -6,7 +6,8 @@
 var app = app || {};
 
 app.Group = Backbone.Model.extend({
+
   initialize: function(models, args){
-    this.urlRoot = '/groups/' + args.group_id;
+    this.url = '/groups/' + args.group_id;
   }
 });
