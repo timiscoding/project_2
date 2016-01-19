@@ -2,25 +2,27 @@ var app = app || {};
 
 app.AppRouter = Backbone.Router.extend({
   routes: {
-    '': 'taskList',
+    '': '',
     'tasklist': 'taskList',
     'tasks/:id':　'viewTask',
     'addtask/:id':　'addTask',
     'mydetails': 'myDetails',
     'activities': 'activities',
-    'activities/edit': 'editActivities'
+    'activities/edit': 'editActivities',
+    'leaderboard': 'leaderboard'
   },
 
   taskList: function () {
     var taskListPageView = new app.TaskListPageView({});
     taskListPageView.render(); 
 
-    app.memberList.fetch().done(function () {
+     app.memberList.fetch().done(function () {
       console.log('memberlist', app.memberList);
       var memberPageView = new app.MemberPageView({ model: app.memberList });
       memberPageView.render();
+      
     });
-    
+
     app.activities.fetch({replace: true, reset: true}).done(function () {
       app.tasks = new app.Tasks();
       app.tasks.fetch().done(function () {
@@ -59,6 +61,13 @@ app.AppRouter = Backbone.Router.extend({
 
       var EditUserDetailsPageView = new app.EditUserDetailsPageView({ });
       EditUserDetailsPageView.render();
+  },
+
+  leaderboard: function () {
+    app.memberList.fetch().done(function () {
+      var LeaderboardPageView = new app.LeaderboardPageView({});
+      LeaderboardPageView.render();
+    })
   },
 
   activities: function () {

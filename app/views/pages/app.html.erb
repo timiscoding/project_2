@@ -1,8 +1,8 @@
 <nav class="menu">
   <h3>Welcome <%= @current_user.first_name %></h3>
   <a href="#tasklist">Task List&nbsp;</a>
-  <a href="#">Leaderboard&nbsp;</a>
-  <a href="#">Group Stats&nbsp;</a>
+  <a href="#leaderboard">Leaderboard&nbsp;</a>
+  <a href="#leaderboard">Group Stats&nbsp;</a>
   <a href="#activities">Activities&nbsp;</a>
   <a href="#mydetails">My Details&nbsp;</a>
   <% if @current_user.present? %>
@@ -170,10 +170,18 @@
     <button type="submit" class="editButton">Submit</button>
   </form>
 </script>
-
-
 <div id="error"></div>
 
+<script id="LeaderboardPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Leaderboard</h1>
+  <ul id="leaderList">
+  </ul>
+</script>
+
+<script id="LeaderboardListItemViewTemplate" type="text/template">
+  <p>{{ first_name }} - {{ total_score }}</p>
+</script>
 
 <script id="memberPageViewTemplate" type="text/template">
   <div id="memberList">
