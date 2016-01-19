@@ -44,7 +44,6 @@ app.AddTaskPageView = Backbone.View.extend({
       }
     });
 
-//    app.tasks.create({ user_id: })
   },
 
     // t.integer  "user_id"
