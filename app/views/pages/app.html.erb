@@ -10,52 +10,50 @@
   <% end %>
 </nav>
 
-<div id="main">
-</div>
+<div id="main"></div>
 
 <script id="taskListViewTemplate" type="text/template">
-
-<table class="task-selector">
-  <tbody>
-    <tr>
-      <th class="all-tasks">All tasks</th>
-      <th class="my-tasks">My tasks</th>
-    </tr>
-  </tbody>
-</table>
-
-<ul id="tasks">
-</ul>
+  <table class="task-selector">
+    <tbody>
+      <tr>
+        <th class="all-tasks">All tasks</th>
+        <th class="my-tasks">My tasks</th>
+      </tr>
+    </tbody>
+  </table>
+  <ul id="tasks">
+    <!-- //taskListItemViewTemplate comes here -->
+  </ul>
 </script>
 
-<script type="text/template" id="taskListView">
-    <div class="task-item">
+<!-- this taskListItemView is going into <ul id="tasks"> -->
+<script id="taskListItemViewTemplate" type="text/template">
+
+  <div class="task-item">
 
     <div class="avatar">
-      <img src="{{ image_url }}">
+      <p>{{ first_name }}</p>
     </div>
 
     <div class="task-title">
-      <h2>
-        {{ title }}
-      </h2> 
+      <p> {{ title }} </p>
+      <p>&nbsp;<span></span>&ensp;{{ first_name }}</p>
     </div>
 
-    <div class="date">
-      <p>
-        Due:
-      </p>
-      <p>
-        {{ date }}
-      </p>
+    <div class="due-date">
+      <input type="checkbox" class="toggle" {{ done ? 'checked': '' }}>
+      <p>Due:{{ due_date }}</p>
     </div>
 
   </div>
 </script>
 
+
 <script id="taskView" type="text/template">
-  <h1>{{ id }}</h1>
-  <h2>{{ due_date }}</h2>
+  <p>User_ID: {{ id }}</p>
+  <p>Due date: {{ due_date }}</p>
+  <p>Done? {{ done }}</p>
+  <p>Effort: {{ effort }}</p>
 </script>
 
 
@@ -71,12 +69,15 @@
 <hr>
 
 <!-- Saves the current users data into var ** app.current_user ** -->
+<% if @current_user.present? %>
 <script>
   var app = app || {};
   app.current_user = <%= @current_user.to_json.html_safe %>;
-  app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+  <% if @current_user.groups.any? %>
+    app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+  <% end %>
 </script>
-
+<% end %>
 
 <!-- TEMPLATES -->
 
@@ -84,6 +85,9 @@
   <hr>
   <div id="memberListViewContainer"></div>
   <div id="taskListViewContainer"></div>
+  <div class="button">
+    <i class="fa fa-plus-circle"></i>
+  </div>
 </script>
 
 <script id="activityPageViewTemplate" type="text/template">
@@ -144,8 +148,6 @@
       <td><%= @current_user.last_name %></td>
       <td><%= @current_user.phone %></td>
       <td><%= @current_user.email %></td>
-    
-
     </tr>
   </tbody>
 </table>
@@ -193,7 +195,6 @@
   {{ first_name }} - {{ total_score }}
 </script>
 
-
 <script id="addTaskPageViewTemplate" type="text/template">
   <hr>
   <h1>Add a task</h1>
@@ -202,6 +203,8 @@
   <label>Due date:</label>
   <input type="date" name="due">
   <button class="button" id="saveTask">
+  <input type="date" name="due" id="dateSelect">
+  <div class="button" id="saveTask">
     Save Task
     <i class="fa fa-check-circle"></i>
   </button>
@@ -225,9 +228,17 @@
 </button>
 </script>
 
-
-
-
-
-
+<script id="newGroupPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Create a new group</h1>
+  <label for="groupName">Give your group a name</label>
+  <input type="text" id="groupName" autofocus/>
+  <button id="addGroup">Create group</button>
+  <hr>
+  <h1>Join a group</h1>
+  <label for="joinGroupName">Choose a group to join</label>
+  <select id="joinGroupName">
+  </select>
+  <button id="joinGroup">Join group</button>
+</script>
 

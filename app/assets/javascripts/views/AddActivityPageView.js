@@ -14,7 +14,7 @@ app.AddActivityPageView = Backbone.View.extend({
     e.preventDefault();
     if ($("#nameActivity").val() === ""){ return }
     else {
-      var newTitleActivity = 
+      // var newTitleActivity = 
 
       }
   }
