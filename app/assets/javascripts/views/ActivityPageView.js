@@ -3,6 +3,10 @@ var app = app || {};
 app.ActivityPageView = Backbone.View.extend({
   el: '#main',
 
+  events: {
+    'click #editActivitiesButton': 'editActivities'
+  },
+
   render: function () {
     // Gets the activityPageViewTemplate from our app.html.erb to setup the view structure
     var activityPageViewTemplate = _.template($('#activityPageViewTemplate').html());
@@ -23,6 +27,10 @@ app.ActivityPageView = Backbone.View.extend({
       var activityListItemView = new app.ActivityListItemView({ model: activity });
       activityListItemView.render();
     });
+  },
+
+  editActivities: function () {
+    app.router.navigate('activities/edit', true);
   }
 
 });

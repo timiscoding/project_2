@@ -1,8 +1,8 @@
 <nav class="menu">
   <h3>Welcome <%= @current_user.first_name %></h3>
   <a href="#tasklist">Task List&nbsp;</a>
-  <a href="#">Leaderboard&nbsp;</a>
-  <a href="#">Group Stats&nbsp;</a>
+  <a href="#leaderboard">Leaderboard&nbsp;</a>
+  <a href="#leaderboard">Group Stats&nbsp;</a>
   <a href="#activities">Activities&nbsp;</a>
   <a href="#mydetails">My Details&nbsp;</a>
   <% if @current_user.present? %>
@@ -69,12 +69,15 @@
 <hr>
 
 <!-- Saves the current users data into var ** app.current_user ** -->
+<% if @current_user.present? %>
 <script>
   var app = app || {};
   app.current_user = <%= @current_user.to_json.html_safe %>;
-  app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+  <% if @current_user.groups.any? %>
+    app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
+  <% end %>
 </script>
-
+<% end %>
 
 <!-- TEMPLATES -->
 
@@ -90,9 +93,9 @@
 <script id="activityPageViewTemplate" type="text/template">
   <hr>
   <h1>Add a task</h1>
-  <h5>Select an activity</h5>
+  <h5>Select an activity to add a task</h5>
   <div id="activitiesListContainer"></div>
-  <div class="button">
+  <div class="button" id="editActivitiesButton">
     <i class="fa fa-plus-circle"></i>
     Add or edit activities
   </div>
@@ -145,7 +148,12 @@
       <td><%= @current_user.last_name %></td>
       <td><%= @current_user.phone %></td>
       <td><%= @current_user.email %></td>
+<<<<<<< HEAD
     
+=======
+
+
+>>>>>>> 3abc4023a8124a0950b2c189b0fbd9bf18c29325
     </tr>
   </tbody>
 </table>
@@ -170,18 +178,52 @@
     <button type="submit" class="editButton">Submit</button>
   </form>
 </script>
-
-
 <div id="error"></div>
 
+<script id="LeaderboardPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Leaderboard</h1>
+  <ul id="leaderList">
+  </ul>
+</script>
+
+<script id="LeaderboardListItemViewTemplate" type="text/template">
+  <p>{{ first_name }} - {{ total_score }}</p>
+</script>
 
 <script id="memberPageViewTemplate" type="text/template">
-  <h1>List of users</h1>
-  <ul id="memberList">
-  </ul>
+  <div id="memberList">
+  </div>
 </script>
 
 
 <script id="memberListItemTemplate" = type="text/template">
-  <p>{{ first_name }} - {{ total_score }}</p>
+  {{ first_name }} - {{ total_score }}
+</script>
+
+<script id="addTaskPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Add a task</h1>
+  <h5>{{title}}</h5>
+  <div id="memberSelectContainer"></div>
+  <label>Due date:</label>
+  <input type="date" name="due" id="dateSelect">
+  <div class="button" id="saveTask">
+    Save Task
+    <i class="fa fa-check-circle"></i>
+  </div>
+</script>
+
+<script id="newGroupPageViewTemplate" type="text/template">
+  <hr>
+  <h1>Create a new group</h1>
+  <label for="groupName">Give your group a name</label>
+  <input type="text" id="groupName" autofocus/>
+  <button id="addGroup">Create group</button>
+  <hr>
+  <h1>Join a group</h1>
+  <label for="joinGroupName">Choose a group to join</label>
+  <select id="joinGroupName">
+  </select>
+  <button id="joinGroup">Join group</button>
 </script>

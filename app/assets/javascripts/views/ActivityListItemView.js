@@ -4,7 +4,11 @@ app.ActivityListItemView = Backbone.View.extend({
   tagName: 'button',
   className: 'button button-outline',
   events: {
+    'click': 'addTask'
+  },
 
+  addTask: function(){
+    app.router.navigate('addtask/' + this.model.get('id'), true);
   },
 
   render: function () {
@@ -38,7 +42,6 @@ app.ActivityListItemView = Backbone.View.extend({
     for (var i = 0; i < (4 - effort); i++) {
       emptyStars(i);
     };
-
     
     // Loop through append full star x number in effort
     // for (var i = 0; i < effort; i++) {
@@ -50,8 +53,7 @@ app.ActivityListItemView = Backbone.View.extend({
     // for (var i = 0; i < (4 - effort); i++) {
     //   var $emptyStars = $( "<i>" ).addClass("yellow fa fa-star-o");
     //   this.$el.append($emptyStars);
-    // };
-    
+    // };    
 
     this.$el.appendTo('#activitiesListContainer');
   }
