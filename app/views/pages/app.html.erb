@@ -113,7 +113,7 @@
     <i class="fa fa-plus-circle"></i>
     Add another activity
   </div>
-  <div class="button">
+  <div class="button" id="saveButton">
     <i class="fa fa-check-circle"></i>
     Save
   </div>
@@ -121,9 +121,8 @@
 
 <script id="activityEditListItemTemplate" type="text/template">
   <input type="text" name = "title" id="title" value="{{ title }}">
-  <button class="button button-outline">
-    <span></span>
-  </button>
+  <div id="effortSelector">
+  </div>
 </script>
 
 <!-- template to display cureent user profile = My details -->
