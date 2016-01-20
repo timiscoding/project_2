@@ -34,14 +34,14 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         # add users to group
-        group_params[:users].each do |user_id|
-          user = User.find user_id
-          puts "about to add to group #{ @group.id } user #{ user.id } #{ user.first_name }"
-          @group.users << user
-        end
+        # group_params[:users].each do |user_id|
+        #   user = User.find user_id
+        #   puts "about to add to group #{ @group.id } user #{ user.id } #{ user.first_name }"
+        #   @group.users << user
+        # end
 
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render :show, status: :created, location: @group }
+        format.json { render json: @group } #:show, status: :created, location: @group }
       else
         format.html { render :new }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -83,7 +83,7 @@ class GroupsController < ApplicationController
     group.users << user unless group.users.exists? user
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'User was successfully added.' }
-      format.json { render json: group.users }
+      format.json { render json: group }
     end
   end
 
