@@ -20,6 +20,7 @@ app.ActivityListItemView = Backbone.View.extend({
     // append the whole thing to the #activityListItem container
     
     var effort = this.model.get('effort');
+
     var span = this.$el.find("span");
 
     var fullStars = function (num) {

@@ -18,6 +18,7 @@ app.MemberListView = Backbone.View.extend({
           });
         mygroup.members.fetch() // get the members that belong to the first group for current_user
             .done(function() {
+              debugger;
               console.log(mygroup.members.toJSON());
               mygroup.members.each(function(member){
                 var memberView = new app.MemberView({ model: member });

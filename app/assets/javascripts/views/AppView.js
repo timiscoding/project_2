@@ -1,24 +1,22 @@
 var app = app || {};
 
-app.TaskListView = Backbone.View.extend({
-  el: '#taskListViewContainer',
+app.AppView = Backbone.View.extend({
+  el: '#main',
   events: {
     'click .all-tasks': 'groupTasks',
     'click .my-tasks': 'myTasks'
   },
-
   render: function () {
     this.groupTasks();
   },
 
   groupTasks: function(){
     //Set up the overall page structure
-    var appViewHTML = $('#taskListViewTemplate').html();
+    var appViewHTML = $('#appView').html();
     this.$el.html( appViewHTML );
 
     var currentUsersGroupId = app.current_user.group.id
-    console.log( "Group ID: " + currentUsersGroupId); //3
-    // this is going through checking each tasks and grab appropriate tasks.
+    //console.log(currentUsersGroupId); //3
     var currentUsersTasks = this.collection.select(function (model) {
 
       var activityID = model.get("activity_id");
@@ -26,7 +24,7 @@ app.TaskListView = Backbone.View.extend({
       var activity = app.activities.get( model.get("activity_id") );
 
       if (activity.get("group_id") === app.current_user.group.id) {
-        var taskListView = new app.TaskListItemView({model: model});
+        var taskListView = new app.TaskListView({model: model});
         taskListView.render();
         return true;
       } else {
@@ -38,7 +36,7 @@ app.TaskListView = Backbone.View.extend({
 
   myTasks: function () {
     //Set up the overall page structure
-    var appViewHTML = $('#taskListViewTemplate').html();
+    var appViewHTML = $('#appView').html();
     this.$el.html( appViewHTML );
 
     var currentUsersGroupId = app.current_user.group.id
@@ -49,7 +47,7 @@ app.TaskListView = Backbone.View.extend({
       var activity = app.activities.get( model.get("activity_id") );
 
       if (activity.get("user_id") === app.current_user.id) {
-        var taskListView = new app.TaskListItemView({model: model});
+        var taskListView = new app.TaskListView({model: model});
         taskListView.render();
         return true;
       } else {

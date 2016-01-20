@@ -2,6 +2,12 @@ var app = app || {};
 
 app.ActivityEditPageView = Backbone.View.extend({
   el: '#main',
+  events: {
+    'click #addActivity':'addFormActivity'
+  },
+  addFormActivity: function() {
+    app.router.navigate("/activity/new", true);
+  },
 
   events: {
     'click #saveButton': 'saveAll'
