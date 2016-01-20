@@ -11,7 +11,7 @@ app.EditUserDetailsPageView = Backbone.View.extend({
     
     var EditUserDetailsPageViewTemplate = _.template($('#EditUserDetailsPageViewTemplate').html());
     this.$el.append(EditUserDetailsPageViewTemplate);
-    // ** note: change *append* to *html* later **
+    
   },
 
   saveEdit: function (e) { //e= normal event when form is submitting
@@ -24,6 +24,7 @@ app.EditUserDetailsPageView = Backbone.View.extend({
     app.current_user.email = $("#email").val();
     app.current_user.password = $("#password").val();
     app.current_user.password_confirmation = $("#password_confirmation").val();
+    app.current_user.avatar = $("#avatarVal").val();
 
     $.ajax({
       url: "/users/" + app.current_user.id, //request to the user/:id url

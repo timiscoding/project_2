@@ -104,6 +104,7 @@
 <script>
   var app = app || {};
   app.current_user = <%= @current_user.to_json.html_safe %>;
+  app.current_user.avatar = "https://robohash.org/" + "<%= @current_user.first_name %>" + ".png";
   <% if @current_user.groups.any? %>
     app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
   <% end %>
@@ -141,7 +142,7 @@
   <h1>Add or edit activities</h1>
   <h5>Edit activities and give an effort rating</h5>
   <div id="activitiesEditListContainer"></div>
-  <div class="button button-outline">
+  <div class="button button-outline" id="addActivity">
     <i class="fa fa-plus-circle"></i>
     Add another activity
   </div>
@@ -179,6 +180,7 @@
       <td><%= @current_user.last_name %></td>
       <td><%= @current_user.phone %></td>
       <td><%= @current_user.email %></td>
+      <td><%= @current_user.avatar %></td>
     </tr>
   </tbody>
 </table>
@@ -199,6 +201,8 @@
     <input type="text" name = "password" id="password">
     <label>Password Confirmation</label>
     <input type="text" name = "password_confirmation" id="password_confirmation">
+    <label>Avatar</label>
+    <input type="text" name = "avatar" id="avatarVal" value="<%= @current_user.avatar %>">
     <div id="error"></div>
     <button type="submit" class="editButton">Submit</button>
   </form>
@@ -232,11 +236,30 @@
   <h5>{{title}}</h5>
   <div id="memberSelectContainer"></div>
   <label>Due date:</label>
-  <input type="date" name="due" id="dateSelect">
-  <div class="button" id="saveTask">
+  <input type="date" name="due">
+  <button class="button" id="saveTask">
+  
     Save Task
     <i class="fa fa-check-circle"></i>
-  </div>
+  </button>
+</script>
+
+
+<script id="AddActivityPageView" type="text/template">
+<hr>
+<h1>Add an activity</h1>
+<label>Name of the activity:</label> 
+<input type="text" name="nameActivity" id="nameActivity">  
+
+<span>
+  <i class="yellow fa fa-star effort2"></i>
+  <i class="yellow fa fa-star effort2"></i>
+  <i class="yellow fa fa-star-o effort0"></i>
+  <i class="yellow fa fa-star-o effort0"></i>
+</span>
+<button class="button" id="saveActivity">
+  Save Activity
+</button>
 </script>
 
 <script id="newGroupPageViewTemplate" type="text/template">
@@ -252,3 +275,4 @@
   </select>
   <button id="joinGroup">Join group</button>
 </script>
+

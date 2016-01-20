@@ -5,7 +5,9 @@ app.MemberSelectItemView = Backbone.View.extend({
   className: 'button button-outline memberSelector',
 
   events: {
+    'click #saveTask': 'saveTask',
     'click': 'select'
+    
   },
 
   select: function(){
@@ -19,6 +21,10 @@ app.MemberSelectItemView = Backbone.View.extend({
   render: function () {
      this.$el.html(this.model.first_name);
      this.$el.appendTo('#memberSelectContainer')
+  },
+
+  saveTask: function () {
+    console.log("task saved")
   }
 
 });
