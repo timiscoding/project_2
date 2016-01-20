@@ -73,6 +73,7 @@
 <script>
   var app = app || {};
   app.current_user = <%= @current_user.to_json.html_safe %>;
+  app.current_user.avatar = "https://robohash.org/" + "<%= @current_user.first_name %>" + ".png";
   <% if @current_user.groups.any? %>
     app.current_user.group = <%= @current_user.groups[0].to_json.html_safe %>;
   <% end %>
@@ -148,6 +149,7 @@
       <td><%= @current_user.last_name %></td>
       <td><%= @current_user.phone %></td>
       <td><%= @current_user.email %></td>
+      <td><%= @current_user.avatar %></td>
     </tr>
   </tbody>
 </table>
@@ -168,6 +170,8 @@
     <input type="text" name = "password" id="password">
     <label>Password Confirmation</label>
     <input type="text" name = "password_confirmation" id="password_confirmation">
+    <label>Avatar</label>
+    <input type="text" name = "avatar" id="avatarVal" value="<%= @current_user.avatar %>">
     <div id="error"></div>
     <button type="submit" class="editButton">Submit</button>
   </form>
