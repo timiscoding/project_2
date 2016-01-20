@@ -18,11 +18,27 @@ app.NewGroupPageView = Backbone.View.extend({
   },
 
   addGroup: function() {
-    var user_ids = [ app.current_user.id ]; // the users that will belong in this new group
-    // create a new group in backbone and rails with group name and user data
-    app.groups.create({ group: { name: $('#groupName').val(), users: user_ids } });
-    app.router.navigate('', true);
-    $('#main').empty();
+    var groupName = $('#groupName').val();
+    var group = new app.Group({ name: groupName });
+    group.save().done(function (data) {
+      app.groups.add(group);  // add this group to all the groups
+      app.current_user.group = app.current_user.group || {};
+      app.current_user.group.id = data.id; // set the default group for the current user
+      app.current_user.group.name = groupName;
+
+    }).done(function(){
+      // add the current user to the newly created group
+      var url = '/groups/' + app.current_user.group.id + '/add/' + app.current_user.id;
+      $.ajax(url, {
+        dataType: 'json',
+        method: 'put'
+      }).done(function(){
+        // create an empty group that will store group name and users data for this group.
+        app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
+        $('#main').empty();
+        app.router.navigate('', true);
+      });
+    })
   },
 
   joinGroup: function() {
@@ -32,8 +48,10 @@ app.NewGroupPageView = Backbone.View.extend({
       dataType: 'json',
       method: 'put'
     }).done(function( data ){
-      app.router.navigate('', true);
+      app.current_user.group = data;
+      app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
       $('#main').empty();
+      app.router.navigate('', true);
     })
   }
 });
