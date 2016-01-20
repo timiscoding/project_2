@@ -19,7 +19,8 @@ app.TaskListView = Backbone.View.extend({
     var currentUsersGroupId = app.current_user.group.id
     console.log( "Group ID: " + currentUsersGroupId); //3
     // this is going through checking each tasks and grab appropriate tasks.
-    var currentUsersTasks = this.collection.select(function (model) {
+    this.collection = this.collection.sortBy("due_date");
+    var currentUsersTasks = _.select(this.collection, function (model) {
 
       var activityID = model.get("activity_id");
       //console.log( activityID );//9,10,11,12,13,14,15,16 all the  activities

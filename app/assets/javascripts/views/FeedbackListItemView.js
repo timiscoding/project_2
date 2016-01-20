@@ -12,9 +12,9 @@ app.FeedbackListItemView = Backbone.View.extend({
 
   // here is doing for a feedback.
   render: function(){
-    var fedbackListViewTemplater = _.template( $('#feedbackListItemViewTemplate').html());
+    var feedbackListViewTemplater = _.template( $('#feedbackListItemViewTemplate').html());
     this.$el.html( feedbackListViewTemplater( this.model.toJSON() ));
-    $('#feedbacks').append( this.el );
+    $('ul#feedbacks').append( this.$el );
 
     this.$el.appendTo('#feedbackListViewContainer');
   }
