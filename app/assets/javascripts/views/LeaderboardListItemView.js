@@ -7,6 +7,5 @@ app.LeaderboardListItemView = Backbone.View.extend({
     var templater = _.template( $('#LeaderboardListItemViewTemplate').html() );
     var LeaderboardListItemView = templater( this.model );
     $('#leaderList').append( LeaderboardListItemView  );
-
   }
 });

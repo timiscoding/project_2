@@ -30,9 +30,5 @@ app.AddActivityPageView = Backbone.View.extend({
       console.log( activity.toJSON() );
   }
 });
-  // Activity
-  //     t.string :title
-  //     t.integer :effort
-  //     t.integer :group_id
-  //     t.integer :user_id
+
 

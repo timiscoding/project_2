@@ -40,3 +40,40 @@ hr {
 #activitiesListContainer button{
   display: block;
 }
+
+.member {
+  width: 150px;
+  display: inline-block;
+}
+
+.member img {
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid #9b4dca;
+}
+
+.member p {
+  text-align: center;
+}
+
+
+.lbmember {
+  display: block;
+  vertical-align: middle;
+}
+
+.lbmember img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #9b4dca;
+}
+
+.lbmember p {
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+
+
