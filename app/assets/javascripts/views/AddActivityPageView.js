@@ -12,11 +12,22 @@ app.AddActivityPageView = Backbone.View.extend({
   },
   saveActivity: function(e) {
     e.preventDefault();
-    if ($("#nameActivity").val() === ""){ return }
-    else {
-      // var newTitleActivity = 
+    var $titleActivity = $('#nameActivity').val();
+    if ( !$titleActivity ){ return }
+      console.log( $titleActivity )
+      app.current_user.group.id
 
-      }
+      var activity = new app.Activity({
+        title: $titleActivity,
+        effort: 2,
+        group_id: app.current_user.group.id,
+        user_id: app.current_user.id
+      });
+
+      activity.save().done(function () {
+        app.router.navigate("/activities", true);
+      });
+      console.log( activity.toJSON() );
   }
 });
   // Activity
@@ -24,3 +35,4 @@ app.AddActivityPageView = Backbone.View.extend({
   //     t.integer :effort
   //     t.integer :group_id
   //     t.integer :user_id
+
