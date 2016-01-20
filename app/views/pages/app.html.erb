@@ -12,6 +12,36 @@
 
 <div id="main"></div>
 
+<!-- Feedback section from underneath -->
+<script id="feedbackListViewTemplate" type="text/template">
+  <ul id="feedbacks">
+    <!--//feedbackListItemViewTemplate comes here-->
+  </ul>
+</script>
+
+<!-- this feedbackListItemView is going into <ul id="feedbacks"> -->
+<script id="feedbackListItemViewTemplate" type="text/template">
+
+  <div class="feedback-item">
+
+    <div class="avatar">
+      <p>{{ group_id }}</p>
+    </div>
+
+    <div class="task-title">
+      <p> {{ done }} </p>
+      <p> {{ done }} </p>
+    </div>
+
+    <div class="due-date">
+      <input type="checkbox" class="toggle" {{ done ? 'checked': '' }}>
+      <p>{{ done }}</p>
+    </div>
+
+  </div>
+
+</script>
+
 <script id="taskListViewTemplate" type="text/template">
   <table class="task-selector">
     <tbody>
@@ -50,10 +80,11 @@
 
 
 <script id="taskView" type="text/template">
-  <p>User_ID: {{ id }}</p>
+  <p>User_ID: {{ user_id }}</p>
   <p>Due date: {{ due_date }}</p>
   <p>Done? {{ done }}</p>
   <p>Effort: {{ effort }}</p>
+  <p>Task ID: {{ id }}</p>
 </script>
 
 
@@ -81,10 +112,10 @@
 <% end %>
 
 <!-- TEMPLATES -->
-
 <script id="taskListPageViewTemplate" type="text/template">
   <hr>
   <div id="memberListViewContainer"></div>
+  <div id="feedbackListViewContainer"></div>
   <div id="taskListViewContainer"></div>
   <div class="button">
     <i class="fa fa-plus-circle"></i>

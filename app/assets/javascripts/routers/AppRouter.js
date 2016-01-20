@@ -5,6 +5,7 @@ app.AppRouter = Backbone.Router.extend({
     '': '',
     'tasklist': 'taskList',
     'tasks/:id':　'viewTask',
+    // 'feedbacks/:id':　'viewFeedback',
     'addtask/:id':　'addTask',
     'mydetails': 'myDetails',
     'activities': 'activities',
@@ -20,18 +21,22 @@ app.AppRouter = Backbone.Router.extend({
     var taskListPageView = new app.TaskListPageView({});
     taskListPageView.render();
 
-     app.memberList.fetch().done(function () {
+    app.memberList.fetch().done(function () {
       console.log('memberlist', app.memberList);
       var memberPageView = new app.MemberPageView({ model: app.memberList });
       memberPageView.render();
-
     });
 
     app.activities.fetch({replace: true, reset: true}).done(function () {
       app.tasks = new app.Tasks();
       app.tasks.fetch().done(function () {
+
         var taskListView = new app.TaskListView({collection: app.tasks});
          taskListView.render();
+
+        var feedbackListView = new app.FeedbackListView({collection: app.feedbacks});
+         feedbackListView.render();
+
       });
     });
 
@@ -47,6 +52,12 @@ app.AppRouter = Backbone.Router.extend({
     var taskView = new app.TaskView({model: task});
     taskView.render();
   },
+
+  // viewFeedback: function(id){
+  //   var feedback = app.feedbacks.get(id);
+  //   var feedbackView = new app.FeedbackView({model: feedback});
+  //   feedbackView.render();
+  // },
 
   addTask: function(id){
     //debugger;
@@ -108,6 +119,7 @@ app.AppRouter = Backbone.Router.extend({
     newGroupPageView.render();
     // app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
   }
+
 
 });
 

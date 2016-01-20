@@ -8,6 +8,7 @@ _.templateSettings = {
 var app = app || {};
 
 app.tasks = new app.Tasks();
+app.feedbacks = new app.Feedbacks();
 app.ENTER_KEY = 13;
 
 
@@ -15,6 +16,7 @@ $(document).ready(function(){
 
   // Initialize the activity list
   app.activities = new app.Activities();
+
 
   if ( app.current_user.group ) { // new users don't have a group
     app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
