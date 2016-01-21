@@ -12,11 +12,15 @@ app.AppRouter = Backbone.Router.extend({
     'activities/edit': 'editActivities',
     'leaderboard': 'leaderboard',
     'activity/new': 'newActivity',
-    'newgroup': 'newGroup'
+    'newgroup': 'newGroup',
+    'negmessage': 'negmessage'
   },
 
+  negmessage: function () {
+    var negativeMessageView = new app.NegativeMessageView({});
+    negativeMessageView.render();
+  },
   
-
   taskList: function () {
     var taskListPageView = new app.TaskListPageView({});
     taskListPageView.render();
@@ -104,7 +108,7 @@ app.AppRouter = Backbone.Router.extend({
     addTaskView.render();
 
   },
-  
+
   editActivities: function () {
     if (!app.activities.length) {
       app.activities.fetch().done(function () {
