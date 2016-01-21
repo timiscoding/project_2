@@ -1,7 +1,9 @@
 var app = app || {};
 
 app.NegativeMessageView = Backbone.View.extend({
-  el: '#main',
+  tagName: 'div',
+
+  id: 'notification',
 
   events: {
     'click #doTomorrow': 'doTomorrow',
@@ -18,8 +20,9 @@ app.NegativeMessageView = Backbone.View.extend({
   // remove all feedback for the task
   doTomorrow: function () {
     $('#doTomorrow').prop("disabled", true).text('Working...');
-    // console.log(negativeResponse);
-    app.tasks = new app.Tasks();
+    // clearInterval(app.intervalID);
+    console.log('neg response', negativeResponse);
+    app.tasks = app.tasks || new app.Tasks();
     app.tasks.fetch().done(function () {
       var task = app.tasks.findWhere({ id: negativeResponse.get('task').id }); // task with bad rating
       // console.log('task b', task, task.get('due_date'));
@@ -27,7 +30,6 @@ app.NegativeMessageView = Backbone.View.extend({
       var new_due_date = moment().add(1, 'days').format('YYYY-MM-DD'); // set to tomorrow
       // console.log('due date', due_date, 'new due date', new_due_date);
       task.set({ due_date: new_due_date, done: false });
-      console.log('task a', task);
       task.save(null, {
         success: function (model, response, options) {
           $("#status").prepend("<p>The task is now due " + response.due_date + "</p>");
@@ -45,11 +47,13 @@ app.NegativeMessageView = Backbone.View.extend({
     user.save(null, {
       success: function (model, response, options) {
         $("#status").prepend("<p>Your total score is now " + response.total_score + '</p>');
+        app.current_user.total_score = response.total_score;
       },
       error: function (model, response, options) {
         $("#status").prepend( "<p>Couldn't update score</p>" );
       }
     });
+
 
     // get all feedback for this task
     var taskFeedbacks = app.userFeedbacks.filter(function(f) {
@@ -71,26 +75,29 @@ app.NegativeMessageView = Backbone.View.extend({
   },
 
   clearView: function() {
+    // app.intervalID = setInterval(app.router.negmessage, 5000);
     this.remove();
   },
 
   render: function () {
+
     // var messageShowing;
+    if ( $('#notification').length ) { console.log('notification area not empty'); return; }
     var NegativeMessageViewTemplate = _.template($('#NegativeMessageViewTemplate').html());
     var view = this;
-    app.userFeedbacks = new app.UserFeedbacks(null, {user_id: app.current_user.id});
-    app.userFeedbacks.fetch().done(function () {
+
+
       // console.log('my feedbacks', app.userFeedbacks);
       // if (!messageShowing) {
       //   messageShowing = true;
         negativeResponse = app.userFeedbacks.where({ rating: 0 })[0];
         if (!negativeResponse) { return; }
         console.log('neg feedback detected');
-        view.$el.html(NegativeMessageViewTemplate);
+        view.$el.html(NegativeMessageViewTemplate).prependTo('#main');
         $('#taskTitle').html(negativeResponse.get("task").title);
       // }
 
-    });
+
 
   }
 
