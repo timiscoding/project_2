@@ -20,15 +20,12 @@ app.NegativeMessageView = Backbone.View.extend({
   // remove all feedback for the task
   doTomorrow: function () {
     $('#doTomorrow').prop("disabled", true).text('Working...');
-    // clearInterval(app.intervalID);
-    console.log('neg response', negativeResponse);
+
+    // update task due date to tomorrow
     app.tasks = app.tasks || new app.Tasks();
     app.tasks.fetch().done(function () {
       var task = app.tasks.findWhere({ id: negativeResponse.get('task').id }); // task with bad rating
-      // console.log('task b', task, task.get('due_date'));
-      // var due_date = task.get('due_date');
       var new_due_date = moment().add(1, 'days').format('YYYY-MM-DD'); // set to tomorrow
-      // console.log('due date', due_date, 'new due date', new_due_date);
       task.set({ due_date: new_due_date, done: false });
       task.save(null, {
         success: function (model, response, options) {
@@ -40,8 +37,7 @@ app.NegativeMessageView = Backbone.View.extend({
       });
     });
 
-    console.log('score b', app.current_user.total_score);
-    console.log('score a', app.current_user.total_score);
+    // deduct 1 point from total score
     var user = new app.User(app.current_user);
     user.set({ total_score: app.current_user.total_score - 1 });
     user.save(null, {
@@ -63,11 +59,9 @@ app.NegativeMessageView = Backbone.View.extend({
     // remove all feedback records in rails for this task
     var taskFeedbacksIDs = _.pluck(taskFeedbacks, 'id');
     taskFeedbacksIDs.forEach( function(feedbackID) {
-      console.log('destroying feedback ', feedbackID);
       var feedback = new app.Feedback({ id: feedbackID });
       feedback.destroy();
     });
-    // console.log('taskFeedback', taskFeedbacks);
 
     // disable button
     $('#doTomorrow').text('Got it!');
@@ -75,31 +69,18 @@ app.NegativeMessageView = Backbone.View.extend({
   },
 
   clearView: function() {
-    // app.intervalID = setInterval(app.router.negmessage, 5000);
     this.remove();
   },
 
   render: function () {
-
-    // var messageShowing;
+    // don't display anything if there is already a notification showing
     if ( $('#notification').length ) { console.log('notification area not empty'); return; }
     var NegativeMessageViewTemplate = _.template($('#NegativeMessageViewTemplate').html());
     var view = this;
 
-
-      // console.log('my feedbacks', app.userFeedbacks);
-      // if (!messageShowing) {
-      //   messageShowing = true;
-        negativeResponse = app.userFeedbacks.where({ rating: 0 })[0];
-        if (!negativeResponse) { return; }
-        console.log('neg feedback detected');
-        view.$el.html(NegativeMessageViewTemplate).prependTo('#main');
-        $('#taskTitle').html(negativeResponse.get("task").title);
-      // }
-
-
-
+    negativeResponse = app.userFeedbacks.where({ rating: 0 })[0];
+    if (!negativeResponse) { return; } // don't show anything if no negative feedback
+    view.$el.html(NegativeMessageViewTemplate).prependTo('#main');
+    $('#taskTitle').html(negativeResponse.get("task").title);
   }
-
-
 });
