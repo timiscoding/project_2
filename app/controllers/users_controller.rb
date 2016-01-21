@@ -78,6 +78,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # /users/:id/feedbacks
+  def feedbacks
+    this_user = User.find params[:id]
+    # get feedback for all tasks assigned to this user who has marked them as done
+    unless this_user.nil?
+      @feedbacks = Feedback.select do |f|
+        # puts "title #{ f.task.activity.title } #{ f.task.user.id } #{ this_user.id } #{ f.task.done }"
+        f.task.user.id == this_user.id && f.task.done == true
+      end
+    end
+  end
+
   def groups
     if @current_user.present? # && @current_user.id == params[:id] # logged in users can only view their groups
         @groups = @current_user.groups

@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates :first_name, :presence => true, :length => { :minimum => 2 }
   validates :last_name, :presence => true, :length => { :minimum => 2 }
+
+  def avatar
+    "https://robohash.org/#{first_name}.png"
+  end
 end

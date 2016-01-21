@@ -2,7 +2,7 @@
   <h3>Welcome <%= @current_user.first_name %></h3>
   <a href="#tasklist">Task List&nbsp;</a>
   <a href="#leaderboard">Leaderboard&nbsp;</a>
-  <a href="#leaderboard">Group Stats&nbsp;</a>
+  <a href="#groupStats">Group Stats&nbsp;</a>
   <a href="#activities">Activities&nbsp;</a>
   <a href="#mydetails">My Details&nbsp;</a>
   <% if @current_user.present? %>
@@ -116,9 +116,12 @@
   <div id="memberListViewContainer"></div>
   <div id="feedbackListViewContainer"></div>
   <div id="taskListViewContainer"></div>
-  <div class="button">
-    <i class="fa fa-plus-circle"></i>
-  </div>
+  <a href="#activities">
+    <div class="button">
+      <i class="fa fa-plus-circle"></i>  
+    </div>
+  </a>
+
 </script>
 
 <script id="activityPageViewTemplate" type="text/template">
@@ -153,8 +156,8 @@
 
 <script id="activityEditListItemTemplate" type="text/template">
   <input type="text" name = "title" id="title" value="{{ title }}">
-  <div id="effortSelector">
-  </div>
+  <div id="effortSelector"></div>
+  <i class="fa fa-trash red" id="delete">delete</i>
 </script>
 
 <!-- template to display cureent user profile = My details -->
@@ -196,9 +199,9 @@
     <label>Email</label>
     <input type="text" name = "email" id="email" value="<%= @current_user.email %>">
     <label>Password</label>
-    <input type="text" name = "password" id="password">
+    <input type="password" name = "password" id="password">
     <label>Password Confirmation</label>
-    <input type="text" name = "password_confirmation" id="password_confirmation">
+    <input type="password" name = "password_confirmation" id="password_confirmation">
     <label>Avatar</label>
     <input type="text" name = "avatar" id="avatarVal" value="<%= @current_user.avatar %>">
     <div id="error"></div>
@@ -229,7 +232,10 @@
 
 
 <script id="memberListItemTemplate" = type="text/template">
-  {{ first_name }} - {{ total_score }}
+  <div class="member">
+  <img src="{{avatar}}">
+  <p>{{ first_name }} - {{ total_score }}</p>
+  </div>
 </script>
 
 <script id="addTaskPageViewTemplate" type="text/template">
@@ -239,8 +245,7 @@
   <div id="memberSelectContainer"></div>
   <label>Due date:</label>
   <input type="date" name="due">
-  <button class="button" id="saveTask">
-  
+  <button class="button" id="saveTask"> 
     Save Task
     <i class="fa fa-check-circle"></i>
   </button>
@@ -251,14 +256,8 @@
 <hr>
 <h1>Add an activity</h1>
 <label>Name of the activity:</label> 
-<input type="text" name="nameActivity" id="nameActivity">  
-
-<span>
-  <i class="yellow fa fa-star effort2"></i>
-  <i class="yellow fa fa-star effort2"></i>
-  <i class="yellow fa fa-star-o effort0"></i>
-  <i class="yellow fa fa-star-o effort0"></i>
-</span>
+<input type="text" name="nameActivity" id="nameActivity">
+<div id="effortSelector"></div>
 <button class="button" id="saveActivity">
   Save Activity
 </button>
@@ -277,4 +276,22 @@
   </select>
   <button id="joinGroup">Join group</button>
 </script>
+
+<script id="groupStatsPageViewTemplate" type="text/template">
+<hr>
+<h1>Stats for the group </h1>
+<div id="memberList"></div>
+<div id="graphViewContainer"></div>
+</script>
+
+<script id="NegativeMessageViewTemplate" type="text/template">
+  <hr>
+  <h4>Uh-oh!</h4>
+  <h5>You've received a negative response</h5>
+  <p>For the task: &nbsp;<span id="taskTitle"></span></p>
+  <button id="doTomorrow">
+  I promise to re-do tomorrow
+  </button>
+</script>
+
 

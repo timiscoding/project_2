@@ -17,6 +17,31 @@ app.AddTaskPageView = Backbone.View.extend({
     $dateSelect = $('#dateSelect').val();
     if (!selectedUser || !$dateSelect) {return;}
 
+    var task = new app.Task({
+        user_id: selectedUser,
+        activity_id: this.model.get('id'),
+        due_date: $dateSelect,
+        score: this.model.get('effort'),
+        done: flase
+    });
+
+      // t.integer :user_id
+      // t.integer :activity_id
+      // t.date :due_date
+      // t.boolean :done
+
+    task.save({ 
+      success: function (data) {
+        console.log( data ); // check the user data is updated
+      },
+      error: function (data) {
+        data = JSON.parse( data.responseText );
+
+        console.log( data );
+      }
+
+    });
+
     // app.tasks.create({ 
     //    tasks: {
     //   user_id: selectedUser,
@@ -25,24 +50,24 @@ app.AddTaskPageView = Backbone.View.extend({
     //   score: this.model.get('effort')
     // }});
 
-    $.ajax({
-      url: "/tasks",
-      method: "POST",
-      dataType: "JSON",
-      data: { task: {
-        user_id: selectedUser,
-        activity_id: this.model.get('id'),
-        due_date: $dateSelect,
-        score: this.model.get('effort'),
-        done: false
-      }},
-      success: function (data) {
-        console.log(data);
-      },
-      error: function (data) {
-        console.log('somethign went wrong');
-      }
-    });
+    // $.ajax({
+    //   url: "/tasks",
+    //   method: "POST",
+    //   dataType: "JSON",
+    //   data: { task: {
+    //     user_id: selectedUser,
+    //     activity_id: this.model.get('id'),
+    //     due_date: $dateSelect,
+    //     score: this.model.get('effort'),
+    //     done: false
+    //   }},
+    //   success: function (data) {
+    //     console.log(data);
+    //   },
+    //   error: function (data) {
+    //     console.log('somethign went wrong');
+    //   }
+    // });
 
   },
 
