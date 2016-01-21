@@ -12,15 +12,15 @@ app.NegativeMessageView = Backbone.View.extend({
   },
 
   render: function () {
-    var NegativeMessageViewTemplate = _.template($('#NegativeMessageViewTemplate').html());
-    this.$el.html(NegativeMessageViewTemplate);
-    app.tasks = new app.Tasks();
-    app.tasks.fetch().done(function () {
-      app.userFeedbacks = new app.userFeedbacks(null, {user_id: app.current_user.id});
-      app.userFeedbacks.fetch().done(function () {
-        
-      })
-    }
+    // var NegativeMessageViewTemplate = _.template($('#NegativeMessageViewTemplate').html());
+    // this.$el.html(NegativeMessageViewTemplate);
+    // app.tasks = new app.Tasks();
+    // app.tasks.fetch().done(function () {
+    //   app.userFeedbacks = new app.userFeedbacks(null, {user_id: app.current_user.id});
+    //   app.userFeedbacks.fetch().done(function () {
+
+    //   })
+    // }
   }
 
 

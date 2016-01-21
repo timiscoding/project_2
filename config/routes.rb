@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users do
     collection { get :search }
     member { get :groups }
+    member { get :feedbacks }
   end
 
   root :to => 'session#new'
