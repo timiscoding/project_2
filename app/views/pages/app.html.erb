@@ -34,8 +34,8 @@
 
     <div class="how-feel">
       <p>HOW DO YOU FEEL ABOUT THEIR EFFORT? {{ average_rating >= 0 ? average_rating : "" }}</p>
-      <button id="0" class="{{ parseInt(rating) >= 0 ? 'active' : '' }}">0</button>
-      <button id="1" class="{{ parseInt(rating) >= 1 ? 'active' : '' }}">1</button>
+      <button id="0" class="{{ parseInt(rating) >= 0 ? 'active' : '' }}"><i class="fa fa-frown-o"></i></button>
+      <button id="1" class="{{ parseInt(rating) >= 1 ? 'active' : '' }}"><i class="fa fa-smile-o"></i></button>
   </div>
 
 </script>
@@ -60,17 +60,17 @@
   <div class="task-item">
 
     <div class="avatar">
-      <p class="taskAvatar"><img src="{{avatar}}"> {{ first_name }}</p>
+      <img src="{{avatar}}"></p>
     </div>
 
     <div class="task-title">
       <p> {{ title }} </p>
-      <p>&nbsp;<span></span>&ensp;{{ first_name }}</p>
+      <p class="smallBold"><span class="fa-lg"></span>&ensp;{{ first_name }}</p>
     </div>
 
     <div class="due-date">
       <input type="checkbox" class="toggle" {{ done ? 'checked': '' }}>
-      <p>Due:{{ due_date }}</p>
+      <p class="date">Due:&ensp;{{ due_date }}</p>
     </div>
 
   </div>
@@ -118,6 +118,7 @@
   <a href="#activities">
     <div class="button">
       <i class="fa fa-plus-circle"></i>
+      Add another task
     </div>
   </a>
 
@@ -161,7 +162,6 @@
 
 <!-- template to display cureent user profile = My details -->
 <script type="text/template" id="UserDetailsPageViewTemplate">
-<hr>
 <h1>My details</h1>
 <table>
   <thead>
@@ -188,6 +188,7 @@
 
 <!-- Template to edit current user details -->
 <script type="text/template" id="EditUserDetailsPageViewTemplate">
+  <hr>
   <form action="">
     <label>First Name</label>
     <input type="text" name = "first_name" id="first_name" value="<%= @current_user.first_name %>">
@@ -233,7 +234,8 @@
 <script id="memberListItemTemplate" = type="text/template">
   <div class="member">
   <img src="{{avatar}}">
-  <p>{{ first_name }} - {{ total_score }}</p>
+  <p class="smallEllipsedText greenBG topLeft">{{ total_score }}</p>
+  <p>{{ first_name }}</p>
   </div>
 </script>
 

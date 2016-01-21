@@ -6,6 +6,7 @@
  * Licensed under the MIT license
 */
 
+@import url(https://fonts.googleapis.com/css?family=Dosis:700,600,500);
 
 html {
   box-sizing: border-box;
@@ -13,8 +14,8 @@ html {
 }
 
 body {
-  color: #606c76;
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #FFFFFF;
+  font-family: "Dosis", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.6em;
   font-weight: 300;
   letter-spacing: 0.01em;
@@ -42,8 +43,8 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit'] {
-  background-color: #9b4dca;
-  border: 0.1rem solid #9b4dca;
+  background-color: #129fdd;
+  border: 0.1rem solid #129fdd;
   border-radius: 0.4rem;
   box-sizing: border-box;
   color: #ffffff;
@@ -61,8 +62,6 @@ input[type='submit'] {
   white-space: nowrap;
 }
 .button:hover, .button:focus,
-button.active,
-.button.active,
 button:hover,
 button:focus,
 input[type='button']:hover,
@@ -71,18 +70,16 @@ input[type='reset']:hover,
 input[type='reset']:focus,
 input[type='submit']:hover,
 input[type='submit']:focus {
-  background-color: #606c76;
-  border-color: #606c76;
-  color: #ffffff;
+  background-color: #597a96;
+  border-color: #597a96;
   outline: 0;
 }
 .button.button-outline,
 button.button-outline,
-button.active.button-outline,
 input[type='button'].button-outline,
 input[type='reset'].button-outline,
 input[type='submit'].button-outline {
-  color: #9b4dca;
+  color: #129fdd;
   background-color: transparent;
 }
 .button.button-outline:hover, .button.button-outline:focus,
@@ -94,16 +91,16 @@ input[type='reset'].button-outline:hover,
 input[type='reset'].button-outline:focus,
 input[type='submit'].button-outline:hover,
 input[type='submit'].button-outline:focus {
-  color: #606c76;
+  color: #597a96;
   background-color: transparent;
-  border-color: #606c76;
+  border-color: #597a96;
 }
 .button.button-clear,
 button.button-clear,
 input[type='button'].button-clear,
 input[type='reset'].button-clear,
 input[type='submit'].button-clear {
-  color: #9b4dca;
+  color: #129fdd;
   background-color: transparent;
   border-color: transparent;
 }
@@ -116,14 +113,14 @@ input[type='reset'].button-clear:hover,
 input[type='reset'].button-clear:focus,
 input[type='submit'].button-clear:hover,
 input[type='submit'].button-clear:focus {
-  color: #606c76;
+  color: #FFFFFF;
   background-color: transparent;
   border-color: transparent;
 }
 
 pre {
   background: #f4f5f6;
-  border-left: 0.3rem solid #9b4dca;
+  border-left: 0.3rem solid #129fdd;
   font-family: Menlo, Consolas, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, monospace;
 }
 
@@ -156,14 +153,14 @@ select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background-color: transparent;
-  border: 0.1rem solid #d1d1d1;
+  background-color: #e6ebef;
   border-radius: 0.4rem;
   box-shadow: none;
   box-sizing: border-box;
   height: 3.8rem;
   padding: 0.6rem 1rem;
   width: 100%;
+  font-size: 12px;
 }
 input[type='email']:focus,
 input[type='number']:focus,
@@ -174,7 +171,7 @@ input[type='text']:focus,
 input[type='url']:focus,
 textarea:focus,
 select:focus {
-  border: 0.1rem solid #9b4dca;
+  background-color: #dee4ea;
   outline: 0;
 }
 
@@ -347,11 +344,11 @@ input[type='radio'] {
   }
 }
 a {
-  color: #9b4dca;
+  color: #129fdd;
   text-decoration: none;
 }
 a:hover {
-  color: #606c76;
+  color: #FFFFFF;
 }
 
 dl,
