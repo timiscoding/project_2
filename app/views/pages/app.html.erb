@@ -15,7 +15,6 @@
 <!-- Feedback section from underneath -->
 <script id="feedbackListViewTemplate" type="text/template">
   <ul id="feedbacks">
-    <!--//feedbackListItemViewTemplate comes here-->
   </ul>
 </script>
 
@@ -24,18 +23,18 @@
 
   <div class="feedback-item">
 
-    <div class="avatar">
-      <p>{{ group_id }}</p>
+    <div class="feedback-upper-item">
+      <div class="avatar">
+        <p>{{ first_name }}</p>
+      </div>
+      <div class="feedback-title">
+        <p id="first-name">{{ first_name }} FINISHED:</p>
+        <p id="task-title">{{ title }}</p>
+      </div>
     </div>
 
-    <div class="task-title">
-      <p> {{ done }} </p>
-      <p> {{ done }} </p>
-    </div>
-
-    <div class="due-date">
-      <input type="checkbox" class="toggle" {{ done ? 'checked': '' }}>
-      <p>{{ done }}</p>
+    <div class="how-feel">
+     <p>HOW DO YOU FEEL ABOUT THEIR EFFORT? {{ rating }}</p>
     </div>
 
   </div>
@@ -146,7 +145,7 @@
     <i class="fa fa-plus-circle"></i>
     Add another activity
   </div>
-  <div class="button">
+  <div class="button" id="saveButton">
     <i class="fa fa-check-circle"></i>
     Save
   </div>
@@ -154,9 +153,8 @@
 
 <script id="activityEditListItemTemplate" type="text/template">
   <input type="text" name = "title" id="title" value="{{ title }}">
-  <button class="button button-outline">
-    <span></span>
-  </button>
+  <div id="effortSelector">
+  </div>
 </script>
 
 <!-- template to display cureent user profile = My details -->

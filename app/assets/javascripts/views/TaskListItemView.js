@@ -1,11 +1,22 @@
 var app = app ||{};
 //creating task items and then put into 
 app.TaskListItemView = Backbone.View.extend({
-  //el: '#main',
   tagName: 'li', //Create a new element for each instance of this view.
   events: {
     'click .task-title': 'showTask',
-    'click .toggle': 'toggle'
+    'click .toggle': 'toggle',
+    'change input': 'saveCompletion'
+  },
+
+  saveCompletion: function (event) {
+    //you don"t have to put in the "$"changedEL. But, it is easy to see that has jQuery stuff.
+    var $changedEl = this.$el.find("input");
+    // .prop() = you can get "true or false" after clicked. If you do not hve prop(), it will be "on or off"
+    var newVal = $changedEl.prop("checked");
+    //set the "done" as newVal() to the server.
+    this.model.set("done", newVal);
+    // Save
+    this.model.save();
   },
 
   toggle: function() {
