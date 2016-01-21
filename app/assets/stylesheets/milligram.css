@@ -61,6 +61,8 @@ input[type='submit'] {
   white-space: nowrap;
 }
 .button:hover, .button:focus,
+button.active,
+.button.active,
 button:hover,
 button:focus,
 input[type='button']:hover,
@@ -76,6 +78,7 @@ input[type='submit']:focus {
 }
 .button.button-outline,
 button.button-outline,
+button.active.button-outline,
 input[type='button'].button-outline,
 input[type='reset'].button-outline,
 input[type='submit'].button-outline {
