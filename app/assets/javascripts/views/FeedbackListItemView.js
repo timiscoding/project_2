@@ -3,7 +3,7 @@ var app = app ||{};
 app.FeedbackListItemView = Backbone.View.extend({
   tagName: 'li', //Create a new element for each instance of this view.
   events: {
-    'click .toggle': 'toggle',
+    //'click .toggle': 'toggle',
     'click button': 'giveNewFeedback'
   },
   //Click button 0 or 1 on feedback and save the rating to saver.
@@ -18,8 +18,10 @@ app.FeedbackListItemView = Backbone.View.extend({
       user_id: userID,
       rating: desiredRating || 0
     });
-
-    feedback.save();
+    var thisEl = this.$el;
+    feedback.save().done(function () {
+      thisEl.remove();
+    });
   },
   // //toggle function to know if the task has been done or not.
   // toggle: function() {

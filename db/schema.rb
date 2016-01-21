@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20160120005723) do
     t.string   "password_digest"
     t.string   "email"
     t.string   "phone"
-    t.integer  "total_score"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "total_score",     default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "avatar"
   end
 
