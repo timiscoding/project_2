@@ -83,9 +83,6 @@ app.AppRouter = Backbone.Router.extend({
   },
 
   myDetails: function () {
-      var UserDetailsPageView = new app.UserDetailsPageView({ });
-      UserDetailsPageView.render();
-
       var EditUserDetailsPageView = new app.EditUserDetailsPageView({ });
       EditUserDetailsPageView.render();
   },
