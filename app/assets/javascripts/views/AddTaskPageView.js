@@ -21,6 +21,8 @@ app.AddTaskPageView = Backbone.View.extend({
     var selectedUser = $('.memberSelector:not(.button)').text();
     if (!selectedUser || !$dateSelect) {return;}
 
+    console.log($("#memberSelectContainer").attr("user_id"));
+
     var task = new app.Task({
         user_id: $("#memberSelectContainer").attr("user_id"),
         activity_id: this.model.get('id'),
