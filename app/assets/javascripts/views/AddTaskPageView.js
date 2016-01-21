@@ -13,16 +13,20 @@ app.AddTaskPageView = Backbone.View.extend({
     };
   },
 
-  saveTask: function () {
-    $dateSelect = $('#dateSelect').val();
+  saveTask: function (event) {
+    event.stopPropagation();
+    event.stopImmediatePropagation()
+    $dateSelect = $('input').val();
+
+    var selectedUser = $('.memberSelector:not(.button)').text();
     if (!selectedUser || !$dateSelect) {return;}
 
     var task = new app.Task({
-        user_id: selectedUser,
+        user_id: $("#memberSelectContainer").attr("user_id"),
         activity_id: this.model.get('id'),
         due_date: $dateSelect,
         score: this.model.get('effort'),
-        done: flase
+        done: false
     });
 
       // t.integer :user_id
@@ -41,6 +45,7 @@ app.AddTaskPageView = Backbone.View.extend({
       }
 
     });
+    app.router.navigate("activities", true);
 
     // app.tasks.create({ 
     //    tasks: {
