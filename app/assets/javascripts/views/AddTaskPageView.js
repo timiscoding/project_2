@@ -21,8 +21,6 @@ app.AddTaskPageView = Backbone.View.extend({
     var selectedUser = $('.memberSelector:not(.button)').text();
     if (!selectedUser || !$dateSelect) {return;}
 
-<<<<<<< HEAD
-=======
     var task = new app.Task({
         user_id: $("#memberSelectContainer").attr("user_id"),
         activity_id: this.model.get('id'),
@@ -75,7 +73,6 @@ app.AddTaskPageView = Backbone.View.extend({
     //     console.log('somethign went wrong');
     //   }
     // });
->>>>>>> c21b19b19339b169b1c768d978fe88beb6a7839d
 
   },
 
