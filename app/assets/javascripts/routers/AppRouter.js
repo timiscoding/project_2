@@ -12,7 +12,8 @@ app.AppRouter = Backbone.Router.extend({
     'activities/edit': 'editActivities',
     'leaderboard': 'leaderboard',
     'activity/new': 'newActivity',
-    'newgroup': 'newGroup'
+    'newgroup': 'newGroup',
+    'groupStats': 'groupStats'
   },
 
   
@@ -118,6 +119,13 @@ app.AppRouter = Backbone.Router.extend({
     var newGroupPageView = new app.NewGroupPageView();
     newGroupPageView.render();
     // app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
+  },
+  groupStats: function() {
+    console.log('stats');
+    app.memberList.fetch().done(function () {
+      var GroupStatsPageView = new app.GroupStatsPageView();
+      GroupStatsPageView.render();
+    })
   }
 
 

@@ -6,11 +6,19 @@ app.AddActivityPageView = Backbone.View.extend({
     'click #saveActivity' : 'saveActivity'
   },
 
+  initialize: function () {
+    this.alreadySaved = false;
+  },
+
   render: function() {
     var AddActivityPageView = _.template($( '#AddActivityPageView' ).html());
     this.$el.html( AddActivityPageView )
   },
   saveActivity: function(e) {
+    if (this.alreadySaved) { return; }
+
+    this.alreadySaved = true;
+
     e.preventDefault();
     var $titleActivity = $('#nameActivity').val();
     if ( !$titleActivity ){ return }

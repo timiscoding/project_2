@@ -2,7 +2,7 @@
   <h3>Welcome <%= @current_user.first_name %></h3>
   <a href="#tasklist">Task List&nbsp;</a>
   <a href="#leaderboard">Leaderboard&nbsp;</a>
-  <a href="#leaderboard">Group Stats&nbsp;</a>
+  <a href="#groupStats">Group Stats&nbsp;</a>
   <a href="#activities">Activities&nbsp;</a>
   <a href="#mydetails">My Details&nbsp;</a>
   <% if @current_user.present? %>
@@ -231,7 +231,10 @@
 
 
 <script id="memberListItemTemplate" = type="text/template">
-  {{ first_name }} - {{ total_score }}
+  <div class="member">
+  <img src="{{avatar}}">
+  <p>{{ first_name }} - {{ total_score }}</p>
+  </div>
 </script>
 
 <script id="addTaskPageViewTemplate" type="text/template">
@@ -279,4 +282,14 @@
   </select>
   <button id="joinGroup">Join group</button>
 </script>
+
+
+<script id="groupStatsPageViewTemplate" type="text/template">
+<hr>
+<h1>Stats for the group </h1>
+<div id="memberList"></div>
+<div id="graphViewContainer"></div>
+</script>
+
+
 
