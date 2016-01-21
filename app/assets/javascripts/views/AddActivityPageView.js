@@ -8,11 +8,8 @@ app.AddActivityPageView = Backbone.View.extend({
 
   initialize: function () {
     this.alreadySaved = false;
-<<<<<<< HEAD
-=======
     this.model = this.model || new app.Activity();
-    
->>>>>>> rob
+
   },
 
   render: function() {
@@ -57,10 +54,7 @@ app.AddActivityPageView = Backbone.View.extend({
 
   saveActivity: function(e) {
     if (this.alreadySaved) { return; }
-<<<<<<< HEAD
 
-=======
->>>>>>> rob
     this.alreadySaved = true;
 
     e.preventDefault();

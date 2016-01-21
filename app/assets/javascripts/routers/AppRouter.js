@@ -13,11 +13,8 @@ app.AppRouter = Backbone.Router.extend({
     'leaderboard': 'leaderboard',
     'activity/new': 'newActivity',
     'newgroup': 'newGroup',
-<<<<<<< HEAD
-    'groupStats': 'groupStats'
-=======
+    'groupStats': 'groupStats',
     'negmessage': 'negmessage'
->>>>>>> rob
   },
 
   negmessage: function () {
