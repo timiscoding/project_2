@@ -22,7 +22,8 @@ app.FeedbackListView = Backbone.View.extend({
         var groupIdOfFeedback = model.get("group_id")
 
         if ( groupIdOfFeedback === currentUsersGroupId 
-          && taskStatus === true && ratingStatus === null ) {
+          && taskStatus === true 
+          && model.get("user_id") !== app.current_user.id) {
           // Show a view for the current model in the each loop
           var feedbackListView = new app.FeedbackListItemView({model: model}); 
           feedbackListView.render();

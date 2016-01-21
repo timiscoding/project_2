@@ -24,7 +24,8 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
-    @feedback = Feedback.new(feedback_params)
+    @feedback = Feedback.find_or_create_by(feedback_params.except(:rating))
+    @feedback.rating = params[:feedback][:rating]
 
     respond_to do |format|
       if @feedback.save

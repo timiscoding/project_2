@@ -19,8 +19,8 @@ app.TaskListView = Backbone.View.extend({
     var currentUsersGroupId = app.current_user.group.id
     console.log( "Group ID: " + currentUsersGroupId); //3
     // this is going through checking each tasks and grab appropriate tasks.
-    this.collection = this.collection.sortBy("due_date");
-    var currentUsersTasks = _.select(this.collection, function (model) {
+    var sortedTasks = this.collection.sortBy("due_date");
+    var currentUsersTasks = _.select(sortedTasks, function (model) {
 
       var activityID = model.get("activity_id");
       //console.log( activityID );//9,10,11,12,13,14,15,16 all the  activities
@@ -45,11 +45,15 @@ app.TaskListView = Backbone.View.extend({
     var currentUsersGroupId = app.current_user.group.id
     var currentUsersTasks = this.collection.select(function (model) {
 
-      var activityID = model.get("activity_id");
-      //console.log( activityID );//9,10,11,12,13,14,15,16 all the  activities
-      var activity = app.activities.get( model.get("activity_id") );
+      // var activityID = model.get("activity_id");
+      // //console.log( activityID );//9,10,11,12,13,14,15,16 all the  activities
+      // var activity = app.activities.get( model.get("activity_id") );
 
-      if (activity.get("user_id") === app.current_user.id) {
+      // // var taskID = model.get("user_id");
+      // //console.log( userID );//9,10,11,12,13,14,15,16 all the  activities
+      // var task = app.tasks.get( model.get("user_id") );
+
+      if (model.get("user_id") === app.current_user.id) {
         var taskListView = new app.TaskListItemView({model: model});
         taskListView.render();
         return true;
