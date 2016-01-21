@@ -2,30 +2,16 @@ var app = app || {};
 
 app.ActivityEditListItemView = Backbone.View.extend({
   tagName: 'div',
+
   events: {
+    'click #delete': 'deleteActivity'
   },
 
-  save: function () {
-    // $.ajax({
-    //   url: "/tasks",
-    //   method: "PUT",
-    //   dataType: "JSON",
-    //   data: { task: {
-    //     user_id: selectedUser,
-    //     activity_id: this.model.get('id'),
-    //     due_date: $dateSelect,
-    //     score: this.model.get('effort'),
-    //     done: false
-    //   }},
-    //   success: function (data) {
-    //     console.log(data);
-    //   },
-    //   error: function (data) {
-    //     console.log('somethign went wrong');
-    //   }
-    // });
-    console.log('anything!!')
-    // console.log(this.model.get('id'));
+  deleteActivity: function () { 
+    var thisActivity = this.$el;
+    this.model.destroy().done(function () {
+      thisActivity.remove();
+    });
   },
 
   render: function () {
@@ -39,6 +25,8 @@ app.ActivityEditListItemView = Backbone.View.extend({
     var effort = this.model.get('effort');
     var $eSelect = this.$el.find("#effortSelector");
     console.log(effort);
+
+
 
     for (var i = 1; i < 5; i++) {
       if (i <= effort) {

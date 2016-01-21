@@ -156,8 +156,8 @@
 
 <script id="activityEditListItemTemplate" type="text/template">
   <input type="text" name = "title" id="title" value="{{ title }}">
-  <div id="effortSelector">
-  </div>
+  <div id="effortSelector"></div>
+  <i class="fa fa-trash red" id="delete">delete</i>
 </script>
 
 <!-- template to display cureent user profile = My details -->
@@ -245,8 +245,7 @@
   <div id="memberSelectContainer"></div>
   <label>Due date:</label>
   <input type="date" name="due">
-  <button class="button" id="saveTask">
-  
+  <button class="button" id="saveTask"> 
     Save Task
     <i class="fa fa-check-circle"></i>
   </button>
@@ -257,14 +256,8 @@
 <hr>
 <h1>Add an activity</h1>
 <label>Name of the activity:</label> 
-<input type="text" name="nameActivity" id="nameActivity">  
-
-<span>
-  <i class="yellow fa fa-star effort2"></i>
-  <i class="yellow fa fa-star effort2"></i>
-  <i class="yellow fa fa-star-o effort0"></i>
-  <i class="yellow fa fa-star-o effort0"></i>
-</span>
+<input type="text" name="nameActivity" id="nameActivity">
+<div id="effortSelector"></div>
 <button class="button" id="saveActivity">
   Save Activity
 </button>
@@ -284,7 +277,6 @@
   <button id="joinGroup">Join group</button>
 </script>
 
-
 <script id="groupStatsPageViewTemplate" type="text/template">
 <hr>
 <h1>Stats for the group </h1>
@@ -292,5 +284,14 @@
 <div id="graphViewContainer"></div>
 </script>
 
+<script id="NegativeMessageViewTemplate" type="text/template">
+  <hr>
+  <h4>Uh-oh!</h4>
+  <h5>You've received a negative response</h5>
+  <p>For the task: &nbsp;<span id="taskTitle"></span></p>
+  <button id="doTomorrow">
+  I promise to re-do tomorrow
+  </button>
+</script>
 
 

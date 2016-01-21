@@ -13,10 +13,15 @@ app.AppRouter = Backbone.Router.extend({
     'leaderboard': 'leaderboard',
     'activity/new': 'newActivity',
     'newgroup': 'newGroup',
-    'groupStats': 'groupStats'
+    'groupStats': 'groupStats',
+    'negmessage': 'negmessage'
   },
 
-  
+  negmessage: function () {
+    var negativeMessageView = new app.NegativeMessageView({});
+    negativeMessageView.render();
+  },
+
 
   taskList: function () {
     var taskListPageView = new app.TaskListPageView({});
@@ -105,10 +110,19 @@ app.AppRouter = Backbone.Router.extend({
     addTaskView.render();
 
   },
+
   editActivities: function () {
+    if (!app.activities.length) {
+      app.activities.fetch().done(function () {
+          var activityEditPageView = new app.ActivityEditPageView({ collection: app.activities });
+          activityEditPageView.render();
+      });
+      return;
+    }
     var activityEditPageView = new app.ActivityEditPageView({ collection: app.activities });
     activityEditPageView.render();
   },
+
   newActivity: function () {
     var AddActivityPageView = new app.AddActivityPageView({});
     AddActivityPageView.render();
@@ -120,12 +134,38 @@ app.AppRouter = Backbone.Router.extend({
     newGroupPageView.render();
     // app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
   },
+
   groupStats: function() {
     console.log('stats');
     app.memberList.fetch().done(function () {
       var GroupStatsPageView = new app.GroupStatsPageView();
       GroupStatsPageView.render();
-    })
+
+    });
+  },
+
+  messages: function() {
+    // console.log('show message if i received negative feedback');
+    // var feedbacks = new app.UserFeedbacks( null, { user_id: app.current_user.id } );
+    // feedbacks.fetch().done(function() {
+    //   console.log('feedbacks', feedbacks.toJSON());
+    //   var byTask = _.groupBy( feedbacks.toJSON(), function( feedback ){ return feedback.task.id; } );
+    //   console.log('byTask', byTask);
+    //   _.each( byTask, function(taskFeedbacks){
+    //     var badFeedback = _.some(taskFeedbacks, function(feedback){
+    //       return feedback.rating === 0;
+    //     });
+    //     if (badFeedback) {
+    //       // send notification
+    //       console.log('shit job for', taskFeedbacks[0].task.title);
+    //     }
+    //   });
+    // });
+    // console.log(feedbacks);
+    var userFeedbacks = new app.UserFeedbacks( null, { user_id: app.current_user.id } );
+    app.memberList.fetch().done(function(){
+      userFeedbacks.fetch();
+    });
   }
 
 
