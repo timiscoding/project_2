@@ -11,5 +11,5 @@ app.Feedbacks = Backbone.Collection.extend({
       //call render on it
       feedbackView.render();
     });
-  }
+ }
 });
