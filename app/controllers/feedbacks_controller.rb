@@ -24,7 +24,8 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
-    @feedback = Feedback.new(feedback_params)
+    @feedback = Feedback.find_or_create_by(feedback_params.except(:rating))
+    @feedback.rating = params[:feedback][:rating] || 0
 
     respond_to do |format|
       if @feedback.save
@@ -40,8 +41,11 @@ class FeedbacksController < ApplicationController
   # PATCH/PUT /feedbacks/1
   # PATCH/PUT /feedbacks/1.json
   def update
+    @feedback = Feedback.find_or_create_by(feedback_params.except(:rating))
+    @feedback.rating = params[:feedback][:rating] || 0
+
     respond_to do |format|
-      if @feedback.update(feedback_params)
+      if @feedback.save
         format.html { redirect_to @feedback, notice: 'Feedback was successfully updated.' }
         format.json { render :show, status: :ok, location: @feedback }
       else

@@ -34,9 +34,9 @@
     </div>
 
     <div class="how-feel">
-     <p>HOW DO YOU FEEL ABOUT THEIR EFFORT? {{ rating }}</p>
-    </div>
-
+      <p>HOW DO YOU FEEL ABOUT THEIR EFFORT? {{ parseInt(average_rating) }}</p>
+      <button id="0" class="{{ parseInt(rating) >= 0 ? 'active' : '' }}">0</button>
+      <button id="1" class="{{ parseInt(rating) >= 1 ? 'active' : '' }}">1</button>
   </div>
 
 </script>

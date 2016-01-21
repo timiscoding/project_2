@@ -19,20 +19,20 @@ app.FeedbackListView = Backbone.View.extend({
         var taskStatus = model.get("done"); //true or false
         // user rated to the task or not.
         var ratingStatus = model.get("rating");
-        var groupIdOfFeedback = model.get("group_id")
+        var groupIdOfFeedback = model.get("group_id");
+
+        // debugger;
 
         if ( groupIdOfFeedback === currentUsersGroupId 
-          && taskStatus === true && ratingStatus === null ) {
+          && taskStatus === true 
+          && model.get("user_id") !== app.current_user.id
+          && app.feedbacks.where({ 
+            task_id: model.get("task_id"), 
+            user_id: app.current_user.id 
+          }).length === 0) {
           // Show a view for the current model in the each loop
           var feedbackListView = new app.FeedbackListItemView({model: model}); 
           feedbackListView.render();
-
-          return true;
-
-        } else {
-
-          return false;
-
         }
       });
     });

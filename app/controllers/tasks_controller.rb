@@ -40,6 +40,10 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    @feedback = Feedback.find_or_create_by :task_id => @task.id, :user_id => params[:task][:user_id]
+    @feedback.rating = params[:task][:rating] || 0
+    @feedback.save
+
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }

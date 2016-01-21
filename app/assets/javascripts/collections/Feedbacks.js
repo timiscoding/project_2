@@ -5,11 +5,14 @@ app.Feedbacks = Backbone.Collection.extend({
   url: '/feedbacks', //data source url
   initialize: function(){
     //This is where my event handler will be added.
-    this.on("add", function(Feedback){
-      //create a new FeedbackView and give it some information to represent.
-      var feedbackView = new app.FeedbackView({ model: feedback });
-      //call render on it
-      feedbackView.render();
+    this.on("add", function(feedback){
+      // if (feedback) {
+        //create a new FeedbackView and give it some information to represent.
+        var feedbackView = new app.FeedbackView({ model: feedback });
+        //call render on it
+        feedbackView.render();
+      // }
+
     });
  }
 });
