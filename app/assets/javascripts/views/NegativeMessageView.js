@@ -18,7 +18,6 @@ app.NegativeMessageView = Backbone.View.extend({
     // app.tasks.fetch().done(function () {
     //   app.userFeedbacks = new app.userFeedbacks(null, {user_id: app.current_user.id});
     //   app.userFeedbacks.fetch().done(function () {
-        
     //   })
     // }
   }
