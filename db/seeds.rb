@@ -22,6 +22,10 @@ u6 = User.create :first_name => 'Jelly', :last_name => 'Wobbles', :email => 'wob
 u7 = User.create :first_name => 'Jet', :last_name => 'Black', :email => 'jetblack@email.com',  :password => 'chicken', :password_confirmation => 'chicken', :total_score => 1
 u8 = User.create :first_name => 'Dazzle', :last_name => 'Zebra', :email => 'dazzle@email.com',  :password => 'chicken', :password_confirmation => 'chicken'
 
+User.all.each do |u|
+  u.update :avatar => "https://robohash.org/#{u.first_name}.png"
+end
+
 u1.groups << g1
 u2.groups << g1 << g2
 u3.groups << g1
