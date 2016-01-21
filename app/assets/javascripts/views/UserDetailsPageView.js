@@ -5,8 +5,8 @@ app.UserDetailsPageView = Backbone.View.extend({
 
   render: function () {
     
-    var UserDetailsPageViewTemplate = _.template($('#UserDetailsPageViewTemplate').html());
-    this.$el.html(UserDetailsPageViewTemplate);
+    // var UserDetailsPageViewTemplate = _.template($('#UserDetailsPageViewTemplate').html());
+    // this.$el.html(UserDetailsPageViewTemplate);
     // ** note: change *append* to *html* later **
   }
 
