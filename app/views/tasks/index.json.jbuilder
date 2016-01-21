@@ -4,4 +4,5 @@ json.array!(@tasks) do |task|
   json.title task.activity.title
   json.effort task.activity.effort
   json.first_name task.user.first_name
+  json.avatar task.user.avatar
 end

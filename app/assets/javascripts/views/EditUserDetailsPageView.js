@@ -10,7 +10,7 @@ app.EditUserDetailsPageView = Backbone.View.extend({
   render: function () {
     
     var EditUserDetailsPageViewTemplate = _.template($('#EditUserDetailsPageViewTemplate').html());
-    this.$el.append(EditUserDetailsPageViewTemplate);
+    this.$el.html(EditUserDetailsPageViewTemplate);
     
   },
 

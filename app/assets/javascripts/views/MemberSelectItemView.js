@@ -14,12 +14,12 @@ app.MemberSelectItemView = Backbone.View.extend({
     $('.memberSelector').addClass('button button-outline');
     this.$el.toggleClass('button');
     this.$el.toggleClass('button-outline');
+    $("#memberSelectContainer").attr("user_id", this.model.id);
     this.$el.blur();
   },
 
   render: function () {
      this.$el.html(this.model.first_name);
-     $("#memberSelectContainer").attr("user_id", this.model.id);
      this.$el.appendTo('#memberSelectContainer')
   },
 

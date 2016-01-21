@@ -5,6 +5,7 @@ app.TaskView = Backbone.View.extend({
   render: function(){
 
     var taskViewTemplater = _.template( $('#taskView').html());
+    
     this.$el.html( taskViewTemplater( this.model.toJSON() ));
 
     //var taskTitle = Activity.model.get('title');
