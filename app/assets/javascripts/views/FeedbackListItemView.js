@@ -8,25 +8,24 @@ app.FeedbackListItemView = Backbone.View.extend({
   },
   //Click button 0 or 1 on feedback and save the rating to saver.
   giveNewFeedback: function (event) {
-    var $currentEl = $(event.currentTarget);
-    var desiredRating = $currentEl.attr("id");
-    var taskID = this.model.get("task_id");
-    var userID = app.current_user.id;
+    var $currentEl = $(event.currentTarget); //get the current element
+    var desiredRating = $currentEl.attr("id"); //get the rating score of current feedback. Here, rating and ID are same. 0 or 1.
+    var taskID = this.model.get("task_id"); //get the task ID related to the feedback
+    var userID = app.current_user.id; //current user ID
 
+    //create new feedback with rating 
     var feedback = new app.Feedback({
-      task_id: taskID,
-      user_id: userID,
-      rating: desiredRating || 0
+      task_id: taskID, //task_id = taskID
+      user_id: userID, //user_id = userID
+      rating: desiredRating || 0 // id rating is "null", put 0. to avoid error. jsut in case.
     });
+    // to write code below, you do not need to refresh
     var thisEl = this.$el;
     feedback.save().done(function () {
       thisEl.remove();
     });
   },
-  // //toggle function to know if the task has been done or not.
-  // toggle: function() {
-  //   this.model.set('done', !this.model.get('done'));
-  // },
+
 
   // here is doing for a feedback.
   render: function(){
@@ -35,17 +34,23 @@ app.FeedbackListItemView = Backbone.View.extend({
     var feedback = app.feedbacks.where({ task_id: this.model.get("task_id") });
 
     var templateDetails = this.model.toJSON();
-    templateDetails.rating = _.last(feedback).get("rating");
+
+    // rating = latest updated rating by a user( this is not average one.)
+    //templateDetails.rating = _.last(feedback).get("rating");
 
     var feedbacks = app.feedbacks.where({ task_id: this.model.get("task_id") });
     var feedbackRatingArray = _.map(feedbacks, function (feedback) {
       return feedback.get("rating");
     });
 
+    // calculate sum of all of the rating by eahc users
     var sumOfRatings = _.reduce(feedbackRatingArray, function (sum, num) {
-      return sum + num;
+      if (num >= 0) {
+        return sum + num;
+      }
+      return sum;
     });    
-
+    // average_rating = divided by the number of rating by each user.
     templateDetails.average_rating = sumOfRatings / feedbackRatingArray.length;
 
     this.$el.html( feedbackListViewTemplater( templateDetails ));

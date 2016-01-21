@@ -24,6 +24,7 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
+    Feedback.where({ :task_id => params[:feedback][:task_id], :rating => -1 }).destroy_all
     @feedback = Feedback.find_or_create_by(feedback_params.except(:rating))
     @feedback.rating = params[:feedback][:rating] || 0
 

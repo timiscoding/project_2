@@ -13,6 +13,10 @@ app.ENTER_KEY = 13;
 
 
 $(document).ready(function(){
+  //if "#main" is not exist, do not run backbone. (to avoid undefined error on /feedbacks pages .)
+  if ( $("#main").length === 0 ) {
+    return;
+  }
 
   // Initialize the activity list
   app.activities = new app.Activities();
