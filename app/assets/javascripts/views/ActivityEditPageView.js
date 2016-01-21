@@ -3,14 +3,12 @@ var app = app || {};
 app.ActivityEditPageView = Backbone.View.extend({
   el: '#main',
   events: {
-    'click #addActivity':'addFormActivity'
-  },
-  addFormActivity: function() {
-    app.router.navigate("/activity/new", true);
+    'click #addActivity':'addFormActivity',
+    'click #saveButton': 'saveAll'
   },
 
-  events: {
-    'click #saveButton': 'saveAll'
+  addFormActivity: function() {
+    app.router.navigate("/activity/new", true);
   },
 
   saveAll: function () {
@@ -18,8 +16,11 @@ app.ActivityEditPageView = Backbone.View.extend({
     
     _.each(this.childViews, function (view) {
       var model = view.model;
+      model.set("title", view.$el.find("input").val());
       model.save();
     });
+    app.router.navigate("activities", true);
+
   },
 
   render: function () {

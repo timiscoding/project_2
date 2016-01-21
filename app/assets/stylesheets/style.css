@@ -37,6 +37,10 @@ hr {
   color: rgba(244, 187, 57, 1.0);
 }
 
+.red {
+  color: rgba(230, 112, 83, 1.0);
+}
+
 #activitiesListContainer button{
   display: block;
 }
