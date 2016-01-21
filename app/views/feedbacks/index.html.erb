@@ -5,9 +5,12 @@
 <table>
   <thead>
     <tr>
+      <th>Feedback id</th>
       <th>Task id</th>
       <th>Task</th>
+      <th>Due</th>
       <th>Task owner id</th>
+      <th>Task owner score</th>
       <th>Task owner</th>
       <th>Group</th>
       <th>User id</th>
@@ -21,9 +24,12 @@
   <tbody>
     <% @feedbacks.each do |feedback| %>
       <tr>
+        <td><%= feedback.id %></td>
         <td><%= feedback.task_id %></td>
         <td><%= feedback.task.activity.title %></td>
+        <td><%= feedback.task.due_date %></td>
         <td><%= feedback.task.user.id %></td>
+        <td><%= feedback.task.user.total_score %></td>
         <td><%= feedback.task.user.first_name %></td>
         <td><%= feedback.task.activity.group.name %></td>
         <td><%= feedback.user_id %></td>

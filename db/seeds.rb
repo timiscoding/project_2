@@ -112,8 +112,8 @@ f3 = Feedback.create :rating => 1
 f4 = Feedback.create :rating => 1
 f5 = Feedback.create :rating => 1
 
-f1.update_attribute :user, u2
-f2.update_attribute :user, u3
+f1.update_attribute :user, u1
+f2.update_attribute :user, u2
 f3.update_attribute :user, u4
 f4.update_attribute :user, u6
 f5.update_attribute :user, u7
@@ -151,8 +151,8 @@ f12 = Feedback.create :rating => 0
 f13 = Feedback.create :rating => 0
 f14 = Feedback.create :rating => 1
 
-f10.update_attribute :user, u2
-f11.update_attribute :user, u3
+f10.update_attribute :user, u1
+f11.update_attribute :user, u2
 f12.update_attribute :user, u4
 f13.update_attribute :user, u6
 f14.update_attribute :user, u7
@@ -188,8 +188,8 @@ f21 = Feedback.create :rating => 0
 f22 = Feedback.create :rating => 0
 f23 = Feedback.create :rating => 0
 
-f19.update_attribute :user, u2
-f20.update_attribute :user, u3
+f19.update_attribute :user, u1
+f20.update_attribute :user, u2
 f21.update_attribute :user, u4
 f22.update_attribute :user, u6
 f23.update_attribute :user, u7
