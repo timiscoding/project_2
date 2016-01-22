@@ -21,7 +21,7 @@ app.NegativeMessageView = Backbone.View.extend({
   doTomorrow: function () {
     $('#doTomorrow').prop("disabled", true).text('Working...');
 
-    // update task due date to tomorrow
+    // update task due date to tomorrow and reset done status
     app.tasks = app.tasks || new app.Tasks();
     app.tasks.fetch().done(function () {
       var task = app.tasks.findWhere({ id: negativeResponse.get('task').id }); // task with bad rating
@@ -80,7 +80,7 @@ app.NegativeMessageView = Backbone.View.extend({
 
     negativeResponse = app.userFeedbacks.where({ rating: 0 })[0];
     if (!negativeResponse) { return; } // don't show anything if no negative feedback
-    view.$el.html(NegativeMessageViewTemplate).prependTo('#main');
+    this.$el.html(NegativeMessageViewTemplate).prependTo('#main');
     $('#taskTitle').html(negativeResponse.get("task").title);
   }
 });

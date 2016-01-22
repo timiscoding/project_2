@@ -106,99 +106,99 @@ Feedback.destroy_all
 # with user 1's performance
 # Rating 0 = unhappy, rating 1 = happy
 
-f1 = Feedback.create :rating => 1
-f2 = Feedback.create :rating => 1
-f3 = Feedback.create :rating => 1
-f4 = Feedback.create :rating => 1
-f5 = Feedback.create :rating => 1
+# f1 = Feedback.create :rating => 1
+# f2 = Feedback.create :rating => 1
+# f3 = Feedback.create :rating => 1
+# f4 = Feedback.create :rating => 1
+# f5 = Feedback.create :rating => 1
 
-f1.update_attribute :user, u1
-f2.update_attribute :user, u2
-f3.update_attribute :user, u4
-f4.update_attribute :user, u6
-f5.update_attribute :user, u7
+# f1.update_attribute :user, u1
+# f2.update_attribute :user, u2
+# f3.update_attribute :user, u4
+# f4.update_attribute :user, u6
+# f5.update_attribute :user, u7
 
-f1.update_attribute :task, t1
-f2.update_attribute :task, t1
-f3.update_attribute :task, t1
-f4.update_attribute :task, t1
-f5.update_attribute :task, t1
+# f1.update_attribute :task, t1
+# f2.update_attribute :task, t1
+# f3.update_attribute :task, t1
+# f4.update_attribute :task, t1
+# f5.update_attribute :task, t1
 
-# task 5 where one member of group 2 was dissatisfied
-# with user 3.
+# # task 5 where one member of group 2 was dissatisfied
+# # with user 3.
 
-f6 = Feedback.create :rating => 0
-f7 = Feedback.create :rating => 1
-f8 = Feedback.create :rating => 1
-f9 = Feedback.create :rating => 1
+# f6 = Feedback.create :rating => 0
+# f7 = Feedback.create :rating => 1
+# f8 = Feedback.create :rating => 1
+# f9 = Feedback.create :rating => 1
 
-f6.update_attribute :user, u2
-f7.update_attribute :user, u6
-f8.update_attribute :user, u7
-f9.update_attribute :user, u8
+# f6.update_attribute :user, u2
+# f7.update_attribute :user, u6
+# f8.update_attribute :user, u7
+# f9.update_attribute :user, u8
 
-f6.update_attribute :task, t5
-f7.update_attribute :task, t5
-f8.update_attribute :task, t5
-f9.update_attribute :task, t5
+# f6.update_attribute :task, t5
+# f7.update_attribute :task, t5
+# f8.update_attribute :task, t5
+# f9.update_attribute :task, t5
 
-# task 4 where more than 1 member of group 1 was unhappy
-# with user 3. task not done
+# # task 4 where more than 1 member of group 1 was unhappy
+# # with user 3. task not done
 
-f10 = Feedback.create :rating => 0
-f11 = Feedback.create :rating => 0
-f12 = Feedback.create :rating => 0
-f13 = Feedback.create :rating => 0
-f14 = Feedback.create :rating => 1
+# f10 = Feedback.create :rating => 0
+# f11 = Feedback.create :rating => 0
+# f12 = Feedback.create :rating => 0
+# f13 = Feedback.create :rating => 0
+# f14 = Feedback.create :rating => 1
 
-f10.update_attribute :user, u1
-f11.update_attribute :user, u2
-f12.update_attribute :user, u4
-f13.update_attribute :user, u6
-f14.update_attribute :user, u7
+# f10.update_attribute :user, u1
+# f11.update_attribute :user, u2
+# f12.update_attribute :user, u4
+# f13.update_attribute :user, u6
+# f14.update_attribute :user, u7
 
-f10.update_attribute :task, t4
-f11.update_attribute :task, t4
-f12.update_attribute :task, t4
-f13.update_attribute :task, t4
-f14.update_attribute :task, t4
+# f10.update_attribute :task, t4
+# f11.update_attribute :task, t4
+# f12.update_attribute :task, t4
+# f13.update_attribute :task, t4
+# f14.update_attribute :task, t4
 
-# task 9 where everyone in group 2 was happy with user 3
+# # task 9 where everyone in group 2 was happy with user 3
 
-f15 = Feedback.create :rating => 1
-f16 = Feedback.create :rating => 1
-f17 = Feedback.create :rating => 1
-f18 = Feedback.create :rating => 1
+# f15 = Feedback.create :rating => 1
+# f16 = Feedback.create :rating => 1
+# f17 = Feedback.create :rating => 1
+# f18 = Feedback.create :rating => 1
 
-f15.update_attribute :user, u2
-f16.update_attribute :user, u6
-f17.update_attribute :user, u7
-f18.update_attribute :user, u8
+# f15.update_attribute :user, u2
+# f16.update_attribute :user, u6
+# f17.update_attribute :user, u7
+# f18.update_attribute :user, u8
 
-f15.update_attribute :task, t9
-f16.update_attribute :task, t9
-f17.update_attribute :task, t9
-f18.update_attribute :task, t9
+# f15.update_attribute :task, t9
+# f16.update_attribute :task, t9
+# f17.update_attribute :task, t9
+# f18.update_attribute :task, t9
 
-# task 10 where all members of group 1 were unhappy with user 3
+# # task 10 where all members of group 1 were unhappy with user 3
 
-f19 = Feedback.create :rating => 0
-f20 = Feedback.create :rating => 0
-f21 = Feedback.create :rating => 0
-f22 = Feedback.create :rating => 0
-f23 = Feedback.create :rating => 0
+# f19 = Feedback.create :rating => 0
+# f20 = Feedback.create :rating => 0
+# f21 = Feedback.create :rating => 0
+# f22 = Feedback.create :rating => 0
+# f23 = Feedback.create :rating => 0
 
-f19.update_attribute :user, u1
-f20.update_attribute :user, u2
-f21.update_attribute :user, u4
-f22.update_attribute :user, u6
-f23.update_attribute :user, u7
+# f19.update_attribute :user, u1
+# f20.update_attribute :user, u2
+# f21.update_attribute :user, u4
+# f22.update_attribute :user, u6
+# f23.update_attribute :user, u7
 
-f19.update_attribute :task, t10
-f20.update_attribute :task, t10
-f21.update_attribute :task, t10
-f22.update_attribute :task, t10
-f23.update_attribute :task, t10
+# f19.update_attribute :task, t10
+# f20.update_attribute :task, t10
+# f21.update_attribute :task, t10
+# f22.update_attribute :task, t10
+# f23.update_attribute :task, t10
 
 # Before fixed like below! All the tasks were associated to group 1.
 

@@ -3,14 +3,16 @@
   <a href="#tasklist">Task List&nbsp;</a>
   <a href="#leaderboard">Leaderboard&nbsp;</a>
   <a href="#groupStats">Group Stats&nbsp;</a>
-  <a href="#activities">Activities&nbsp;</a>
+  <a href="#activities/edit">Activities&nbsp;</a>
   <a href="#mydetails">My Details&nbsp;</a>
   <% if @current_user.present? %>
   <%= link_to 'Logout', logout_path, method: :delete %>
   <% end %>
 </nav>
-<div id="main"></div>
 
+<div id="container">
+<div id="main"></div>
+</div>
 <!-- Feedback section from underneath -->
 <script id="feedbackListViewTemplate" type="text/template">
   <ul id="feedbacks">
@@ -85,17 +87,10 @@
   <p>Task ID: {{ id }}</p>
 </script>
 
-
-<div id="taskForm">
-
-</div>
-
 <script type="html/template" id="taskInputViewTemplate">
   <textarea placeholder="Add new task"></textarea>
   <button>submit</button>
 </script>
-
-<hr>
 
 <!-- Saves the current users data into var ** app.current_user ** -->
 <% if @current_user.present? %>
@@ -208,7 +203,7 @@
     <button type="submit" class="editButton">Submit</button>
   </form>
 </script>
-<div id="error"></div>
+
 
 <script id="LeaderboardPageViewTemplate" type="text/template">
   <hr>
@@ -217,7 +212,7 @@
   </ul>
 </script>
 
-<div class="name_score_Board">
+
 <script id="LeaderboardListItemViewTemplate" type="text/template">
   <div class="lbmember">
   <img src="{{avatar}}">

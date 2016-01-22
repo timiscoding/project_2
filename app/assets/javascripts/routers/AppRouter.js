@@ -24,7 +24,9 @@ app.AppRouter = Backbone.Router.extend({
   initialize: function(){
     app.appView = new AppView();
     app.intervalID = setInterval( this.negmessage, 5000 );
-
+    app.menuAvatarView = new app.MenuAvatarView({});
+    app.menuAvatarView.render();
+    setInterval( this.feedbackmessage, 5000 );
   },
 
   routes: {
@@ -40,7 +42,7 @@ app.AppRouter = Backbone.Router.extend({
     'activity/new': 'newActivity',
     'newgroup': 'newGroup',
     'groupStats': 'groupStats',
-    'negmessage': 'negmessage'
+    // 'negmessage': 'negmessage'
   },
 
   negmessage: function () {
@@ -51,6 +53,16 @@ app.AppRouter = Backbone.Router.extend({
     });
   },
 
+  feedbackmessage: function () {
+    app.activities = app.activities || new app.Activities();
+    app.tasks = app.tasks || new app.Tasks();
+    app.activities.fetch({replace: true, reset: true}).done(function () {
+      app.tasks.fetch().done(function () {
+        var feedbackListView = new app.FeedbackListView({collection: app.feedbacks});
+        feedbackListView.render();
+      });
+    });
+  },
 
   taskList: function () {
     var taskListPageView = new app.TaskListPageView({});
@@ -69,8 +81,8 @@ app.AppRouter = Backbone.Router.extend({
         var taskListView = new app.TaskListView({collection: app.tasks});
          taskListView.render();
 
-        var feedbackListView = new app.FeedbackListView({collection: app.feedbacks});
-         feedbackListView.render();
+        // var feedbackListView = new app.FeedbackListView({collection: app.feedbacks});
+        //  feedbackListView.render();
 
       });
     });

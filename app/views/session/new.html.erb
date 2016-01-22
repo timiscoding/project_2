@@ -1,3 +1,6 @@
+<div id="loginSignupContainer">
+
+
 <h1>Welcome</h1>
 <h5>Login with your details below</h5>
 
@@ -8,6 +11,9 @@
   <%= password_field_tag :password, nil, :required => true %>
   <p></p>
   <button> Log in <i class="fa fa-sign-in"></i></button>
-  <%= link_to 'Sign up', new_user_path %>
+  <%= link_to 'Sign up', new_user_path, :class => 'button button-outline' %>
 
 <% end %>
+
+
+</div>
