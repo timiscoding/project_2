@@ -15,7 +15,7 @@ app.TaskListView = Backbone.View.extend({
     //Set up the overall page structure
     var appViewHTML = $('#taskListViewTemplate').html();
     this.$el.html( appViewHTML );
-
+    
     var currentUsersGroupId = app.current_user.group.id
     console.log( "Group ID: " + currentUsersGroupId); //3
     // this is going through checking each tasks and grab appropriate tasks.

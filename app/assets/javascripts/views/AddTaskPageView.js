@@ -47,7 +47,7 @@ app.AddTaskPageView = Backbone.View.extend({
       }
 
     });
-    app.router.navigate("activities", true);
+    app.router.navigate("tasklist", true);
 
     // app.tasks.create({ 
     //    tasks: {

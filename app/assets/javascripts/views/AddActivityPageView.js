@@ -9,7 +9,6 @@ app.AddActivityPageView = Backbone.View.extend({
   initialize: function () {
     this.alreadySaved = false;
     this.model = this.model || new app.Activity();
-
   },
 
   render: function() {
@@ -53,6 +52,8 @@ app.AddActivityPageView = Backbone.View.extend({
   },
 
   saveActivity: function(e) {
+    event.stopPropagation();
+    event.stopImmediatePropagation()
     if (this.alreadySaved) { return; }
 
     this.alreadySaved = true;
