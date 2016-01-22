@@ -11,7 +11,6 @@ app.tasks = new app.Tasks();
 app.feedbacks = new app.Feedbacks();
 app.ENTER_KEY = 13;
 
-
 $(document).ready(function(){
   //if "#main" is not exist, do not run backbone. (to avoid undefined error on /feedbacks pages .)
   if ( $("#main").length === 0 ) {
@@ -27,6 +26,8 @@ $(document).ready(function(){
   }
   app.current_user.groups = new app.UserGroups(null, { user_id: app.current_user.id });
   app.groups = new app.Groups();
+
+  app.userFeedbacks = new app.UserFeedbacks(null, {user_id: app.current_user.id});
 
   app.router = new app.AppRouter();
   Backbone.history.start();

@@ -1,6 +1,32 @@
 var app = app || {};
 
+Backbone.View.prototype.close = function(){
+  this.remove();
+  this.unbind();
+}
+
+var AppView = function(){
+
+   this.showView = function(view) {
+    if (this.currentView){
+      this.currentView.close();
+    }
+
+    this.currentView = view;
+    this.currentView.render();
+
+    $("#main").html(this.currentView.el);
+  }
+
+};
+
 app.AppRouter = Backbone.Router.extend({
+  initialize: function(){
+    app.appView = new AppView();
+    app.intervalID = setInterval( this.negmessage, 5000 );
+
+  },
+
   routes: {
     '': '',
     'tasklist': 'taskList',
@@ -18,8 +44,11 @@ app.AppRouter = Backbone.Router.extend({
   },
 
   negmessage: function () {
-    var negativeMessageView = new app.NegativeMessageView({});
-    negativeMessageView.render();
+    app.userFeedbacks.fetch().done(function () {
+      var negativeMessageView = new app.NegativeMessageView({});
+      // app.appView.showView(negativeMessageView);
+      negativeMessageView.render();
+    });
   },
 
 

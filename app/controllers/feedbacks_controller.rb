@@ -24,9 +24,15 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
-    Feedback.where({ :task_id => params[:feedback][:task_id], :rating => -1 }).destroy_all
-    @feedback = Feedback.find_or_create_by(feedback_params.except(:rating))
-    @feedback.rating = params[:feedback][:rating] || 0
+
+    task = Task.find(params[:feedback][:task_id])
+
+    # create feedback with "rating = nil" once task has been done.
+    unless task.user_id == @current_user.id # If this is the current user task, don't create feedback
+      Feedback.where({ :task_id => params[:feedback][:task_id], :rating => nil }).destroy_all
+      @feedback = Feedback.find_or_create_by(feedback_params.except(:rating))
+      @feedback.rating = params[:feedback][:rating]
+    end
 
     respond_to do |format|
       if @feedback.save
@@ -42,8 +48,10 @@ class FeedbacksController < ApplicationController
   # PATCH/PUT /feedbacks/1
   # PATCH/PUT /feedbacks/1.json
   def update
+    #find the appropriate feedback and update the rating score once user click the rating.
+    Feedback.where({ :task_id => params[:feedback][:task_id], :rating => nil }).destroy_all
     @feedback = Feedback.find_or_create_by(feedback_params.except(:rating))
-    @feedback.rating = params[:feedback][:rating] || 0
+    @feedback.rating = params[:feedback][:rating]
 
     respond_to do |format|
       if @feedback.save
