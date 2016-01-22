@@ -17,9 +17,11 @@ __schema:__
 - The multiple use depending Id ( foreign keys ) have been difficult to track.
 - The jQuery ajax requests stopped to work for no logical reason so we had to switch to a Backbone ajax request.
 - The notification and feedback features have been painful...
-- The zombie views (When we bind objects together through events but we don’t bother unbinding them)-> 
-``` event.stopPropagation();
-    event.stopImmediatePropagation() ```
+- The zombie views (When we bind objects together through events but we don’t bother unbinding them):
+``` 
+event.stopPropagation();
+event.stopImmediatePropagation() 
+```
   That perfectly makes that this code is for stopping a zombie invasion...
 - Code working perfectly the day before and not working anymore the day after without having interfered with it. Probably the push/pull on Github is doing that.
 - Dreaming in code...
