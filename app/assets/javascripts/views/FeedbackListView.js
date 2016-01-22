@@ -5,6 +5,7 @@ app.FeedbackListView = Backbone.View.extend({
 
   render: function () {
     //Set up the overall page structure
+    if ( $('#notification').length ) { console.log('not showing feedbackListItemView as there is already a notification'); return; }
     var appViewHTML = $('#feedbackListViewTemplate').html();
     this.$el.html( appViewHTML );
 
@@ -14,7 +15,10 @@ app.FeedbackListView = Backbone.View.extend({
 
     this.collection.fetch().done(function () {
       // Go through the collection and store the current model as model
-      var currentUsersFeedbacks = view.collection.each( function (model) { 
+      // TIM: commented out below line
+      // var currentUsersFeedbacks = view.collection.each( function (model) {
+      var currentUsersFeedbacks = view.collection.every( function (model) {
+
         // task done or not? You need to add into json.jbuilder file as well.
         var taskStatus = model.get("done"); //true or false
         // user rated to the task or not.
@@ -23,17 +27,21 @@ app.FeedbackListView = Backbone.View.extend({
 
         // debugger;
 
-        if ( groupIdOfFeedback === currentUsersGroupId 
-          && taskStatus === true 
+        if ( groupIdOfFeedback === currentUsersGroupId
+          && taskStatus === true
           && model.get("user_id") !== app.current_user.id
-          && app.feedbacks.where({ 
-            task_id: model.get("task_id"), 
-            user_id: app.current_user.id 
+          && app.feedbacks.where({
+            task_id: model.get("task_id"),
+            user_id: app.current_user.id
           }).length === 0) {
           // Show a view for the current model in the each loop
-          var feedbackListView = new app.FeedbackListItemView({model: model}); 
+          var feedbackListView = new app.FeedbackListItemView({model: model});
           feedbackListView.render();
+          // TIM: we want to display only 1 feedback at time
+          // console.log('wtf inside', model.get('title'));
+          return false;
         }
+        // console.log('wtf outside', taskStatus, ratingStatus, groupIdOfFeedback, currentUsersGroupId, model.get("user_id"), app.current_user.id);
       });
     });
   }

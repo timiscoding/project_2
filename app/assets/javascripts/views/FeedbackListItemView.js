@@ -1,7 +1,12 @@
 var app = app ||{};
-//creating feedback items and then put into 
+//creating feedback items and then put into
 app.FeedbackListItemView = Backbone.View.extend({
-  tagName: 'li', //Create a new element for each instance of this view.
+  // TIM: commented below line
+  // tagName: 'li', //Create a new element for each instance of this view.
+  tagName: 'div',
+
+  id: 'notification',
+
   events: {
     //'click .toggle': 'toggle',
     'click button': 'giveNewFeedback'
@@ -13,7 +18,7 @@ app.FeedbackListItemView = Backbone.View.extend({
     var taskID = this.model.get("task_id"); //get the task ID related to the feedback
     var userID = app.current_user.id; //current user ID
 
-    //create new feedback with rating 
+    //create new feedback with rating
     var feedback = new app.Feedback({
       task_id: taskID, //task_id = taskID
       user_id: userID, //user_id = userID
@@ -29,6 +34,7 @@ app.FeedbackListItemView = Backbone.View.extend({
 
   // here is doing for a feedback.
   render: function(){
+
     var feedbackListViewTemplater = _.template( $('#feedbackListItemViewTemplate').html());
 
     var feedback = app.feedbacks.where({ task_id: this.model.get("task_id") });
@@ -49,14 +55,16 @@ app.FeedbackListItemView = Backbone.View.extend({
         return sum + num;
       }
       return sum;
-    });    
+    });
     // average_rating = divided by the number of rating by each user.
     templateDetails.average_rating = sumOfRatings / feedbackRatingArray.length;
 
     this.$el.html( feedbackListViewTemplater( templateDetails ));
     $('ul#feedbacks').append( this.$el );
 
-    this.$el.appendTo('#feedbackListViewContainer');
+    // TIM: commented below
+    // this.$el.appendTo('#feedbackListViewContainer');
+    this.$el.html( feedbackListViewTemplater( templateDetails ) ).prependTo('#main');
   }
 
 });
