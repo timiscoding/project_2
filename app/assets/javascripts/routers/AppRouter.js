@@ -24,7 +24,8 @@ app.AppRouter = Backbone.Router.extend({
   initialize: function(){
     app.appView = new AppView();
     app.intervalID = setInterval( this.negmessage, 5000 );
-
+    app.menuAvatarView = new app.MenuAvatarView({});
+    app.menuAvatarView.render();
   },
 
   routes: {

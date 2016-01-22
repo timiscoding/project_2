@@ -1,16 +1,24 @@
 body {
     margin: 0px auto;
-    max-width: 400px;
+    max-width: 635px;
     color: #597a96;
     background: url("pattern.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
     background-color: #f4f7f8;
+    display: flex;
 }
 
 #container {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 5px 40px 25px 40px;
   min-height: 100vh;
   box-shadow: 0px 0px 40px rgba(0,0,0,0.08);
+  /* margin: 0px auto; */
+  width: 61%;
+  color: #597a96;
+  /* background: url("pattern.gif") repeat scroll 0 0 rgba(0, 0, 0, 0); */
+  /* background-color: #f4f7f8; */
+  display: inline-block;
+  margin-bottom: 0px;
 }
 
 h1,
@@ -18,6 +26,32 @@ h2,
 h3,
 h4{
   font-weight: 200;
+}
+
+nav {
+      /* width: 30%; */
+    background: #597a96;
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+    /* min-height: 100%; */
+    padding: 35px;
+    flex: 1;
+}
+
+nav a {
+  display: block;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  color: rgba(255,255,255,0.7);
+}
+
+nav a:first-child {
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+nav a:hover {
+  color: rgba(255,255,255,1);
 }
 
 .listPanel {
@@ -88,6 +122,34 @@ textarea {
   border-radius: 50%;
   border: 3px solid #f1f5f8;
 }
+
+.menuAvatar {
+  text-align: center;
+  position: relative;
+}
+
+.largeEllipsedText {
+    color: #fff;
+    font-weight: 700;
+    display: inline-block;
+    border-radius: 13px;
+    -moz-border-radius: 8px;
+    padding: 6px 8px 6px 10px;
+    font-size: 13px;
+    line-height: 11px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+}
+.menu h3 {
+  text-align: center;
+}
+
+.menuAvatar img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.2);
+  }
 
 .member p {
   text-align: center;
