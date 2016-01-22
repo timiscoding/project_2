@@ -205,16 +205,16 @@ input.toggle {
 
 }
 
-  .row {
-    flex-direction: row;
-    margin-left: -1rem;
-    width: calc(100% + 2.0rem);
-  }
-  .row .column {
-    margin-bottom: inherit;
-    padding: 0 1rem;
-  }
+.row {
+  flex-direction: row;
+  margin-left: -1rem;
+  width: calc(100% + 2.0rem);
 }
+.row .column {
+  margin-bottom: inherit;
+  padding: 0 1rem;
+}
+
 a {
   color: #129fdd;
   text-decoration: none;
