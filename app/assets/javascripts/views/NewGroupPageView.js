@@ -9,6 +9,7 @@ app.NewGroupPageView = Backbone.View.extend({
 
   render: function() {
     this.$el.html( $('#newGroupPageViewTemplate').html() );
+    $('nav a').addClass('hidden');
     app.groups.fetch().done(function() { // fetch all groups to allow a user to join a group
       app.groups.forEach(function(group){
         var newGroupListItemView = new app.NewGroupListItemView({ model: group });
@@ -36,7 +37,8 @@ app.NewGroupPageView = Backbone.View.extend({
         // create an empty group that will store group name and users data for this group.
         app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
         $('#main').empty();
-        app.router.navigate('', true);
+        $('nav a').removeClass('hidden');
+        app.router.navigate('tasklist', true);
       });
     })
   },
@@ -51,7 +53,8 @@ app.NewGroupPageView = Backbone.View.extend({
       app.current_user.group = data;
       app.memberList = new app.Group(null, { group_id: app.current_user.group.id });
       $('#main').empty();
-      app.router.navigate('', true);
+      $('nav a').removeClass('hidden');
+      app.router.navigate('tasklist', true);
     })
   }
 });
