@@ -193,25 +193,47 @@ tbody {
 }
 
 table.task-selector {
-  line-height: 1.5;
-  border-collapse:separate;
-  border:1px solid #ccc;
-  -webkit-border-radius:10px;
-  -moz-border-radius:10px;
-  border-radius:10px;
+}
+
+.outline-selector {
+  color: #ffffff;
+  background-color: #129fdd;
 }
 
 table.task-selector th {
+  color: #129fdd;
+  background-color: transparent;
+  border: 0.1rem solid #129fdd;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  height: 3.8rem;
+  letter-spacing: 0.1rem;
+  line-height: 3.8rem;
+  padding: 0 3rem;
   text-align: center;
-  width: 150px;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  border-bottom:none;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  width: 50%;
+}
+
+table.task-selector th:first-child {
+  border-radius: 0.4rem 0 0 0.4rem;
+  border-right: none;
+}
+
+table.task-selector th:last-child {
+  border-radius: 0 0.4rem 0.4rem 0;
 }
 
 table.task-selector th:hover {
-  background: #f5f5f5;
+  background-color: #129fdd;
+  border-color: #129fdd;
+  color: #FFF;
+  outline: 0;
 }
 
 th.all-tasks {

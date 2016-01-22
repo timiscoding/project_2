@@ -27,6 +27,12 @@ app.ActivityPageView = Backbone.View.extend({
       var activityListItemView = new app.ActivityListItemView({ model: activity });
       activityListItemView.render();
     });
+    var activityList = this.collection.where({ group_id: app.current_user.group.id });
+    if (!activityList.length) {
+      console.log('no activities');
+      app.router.navigate("/activity/new", true);
+    }
+
   },
 
   editActivities: function () {
