@@ -40,11 +40,15 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    Feedback.where({ :task_id => @task.id, :rating => -1 }).destroy_all
-    @feedback = Feedback.find_or_create_by :task_id => @task.id, :user_id => params[:task][:user_id]
-    @feedback.rating = params[:task][:rating] || -1
-    @feedback.save
-
+    # binding.pry    
+    # create feedback with "rating = nil" once task has been done.
+    unless @task.user_id == @current_user.id
+      Feedback.where({ :task_id => @task.id, :rating => nil }).destroy_all
+      @feedback = Feedback.find_or_create_by :task_id => @task.id, :user_id => params[:task][:user_id]
+      @feedback.rating = params[:task][:rating]
+      @feedback.save
+    end
+    # end
 
     respond_to do |format|
       if @task.update(task_params)
