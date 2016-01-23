@@ -25,7 +25,15 @@ app.TaskListItemView = Backbone.View.extend({
   },
 
   toggle: function() {
-    this.model.set('done', !this.model.get('done'));
+
+    if ( app.current_user.id === this.model.get('user_id') ) {
+      var thisEL = this.$el;
+      this.model.set('done', !this.model.get('done'));
+      this.model.save().done(function () {
+        thisEL.remove();
+      });
+    }
+
   },
 
   showTask: function(){
