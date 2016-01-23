@@ -2,11 +2,18 @@
 <html>
 <head>
   <title>ChoresApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <% if params[:controller].in? ['pages', 'session'] or (params[:controller] == 'users' && params[:action] == 'new') %> <%# load chore-app stylesheets for these controllers and actions %>
+    <%= stylesheet_link_tag "application", 'milligram', :media => "all" %>
+    <%= stylesheet_link_tag "application", 'style', :media => "all" %>
+    <%= stylesheet_link_tag "application", 'feedbacks', :media => "all" %>
+  <% else %> <%# load bare bones stylesheets for crud routes like /feedbacks %>
+    <%= stylesheet_link_tag "application", 'milligram', :media => "all" %>
+    <%= stylesheet_link_tag "application", 'scaffolds', :media => "all" %>
+  <% end %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= yield %>  
+<%= yield %>
 </body>
 </html>

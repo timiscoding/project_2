@@ -1,11 +1,15 @@
 var app = app || {};
 
 app.FeedbackListView = Backbone.View.extend({
-  el: '#feedbackListViewContainer',
+  el: '#notification',
 
   render: function () {
     //Set up the overall page structure
-    if ( $('#notification').length ) { console.log('not showing feedbackListItemView as there is already a notification'); return; }
+    if ( $('#notification').length ) {
+      console.log('not showing feedbackListItemView as there is already a notification');
+      return;
+    }
+
     var appViewHTML = $('#feedbackListViewTemplate').html();
     this.$el.html( appViewHTML );
 

@@ -1,5 +1,5 @@
 var app = app ||{};
-//creating task items and then put into 
+//creating task items and then put into
 app.TaskListItemView = Backbone.View.extend({
   tagName: 'li', //Create a new element for each instance of this view.
   events: {
@@ -9,6 +9,11 @@ app.TaskListItemView = Backbone.View.extend({
   },
 
   saveCompletion: function (event) {
+    if ( this.model.get("user_id") !== app.current_user.id ) {
+      event.preventDefault();
+      return false;
+    }
+
     //you don"t have to put in the "$"changedEL. But, it is easy to see that has jQuery stuff.
     var $changedEl = this.$el.find("input");
     // .prop() = you can get "true or false" after clicked. If you do not hve prop(), it will be "on or off"
@@ -40,12 +45,12 @@ app.TaskListItemView = Backbone.View.extend({
       var $fullStars = $( "<i>" ).addClass("yellow fa fa-star effort" + num).data("effort", num);
       span.append($fullStars);
     };
-   
+
     var emptyStars = function (num) {
       var $emptyStars = $( "<i>" ).addClass("yellow fa fa-star-o effort" + num).data("effort", num);
       span.append($emptyStars);
     };
-    
+
     // Loop through append full star x number in effort
     for (var i = 0; i < effort; i++) {
       fullStars(i);

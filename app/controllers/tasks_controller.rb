@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    # binding.pry    
+    # binding.pry
     # create feedback with "rating = nil" once task has been done.
     unless @task.user_id == @current_user.id
       Feedback.where({ :task_id => @task.id, :rating => nil }).destroy_all

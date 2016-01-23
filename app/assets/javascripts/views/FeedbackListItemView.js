@@ -24,9 +24,11 @@ app.FeedbackListItemView = Backbone.View.extend({
       user_id: userID, //user_id = userID
       rating: desiredRating || 0 // id rating is "null", put 0. to avoid error. jsut in case.
     });
+
     // Thanks to the code below, you do not need to refresh by hand.
     var thisEl = this.$el;
     feedback.save().done(function () {
+      app.feedbacks.add(feedback);
       thisEl.remove();
     });
   },
@@ -60,6 +62,9 @@ app.FeedbackListItemView = Backbone.View.extend({
     templateDetails.average_rating = sumOfRatings / feedbackRatingArray.length;
 
     this.$el.html( feedbackListViewTemplater( templateDetails ));
+
+    console.log("FEEDBACKS LENGTH: ", $('ul#feedbacks').length, "MAIN LENGTH: ", $("#main").length);
+
     $('ul#feedbacks').append( this.$el );
 
     // TIM: commented below

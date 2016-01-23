@@ -10,7 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ * require_tree has been removed as we don't want to load every stylesheet for all views.
+ * in /config/initializers/assets.rb, they are precompiled and loaded conditionally in application.html.erb layout. if you add a stylesheet to assets.rb, you need to restart the server!
  *= require_self
  */
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic,900,900italic,100,100italic);

@@ -67,16 +67,16 @@ a8.update_attribute :user, u8
 
 Task.destroy_all
 
-t1 = Task.create :due_date => '2016-02-11', :done => true, :score => 1
-t2 = Task.create :due_date => '2016-02-13', :done => true, :score => 2
+t1 = Task.create :due_date => '2016-02-11', :done => false, :score => 1
+t2 = Task.create :due_date => '2016-02-13', :done => false, :score => 2
 t3 = Task.create :due_date => '2016-02-15', :done => false, :score => 3
 t4 = Task.create :due_date => '2015-02-23', :done => false, :score => 4
-t5 = Task.create :due_date => '2016-01-01', :done => true, :score => 3
-t6 = Task.create :due_date => '2016-01-08', :done => true, :score => 2
-t7 = Task.create :due_date => '2016-01-15', :done => true, :score => 3
-t8 = Task.create :due_date => '2016-01-22', :done => true, :score => 1
-t9 = Task.create :due_date => '2015-03-01', :done => true, :score => 4
-t10 = Task.create :due_date => '2015-11-27', :done => true, :score => 2
+t5 = Task.create :due_date => '2016-01-01', :done => false, :score => 3
+t6 = Task.create :due_date => '2016-01-08', :done => false, :score => 2
+t7 = Task.create :due_date => '2016-01-15', :done => false, :score => 3
+t8 = Task.create :due_date => '2016-01-22', :done => false, :score => 1
+t9 = Task.create :due_date => '2015-03-01', :done => false, :score => 4
+t10 = Task.create :due_date => '2015-11-27', :done => false, :score => 2
 
 t1.update_attribute :user, u1
 t2.update_attribute :user, u2
