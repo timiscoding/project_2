@@ -84,6 +84,7 @@ Run the command line `rails server`
 * Feedback notifications is still buggy. Currently only works if you seed the data and check 2 items as done
 * No validation for creating a group. You can't create/join a group if you log in, only on sign up.
 * Admin routes accessible even without logging in
+* logging into 2 accounts on the same browser causes rails session info to get confused. eg. if you log in as zippy, then log in as squiggles and complete a task as zippy, rails thinks you are squiggles. Workaround: use multiple browsers. eg. log in as zippy in chrome, log in as squiggles in firefox.
 
 ## Sore Bits:
 - The syntax for the views. With 35 backbone views, establishing a naming convention that makes sense for everyone was complicated.

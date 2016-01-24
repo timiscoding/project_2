@@ -29,7 +29,7 @@ class FeedbacksController < ApplicationController
 
     # create feedback with "rating = nil" once task has been done.
     unless task.user_id == @current_user.id # If this is the current user task, don't create feedback
-      Feedback.where({ :task_id => params[:feedback][:task_id], :rating => nil }).destroy_all
+      # Feedback.where({ :task_id => params[:feedback][:task_id], :rating => nil }).destroy_all
       @feedback = Feedback.find_or_create_by(feedback_params.except(:rating))
       @feedback.rating = params[:feedback][:rating]
     end
