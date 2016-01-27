@@ -6,8 +6,8 @@ app.FeedbackListView = Backbone.View.extend({
   render: function () {
     //Set up the overall page structure
     if ( $('#notification').length ) { console.log('not showing feedbackListItemView as there is already a notification'); return; }
-    var appViewHTML = $('#feedbackListViewTemplate').html();
-    this.$el.html( appViewHTML );
+    // var appViewHTML = $('#feedbackListViewTemplate').html();
+    // this.$el.html( appViewHTML );
 
     var currentUsersGroupId = app.current_user.group.id
     // this is going through checking each feedback and grab appropriate feedbacks.
@@ -17,24 +17,28 @@ app.FeedbackListView = Backbone.View.extend({
       // Go through the collection and store the current model as model
       // task done or not? You need to add into json.jbuilder file as well becasuse task model does not have "rating".
       // TIM: commented out below line
-      // var currentUsersFeedbacks = view.collection.each( function (model) {
-      var currentUsersFeedbacks = view.collection.every( function (model) {
-
+      var feedbackShowing = false;
+      var currentUsersFeedbacks = view.collection.each( function (model) {
+      // var currentUsersFeedbacks = view.collection.every( function (model) {
+        
         var taskStatus = model.get("done"); //true or false
         // user rated to the task or not.
         var ratingStatus = model.get("rating");
         var groupIdOfFeedback = model.get("group_id");
-
         // debugger;
 
         if ( groupIdOfFeedback === currentUsersGroupId
           && taskStatus === true
+          && feedbackShowing === false
           && model.get("user_id") !== app.current_user.id //current user cannot rate for the ownn task.
-          && app.feedbacks.where({ //make sure to show feedbacks that crrent user has never rated.
-            task_id: model.get("task_id"),
-            user_id: app.current_user.id
-          }).length === 0) {
+          && app.feedbacks.where({ rating: null }).length !== 0 )
+          // && app.feedbacks.where({ //make sure to show feedbacks that crrent user has never rated.
+          //   task_id: model.get("task_id"),
+          //   user_id: app.current_user.id
+          // }).length === 0) 
+          {
           // Show a view for the current model in the each loop
+          feedbackShowing = true;
           var feedbackListView = new app.FeedbackListItemView({model: model});
           feedbackListView.render();
           // TIM: we want to display only 1 feedback at time

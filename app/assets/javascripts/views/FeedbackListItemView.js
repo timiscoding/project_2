@@ -4,8 +4,8 @@ app.FeedbackListItemView = Backbone.View.extend({
   // TIM: commented below line
   // tagName: 'li', //Create a new element for each instance of this view.
   tagName: 'div',
-
   id: 'notification',
+  className: 'notifyContainer shrinkToTransparent',
 
   events: {
     //'click .toggle': 'toggle',
@@ -17,7 +17,7 @@ app.FeedbackListItemView = Backbone.View.extend({
     var desiredRating = $currentEl.attr("id"); //get the rating score of current feedback. Here, rating and ID are same. 0 or 1. you can refer to the app.html.erb
     var taskID = this.model.get("task_id"); //get the task ID related to the feedback
     var userID = app.current_user.id; //current user ID
-
+    console.log(desiredRating);
     //create new feedback with rating
     var feedback = new app.Feedback({
       task_id: taskID, //task_id = taskID
@@ -25,9 +25,13 @@ app.FeedbackListItemView = Backbone.View.extend({
       rating: desiredRating || 0 // id rating is "null", put 0. to avoid error. jsut in case.
     });
     // Thanks to the code below, you do not need to refresh by hand.
+    feedbackShowing = false;
     var thisEl = this.$el;
+    thisEl.addClass('shrinkToTransparent')
     feedback.save().done(function () {
-      thisEl.remove();
+      setTimeout(function(){ 
+        thisEl.remove();
+      }, 1000);
     });
   },
 
@@ -37,6 +41,11 @@ app.FeedbackListItemView = Backbone.View.extend({
     var feedbackListViewTemplater = _.template( $('#feedbackListItemViewTemplate').html());
 
     var feedback = app.feedbacks.where({ task_id: this.model.get("task_id") });
+
+    var thisEl = this.$el;
+    setTimeout(function(){ 
+      thisEl.removeClass('shrinkToTransparent')
+    }, 100);
 
     var templateDetails = this.model.toJSON();
 
@@ -59,8 +68,8 @@ app.FeedbackListItemView = Backbone.View.extend({
     // average_rating = sum of the rating score divided by the number of rating.
     templateDetails.average_rating = sumOfRatings / feedbackRatingArray.length;
 
-    this.$el.html( feedbackListViewTemplater( templateDetails ));
-    $('ul#feedbacks').append( this.$el );
+    // this.$el.html( feedbackListViewTemplater( templateDetails ));
+    // $('ul#feedbacks').append( this.$el );
 
     // TIM: commented below
     // this.$el.appendTo('#feedbackListViewContainer');
