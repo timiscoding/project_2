@@ -281,7 +281,7 @@ li{
 }
 
 .task-title {
-  width: 52%;
+  width: 50%;
   padding-left: 13px;
 }
 
@@ -458,10 +458,10 @@ body > div {
   padding: 15px;
 }
 
-input[type="date"], 
-input[type="datetime-local"], 
-input[type="month"], 
-input[type="time"], 
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="time"],
 input[type="week"] {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -475,10 +475,10 @@ input[type="week"] {
   font-size: 12px;
 }
 
-input[type="date"]:focus, 
-input[type="datetime-local"]:focus, 
-input[type="month"]:focus, 
-input[type="time"]:focus, 
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
 input[type="week"]:focus {
   background-color: #dee4ea;
   outline: 0;

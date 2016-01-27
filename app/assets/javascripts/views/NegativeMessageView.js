@@ -50,20 +50,24 @@ app.NegativeMessageView = Backbone.View.extend({
       }
     });
 
+    var negResponseId = negativeResponse.get('task').id;
+    app.userFeedbacks.fetch().done(function () {
+      // get all feedback for this task
+      var taskFeedbacks = app.userFeedbacks.filter(function(f) {
+        return f.get('task').id === negResponseId;
+      });
 
-    // get all feedback for this task
-    var taskFeedbacks = app.userFeedbacks.filter(function(f) {
-      return f.get('task').id === negativeResponse.get('task').id ;
+      // remove all feedback records for this task as we only want to show this
+      // message once whenever there is at least 1 negative feedback amongst the members
+      // this also enables members to provide feedback again once the task is redone
+      var taskFeedbacksIDs = _.pluck(taskFeedbacks, 'id');
+      taskFeedbacksIDs.forEach( function(feedbackID) {
+        var feedback = new app.Feedback({ id: feedbackID });
+        feedback.destroy();
+      });
     });
 
-    // remove all feedback records in rails for this task
-    var taskFeedbacksIDs = _.pluck(taskFeedbacks, 'id');
-    taskFeedbacksIDs.forEach( function(feedbackID) {
-      var feedback = new app.Feedback({ id: feedbackID });
-      feedback.destroy();
-    });
-
-    // disable button
+    // allow user to click this button once they've read the updated due date and point deduction
     $('#doTomorrow').text('Got it!');
     $('#doTomorrow').attr('id', 'clear').prop("disabled", false);
   },

@@ -40,13 +40,20 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    # binding.pry    
+    # binding.pry
     # create feedback with "rating = nil" once task has been done.
-    unless @task.user_id == @current_user.id
-      Feedback.where({ :task_id => @task.id, :rating => nil }).destroy_all
-      @feedback = Feedback.find_or_create_by :task_id => @task.id, :user_id => params[:task][:user_id]
-      @feedback.rating = params[:task][:rating]
-      @feedback.save
+    if @task.user_id == @current_user.id
+      # Feedback.where({ :task_id => @task.id, :rating => nil }).destroy_all
+      # create feedback with no rating for all members except task owner
+      # these records will indicate to a member that they need to give feedback for this task
+      @task.activity.group.users.each do |member|
+        next if member.id == @current_user.id # task owner not allowed to give themself feedback
+        @feedback = Feedback.find_or_create_by :task_id => @task.id, :user_id => member.id
+        @feedback.rating = nil
+        # @feedback = Feedback.find_or_create_by :task_id => @task.id, :user_id => params[:task][:user_id]
+        # @feedback.rating = params[:task][:rating]
+        @feedback.save
+      end
     end
     # end
 

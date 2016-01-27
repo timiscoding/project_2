@@ -1,29 +1,8 @@
 var app = app || {};
 
-Backbone.View.prototype.close = function(){
-  this.remove();
-  this.unbind();
-}
-
-var AppView = function(){
-
-   this.showView = function(view) {
-    if (this.currentView){
-      this.currentView.close();
-    }
-
-    this.currentView = view;
-    this.currentView.render();
-
-    $("#main").html(this.currentView.el);
-  }
-
-};
-
 app.AppRouter = Backbone.Router.extend({
   initialize: function(){
-    app.appView = new AppView();
-    app.intervalID = setInterval( this.negmessage, 5000 );
+    setInterval( this.negmessage, 5000 );
     app.menuAvatarView = new app.MenuAvatarView({});
     app.menuAvatarView.render();
     setInterval( this.feedbackmessage, 5000 );
@@ -43,12 +22,12 @@ app.AppRouter = Backbone.Router.extend({
     'newgroup': 'newGroup',
     'groupStats': 'groupStats',
     // 'negmessage': 'negmessage'
+    'fbmsg': 'feedbackmessage'
   },
 
   negmessage: function () {
     app.userFeedbacks.fetch().done(function () {
       var negativeMessageView = new app.NegativeMessageView({});
-      // app.appView.showView(negativeMessageView);
       negativeMessageView.render();
     });
   },
@@ -56,12 +35,16 @@ app.AppRouter = Backbone.Router.extend({
   feedbackmessage: function () {
     app.activities = app.activities || new app.Activities();
     app.tasks = app.tasks || new app.Tasks();
-    app.activities.fetch({replace: true, reset: true}).done(function () {
-      app.tasks.fetch().done(function () {
+    // app.activities.fetch({replace: true, reset: true}).done(function () {
+    //   app.tasks.fetch({
+    //     success: function(collection, response, options) {
+    //       console.log('whats in teh collection', collection, 'response', response);
+    //     }
+    // }).done(function () {
         var feedbackListView = new app.FeedbackListView({collection: app.feedbacks});
         feedbackListView.render();
-      });
-    });
+      // });
+    // });
   },
 
   taskList: function () {
