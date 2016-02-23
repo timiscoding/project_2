@@ -3,8 +3,15 @@ var app = app || {};
 app.AppRouter = Backbone.Router.extend({
   initialize: function(){
     setInterval( this.negmessage, 5000 );
-    app.menuAvatarView = new app.MenuAvatarView({});
-    app.menuAvatarView.render();
+    var cur_user = new app.User({ id: app.current_user.id });
+    setInterval( function(){
+      cur_user.fetch();
+      app.memberList.fetch();
+    }, 5000);
+    cur_user.fetch().done( function() {
+      app.menuAvatarView = new app.MenuAvatarView({ model: cur_user });
+      app.menuAvatarView.render();
+    });
     setInterval( this.feedbackmessage, 5000 );
   },
 
