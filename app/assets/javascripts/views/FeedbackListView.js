@@ -6,7 +6,7 @@ app.FeedbackListView = Backbone.View.extend({
   render: function () {
     //Set up the overall page structure
     if ( $('#notification').length ) {
-      console.log('not showing feedbackListItemView as there is already a notification being shown');
+      // console.log('not showing feedbackListItemView as there is already a notification being shown');
       return;
     }
 

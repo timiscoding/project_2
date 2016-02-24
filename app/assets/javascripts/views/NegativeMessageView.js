@@ -78,7 +78,10 @@ app.NegativeMessageView = Backbone.View.extend({
 
   render: function () {
     // don't display anything if there is already a notification showing
-    if ( $('#notification').length ) { console.log('notification area not empty'); return; }
+    if ( $('#notification').length ) {
+      // console.log('notification area not empty');
+      return;
+    }
     var NegativeMessageViewTemplate = _.template($('#NegativeMessageViewTemplate').html());
     var view = this;
 
