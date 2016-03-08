@@ -40,7 +40,7 @@ user | password
 zippy@email.com | chicken
 squiggles@email.com | chicken
 
-[Try it out now](https://calm-escarpment-12505.herokuapp.com/)
+[Try it out now](https://chore-app.herokuapp.com/)
 
 ## Technologies used:
 
